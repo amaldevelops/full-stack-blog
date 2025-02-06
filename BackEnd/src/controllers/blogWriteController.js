@@ -1,4 +1,4 @@
 async function blogWriteControllerMain(req, res, next) {
-  res.send("Write Route!");
+  res.json({ Welcome: "Write Route!" });
 }
 export { blogWriteControllerMain };
