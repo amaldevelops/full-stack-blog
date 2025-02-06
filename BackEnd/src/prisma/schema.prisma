@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,4 +8,47 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model BlogUsers {
+  id         Int     @id @default(autoincrement())
+  user_email String  @unique
+  user_name  String  @unique
+  password   String
+  author     Boolean @default(false)
+
+  // Relations
+  posts    BlogContent[]
+  comments BlogComments[]
+}
+
+model BlogContent {
+  id                Int    @id @default(autoincrement())
+  blog_post_title   String
+  blog_post_content String
+
+  blog_post_publish_status    Boolean  @default(false)
+  blog_post_publish_timestamp DateTime @default(now())
+
+  //Foreign key & relation to BlogUsers
+
+  blog_post_author_id Int
+  author              BlogUsers @relation(fields: [blog_post_author_id], references: [id], onDelete: Cascade)
+
+  //Relation to Comments
+  comments BlogComments[]
+}
+
+model BlogComments {
+  id                Int      @id @default(autoincrement())
+  comment_text      String
+  comment_timestamp DateTime @default(now())
+
+  // Foreign key & Relation to BlogContent
+  blog_post_id Int // Linked to table 'BlogContent': id
+  blog_post    BlogContent @relation(fields: [blog_post_id], references: [id], onDelete: Cascade)
+
+  // Foreign key & Relation to BlogUsers
+  comment_author_id Int // Linked to table 'BlogUsers':id
+  author            BlogUsers @relation(fields: [comment_author_id], references: [id], onDelete: Cascade)
 }
