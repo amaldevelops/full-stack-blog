@@ -1,27 +1,3 @@
-async function blogReadControllerPostLogin(req, res, next) {
-  try {
-    res.json({ Login: "Reader Login Route" });
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function blogReadControllerPostComment(req, res, next) {
-  try {
-    res.json({ Comment: "Reader Comment Route" });
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function blogReadControllerPostLogout(req, res, next) {
-  try {
-    res.json({ Logout: "Reader Logout Route" });
-  } catch (error) {
-    throw error;
-  }
-}
-
 async function blogReadControllerGetAllPosts(req, res, next) {
   try {
     res.json({ Allposts: "Reader All posts Route" });
@@ -33,6 +9,14 @@ async function blogReadControllerGetAllPosts(req, res, next) {
 async function blogReadControllerGetPostById(req, res, next) {
   try {
     res.json({ PostById: "Reader post by ID Route" });
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function blogReadControllerPostComment(req, res, next) {
+  try {
+    res.json({ Comment: "Reader Comment Route" });
   } catch (error) {
     throw error;
   }
@@ -55,9 +39,7 @@ async function blogReadControllerDeleteComment(req, res, next) {
 }
 
 export {
-  blogReadControllerPostLogin,
   blogReadControllerPostComment,
-  blogReadControllerPostLogout,
   blogReadControllerGetAllPosts,
   blogReadControllerGetPostById,
   blogReadControllerUpdateComment,

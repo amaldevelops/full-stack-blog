@@ -1,9 +1,7 @@
 import { Router } from "express";
 
 import {
-  blogReadControllerPostLogin,
   blogReadControllerPostComment,
-  blogReadControllerPostLogout,
   blogReadControllerGetAllPosts,
   blogReadControllerGetPostById,
   blogReadControllerUpdateComment,
@@ -11,10 +9,6 @@ import {
 } from "../controllers/blogReadController.js";
 
 const blogReaderRouter = Router();
-
-blogReaderRouter.post("/login", blogReadControllerPostLogin);
-
-blogReaderRouter.post("/logout", blogReadControllerPostLogout);
 
 blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 
