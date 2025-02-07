@@ -1,7 +1,3 @@
-async function blogReadControllerMain(req, res, next) {
-  res.json({ Welcome: `Welcome To Blog API, Date is ${new Date()}` });
-  next();
-}
 
 async function blogReadControllerPostLogin(req, res, next) {
   try {
@@ -28,7 +24,6 @@ async function blogReadControllerPostLogout(req, res, next) {
 }
 
 export {
-  blogReadControllerMain,
   blogReadControllerPostLogin,
   blogReadControllerPostComment,
   blogReadControllerPostLogout,
