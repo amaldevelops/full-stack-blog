@@ -6,6 +6,18 @@ const newPrismaClient = new PrismaClient();
 
 async function registerNewUserDb(userDetailsObject) {
   try {
+    const sampleData={
+      user_email:"maverick@gmail.com",
+      user_name:"maverick",
+      password:"Test1",
+      author:false,
+
+    }
+
+    await newPrismaClient.blogUsers.create(
+      {data:sampleData}
+    )
+
   } catch (error) {
     throw error;
   }

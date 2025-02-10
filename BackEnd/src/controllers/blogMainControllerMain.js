@@ -15,6 +15,7 @@ async function blogMainControllerMain(req, res, next) {
 
 async function blogMainControllerRegister(req, res, next) {
   try {
+    registerNewUserDb()
     res.json({ Register: "Register User Route" });
   } catch (error) {
     throw error;
