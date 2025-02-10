@@ -24,7 +24,7 @@ async function blogMainControllerRegister(req, res, next) {
     };
 
     // const userDetailsObject=req.body;
-    
+
     registerNewUserDb(userDetailsObject);
     res.json({ Register: "Register User Route" });
   } catch (error) {
@@ -34,6 +34,14 @@ async function blogMainControllerRegister(req, res, next) {
 
 async function blogMainControllerLogin(req, res, next) {
   try {
+    // const userDetailsObject=req.body;
+
+    const userDetailsObject={
+      user_email: 'maverick5@gmail.com',
+      password: 'encryptThePassword',
+    };
+
+    loginUserDb(userDetailsObject);
     res.json({ Login: "Login Route" });
   } catch (error) {
     throw error;

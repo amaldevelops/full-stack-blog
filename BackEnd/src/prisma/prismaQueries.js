@@ -29,6 +29,24 @@ async function registerNewUserDb(userDetailsObject) {
 
 async function loginUserDb(userDetailsObject) {
   try {
+    const ProcessedUserLoginData = {
+      user_email: userDetailsObject.user_email,
+      password: userDetailsObject.password,
+    };
+
+    const DataBaseRecord = await newPrismaClient.blogUsers.findUnique({
+      where: { user_email: userDetailsObject.user_email },
+    });
+
+    const PasswordMatch = await bcrypt.compare(
+      userDetailsObject.password,
+      DataBaseRecord["password"]
+    );
+    if (PasswordMatch) {
+      console.log("Passwords Matched!");
+    } else {
+      console.log("Passwords DO NOT Match !");
+    }
   } catch (error) {
     throw error;
   }
