@@ -9,7 +9,18 @@ async function readAllPostsDb() {
     });
     return allPosts;
   } catch (error) {
-    throw error;
+    next(error);
+  }
+}
+
+async function readPostById(ID) {
+  try {
+    const postById = await newPrismaClient.blogContent.findUnique({
+      where: { id: ID },
+    });
+    return postById;
+  } catch (error) {
+    next(error);
   }
 }
 
@@ -20,4 +31,4 @@ async function registerNewUserDb(userDetailsObject) {
   }
 }
 
-export { newPrismaClient, readAllPostsDb };
+export { newPrismaClient, readAllPostsDb, readPostById };

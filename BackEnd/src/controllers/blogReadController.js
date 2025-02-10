@@ -1,6 +1,12 @@
+import {
+  newPrismaClient,
+  readAllPostsDb,
+  readPostById,
+} from "../prisma/prismaQueries.js";
+
 async function blogReadControllerGetAllPosts(req, res, next) {
   try {
-    res.json({ Allposts: "Reader All posts Route" });
+    res.json({ Allposts: await readAllPostsDb() });
   } catch (error) {
     throw error;
   }
@@ -8,7 +14,9 @@ async function blogReadControllerGetAllPosts(req, res, next) {
 
 async function blogReadControllerGetPostById(req, res, next) {
   try {
-    res.json({ PostById: "Reader post by ID Route" });
+    const IdToSearch = parseInt(req.params.id);
+    const returnedPost = await readPostById(IdToSearch);
+    res.json({ PostById: returnedPost });
   } catch (error) {
     throw error;
   }
