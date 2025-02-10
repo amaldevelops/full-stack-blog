@@ -56,6 +56,7 @@ async function blogReadControllerDeleteComment(req, res, next) {
 
 async function blogReadControllerCreateComment(req, res, next) {
   try {
+    res.json({Message:"Create Comment"})
   } catch (error) {
     next(error);
   }

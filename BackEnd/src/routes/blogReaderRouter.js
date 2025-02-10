@@ -16,7 +16,7 @@ blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 blogReaderRouter.get("/posts/comment", blogReadControllerComment);
 
 blogReaderRouter.post(
-  "posts/comment/:id/create",
+  "/posts/comment/:id/create",
   blogReadControllerCreateComment
 );
 
