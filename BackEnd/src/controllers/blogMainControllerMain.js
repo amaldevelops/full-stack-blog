@@ -5,7 +5,7 @@ import {
 } from "../prisma/prismaQueries.js";
 
 async function blogMainControllerMain(req, res, next) {
-  console.log(await readAllPostsDb());
+  // console.log(await readAllPostsDb());
   res.json([
     { Welcome: `Welcome To Blog API, Date is ${new Date()}` },
     { Select: "Please select Route: /reader or /writer To continue!" },

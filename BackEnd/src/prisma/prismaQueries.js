@@ -7,21 +7,21 @@ const newPrismaClient = new PrismaClient();
 async function registerNewUserDb(userDetailsObject) {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function loginUserDb(userDetailsObject) {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function logOutUserDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
@@ -33,7 +33,7 @@ async function readAllPostsDb() {
     });
     return allPosts;
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
@@ -44,35 +44,35 @@ async function readPostByIdDb(ID) {
     });
     return postById;
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function updatePostDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function updatePostStatusDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function deletePostDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function createPostDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
@@ -80,7 +80,7 @@ async function createPostDb() {
 async function createCommentDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
@@ -89,21 +89,21 @@ async function readCommentDb() {
     const readComment = await newPrismaClient.blogComments.findMany();
     return readComment;
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function updateCommentDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 
 async function deleteCommentDb() {
   try {
   } catch (error) {
-    next(error);
+    throw error;
   }
 }
 

@@ -18,10 +18,14 @@ async function blogReadControllerGetAllPosts(req, res, next) {
 async function blogReadControllerGetPostById(req, res, next) {
   try {
     const IdToSearch = parseInt(req.params.id);
-    const returnedPost = await readPostByIdDb(IdToSearch);
-    res.json({ PostById: [returnedPost] });
+    if (Number.isInteger(IdToSearch)) {
+      const returnedPost = await readPostByIdDb(IdToSearch);
+      res.json({ PostById: [returnedPost] });
+    } else {
+      res.json({ Error: "Invalid Id Format, ID should be a number" });
+    }
   } catch (error) {
-    throw error;
+    next(error);
   }
 }
 

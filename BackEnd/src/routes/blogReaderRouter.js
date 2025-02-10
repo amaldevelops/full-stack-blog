@@ -13,20 +13,23 @@ const blogReaderRouter = Router();
 
 blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 
-blogReaderRouter.get("/posts/:id", blogReadControllerGetPostById);
+blogReaderRouter.get("/posts/comment", blogReadControllerComment);
 
 blogReaderRouter.post(
   "posts/comment/:id/create",
   blogReadControllerCreateComment
 );
 
-blogReaderRouter.get("posts/comment/read", blogReadControllerComment);
-
 blogReaderRouter.put(
   "/posts/comment/:id/update",
   blogReadControllerUpdateComment
 );
 
-blogReaderRouter.delete("/comment/:id/delete", blogReadControllerDeleteComment);
+blogReaderRouter.delete(
+  "/posts/comment/:id/delete",
+  blogReadControllerDeleteComment
+);
+
+blogReaderRouter.get("/posts/:id", blogReadControllerGetPostById);
 
 export default blogReaderRouter;
