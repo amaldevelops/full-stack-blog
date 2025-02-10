@@ -1,9 +1,10 @@
 import { Router } from "express";
 
 import {
-  blogReadControllerPostComment,
   blogReadControllerGetAllPosts,
   blogReadControllerGetPostById,
+  blogReadControllerCreateComment,
+  blogReadControllerComment,
   blogReadControllerUpdateComment,
   blogReadControllerDeleteComment,
 } from "../controllers/blogReadController.js";
@@ -14,9 +15,17 @@ blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 
 blogReaderRouter.get("/posts/:id", blogReadControllerGetPostById);
 
-blogReaderRouter.post("/comment", blogReadControllerPostComment);
+blogReaderRouter.post(
+  "posts/comment/:id/create",
+  blogReadControllerCreateComment
+);
 
-blogReaderRouter.put("/comment/:id/update", blogReadControllerUpdateComment);
+blogReaderRouter.get("posts/comment/read", blogReadControllerComment);
+
+blogReaderRouter.put(
+  "/posts/comment/:id/update",
+  blogReadControllerUpdateComment
+);
 
 blogReaderRouter.delete("/comment/:id/delete", blogReadControllerDeleteComment);
 

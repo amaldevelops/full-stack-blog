@@ -86,6 +86,8 @@ async function createCommentDb() {
 
 async function readCommentDb() {
   try {
+    const readComment = await newPrismaClient.blogComments.findMany();
+    return readComment;
   } catch (error) {
     next(error);
   }

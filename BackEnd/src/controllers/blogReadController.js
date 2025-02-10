@@ -1,12 +1,10 @@
 import {
-
   readAllPostsDb,
   readPostByIdDb,
   createCommentDb,
   readCommentDb,
   updateCommentDb,
   deleteCommentDb,
-  
 } from "../prisma/prismaQueries.js";
 
 async function blogReadControllerGetAllPosts(req, res, next) {
@@ -27,9 +25,10 @@ async function blogReadControllerGetPostById(req, res, next) {
   }
 }
 
-async function blogReadControllerPostComment(req, res, next) {
+async function blogReadControllerComment(req, res, next) {
   try {
-    res.json({ Comment: "Reader Comment Route" });
+    const allComments = await readCommentDb();
+    res.json({ Comment: allComments });
   } catch (error) {
     throw error;
   }
@@ -51,10 +50,18 @@ async function blogReadControllerDeleteComment(req, res, next) {
   }
 }
 
+async function blogReadControllerCreateComment(req, res, next) {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
 export {
-  blogReadControllerPostComment,
+  blogReadControllerComment,
   blogReadControllerGetAllPosts,
   blogReadControllerGetPostById,
   blogReadControllerUpdateComment,
   blogReadControllerDeleteComment,
+  blogReadControllerCreateComment,
 };
