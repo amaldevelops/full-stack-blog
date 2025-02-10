@@ -1,23 +1,27 @@
 import { PrismaClient } from "@prisma/client";
 
+import bcrypt from "bcryptjs";
+
 const newPrismaClient = new PrismaClient();
 
 //Table Operations for 'BlogUsers'
 
 async function registerNewUserDb(userDetailsObject) {
   try {
-    const sampleData={
-      user_email:"maverick@gmail.com",
-      user_name:"maverick",
-      password:"Test1",
-      author:false,
+    const encryptThePassword = await bcrypt.hash(
+      userDetailsObject.password,
+      10
+    );
+    const ProcessedUserRegistrationData = {
+      user_email: userDetailsObject.user_email,
+      user_name: userDetailsObject.user_name,
+      password: encryptThePassword,
+      author: userDetailsObject.author,
+    };
 
-    }
-
-    await newPrismaClient.blogUsers.create(
-      {data:sampleData}
-    )
-
+    await newPrismaClient.blogUsers.create({
+      data: ProcessedUserRegistrationData,
+    });
   } catch (error) {
     throw error;
   }

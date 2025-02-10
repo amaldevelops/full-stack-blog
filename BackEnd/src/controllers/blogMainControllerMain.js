@@ -15,7 +15,17 @@ async function blogMainControllerMain(req, res, next) {
 
 async function blogMainControllerRegister(req, res, next) {
   try {
-    registerNewUserDb()
+    // Following is just Some sample data for testing
+    const userDetailsObject = {
+      user_email: "maverick5@gmail.com",
+      user_name: "maverick5",
+      password: "encryptThePassword",
+      author: false,
+    };
+
+    // const userDetailsObject=req.body;
+    
+    registerNewUserDb(userDetailsObject);
     res.json({ Register: "Register User Route" });
   } catch (error) {
     throw error;
