@@ -54,6 +54,7 @@ async function loginUserDb(userDetailsObject) {
 
 async function logOutUserDb() {
   try {
+    
   } catch (error) {
     throw error;
   }
