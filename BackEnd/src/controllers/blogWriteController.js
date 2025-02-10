@@ -1,3 +1,10 @@
+import {
+  createPostDb,
+  updatePostDb,
+  updatePostStatusDb,
+  deletePostDb,
+} from "../prisma/prismaQueries.js";
+
 async function blogWriteControllerMain(req, res, next) {
   res.json({ Welcome: "Write Route!" });
 }

@@ -48,7 +48,35 @@ async function readPostByIdDb(ID) {
   }
 }
 
-//Table Operations for 'BlogContent'
+async function updatePostDb() {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function updatePostStatusDb() {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function deletePostDb() {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function createPostDb() {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+//Table Operations for 'BlogComments'
 async function createCommentDb() {
   try {
   } catch (error) {
@@ -82,8 +110,12 @@ export {
   registerNewUserDb,
   loginUserDb,
   logOutUserDb,
+  createPostDb,
   readAllPostsDb,
   readPostByIdDb,
+  updatePostDb,
+  updatePostStatusDb,
+  deletePostDb,
   createCommentDb,
   readCommentDb,
   updateCommentDb,
