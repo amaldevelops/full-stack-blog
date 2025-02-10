@@ -16,7 +16,7 @@ async function blogReadControllerGetPostById(req, res, next) {
   try {
     const IdToSearch = parseInt(req.params.id);
     const returnedPost = await readPostById(IdToSearch);
-    res.json({ PostById: returnedPost });
+    res.json({ PostById: [returnedPost] });
   } catch (error) {
     throw error;
   }

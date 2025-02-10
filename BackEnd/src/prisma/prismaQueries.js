@@ -31,4 +31,9 @@ async function registerNewUserDb(userDetailsObject) {
   }
 }
 
-export { newPrismaClient, readAllPostsDb, readPostById };
+async function loginUserdB(userDetailsObject) {
+  try {
+  } catch (error) {}
+}
+
+export { newPrismaClient, registerNewUserDb, readAllPostsDb, readPostById };

@@ -1,11 +1,10 @@
-import { readAllPostsDb } from "../prisma/prismaQueries.js";
+import { readAllPostsDb, registerNewUserDb } from "../prisma/prismaQueries.js";
 
 async function blogMainControllerMain(req, res, next) {
   console.log(await readAllPostsDb());
   res.json([
     { Welcome: `Welcome To Blog API, Date is ${new Date()}` },
-    { Select: "Please select Blog Reader or Writer To continue!" },
-    
+    { Select: "Please select Route: /reader or /writer To continue!" },
   ]);
   next();
 }
