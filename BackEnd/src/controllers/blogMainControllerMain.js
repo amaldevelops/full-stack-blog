@@ -1,4 +1,8 @@
-import { readAllPostsDb, registerNewUserDb } from "../prisma/prismaQueries.js";
+import {
+  registerNewUserDb,
+  loginUserDb,
+  logOutUserDb,
+} from "../prisma/prismaQueries.js";
 
 async function blogMainControllerMain(req, res, next) {
   console.log(await readAllPostsDb());

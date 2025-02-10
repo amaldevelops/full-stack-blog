@@ -2,6 +2,30 @@ import { PrismaClient } from "@prisma/client";
 
 const newPrismaClient = new PrismaClient();
 
+//Table Operations for 'BlogUsers'
+
+async function registerNewUserDb(userDetailsObject) {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function loginUserDb(userDetailsObject) {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function logOutUserDb() {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+//Table Operations for 'BlogContent'
 async function readAllPostsDb() {
   try {
     const allPosts = await newPrismaClient.blogContent.findMany({
@@ -13,7 +37,7 @@ async function readAllPostsDb() {
   }
 }
 
-async function readPostById(ID) {
+async function readPostByIdDb(ID) {
   try {
     const postById = await newPrismaClient.blogContent.findUnique({
       where: { id: ID },
@@ -24,16 +48,44 @@ async function readPostById(ID) {
   }
 }
 
-async function registerNewUserDb(userDetailsObject) {
+//Table Operations for 'BlogContent'
+async function createCommentDb() {
   try {
   } catch (error) {
-    throw error;
+    next(error);
   }
 }
 
-async function loginUserdB(userDetailsObject) {
+async function readCommentDb() {
   try {
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 }
 
-export { newPrismaClient, registerNewUserDb, readAllPostsDb, readPostById };
+async function updateCommentDb() {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+async function deleteCommentDb() {
+  try {
+  } catch (error) {
+    next(error);
+  }
+}
+
+export {
+  newPrismaClient,
+  registerNewUserDb,
+  loginUserDb,
+  logOutUserDb,
+  readAllPostsDb,
+  readPostByIdDb,
+  createCommentDb,
+  readCommentDb,
+  updateCommentDb,
+  deleteCommentDb,
+};

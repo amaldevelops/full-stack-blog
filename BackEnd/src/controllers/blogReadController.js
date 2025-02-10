@@ -1,7 +1,12 @@
 import {
-  newPrismaClient,
+
   readAllPostsDb,
-  readPostById,
+  readPostByIdDb,
+  createCommentDb,
+  readCommentDb,
+  updateCommentDb,
+  deleteCommentDb,
+  
 } from "../prisma/prismaQueries.js";
 
 async function blogReadControllerGetAllPosts(req, res, next) {
@@ -15,7 +20,7 @@ async function blogReadControllerGetAllPosts(req, res, next) {
 async function blogReadControllerGetPostById(req, res, next) {
   try {
     const IdToSearch = parseInt(req.params.id);
-    const returnedPost = await readPostById(IdToSearch);
+    const returnedPost = await readPostByIdDb(IdToSearch);
     res.json({ PostById: [returnedPost] });
   } catch (error) {
     throw error;
