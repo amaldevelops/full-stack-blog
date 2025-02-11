@@ -9,6 +9,10 @@ async function blogWriteControllerMain(req, res, next) {
   res.json({ Welcome: "Write Route!" });
 }
 
+async function blogWriteControllerCreate(req, res, next) {
+  res.json({ WriteRoute: "Welcome To Create Post!" });
+}
+
 async function blogWriteControllerDraft(req, res, next) {
   try {
     res.json({ Route: "Draft Route" });
@@ -59,6 +63,7 @@ async function blogWriteControllerUnpublish(req, res, next) {
 
 export {
   blogWriteControllerMain,
+  blogWriteControllerCreate,
   blogWriteControllerDraft,
   blogWriteControllerSave,
   blogWriteControllerEdit,

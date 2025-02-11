@@ -54,7 +54,6 @@ async function loginUserDb(userDetailsObject) {
 
 async function logOutUserDb() {
   try {
-    
   } catch (error) {
     throw error;
   }
@@ -83,6 +82,14 @@ async function readPostByIdDb(ID) {
   }
 }
 
+async function createPostDb(postDetailsObject) {
+  try {
+    const postToBeSaved = {};
+  } catch (error) {
+    throw error;
+  }
+}
+
 async function updatePostDb() {
   try {
   } catch (error) {
@@ -98,13 +105,6 @@ async function updatePostStatusDb() {
 }
 
 async function deletePostDb() {
-  try {
-  } catch (error) {
-    throw error;
-  }
-}
-
-async function createPostDb() {
   try {
   } catch (error) {
     throw error;

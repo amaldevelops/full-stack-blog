@@ -12,7 +12,7 @@ import {
 
 const blogReaderRouter = Router();
 
-blogReaderRouter.get('/',blogReadControllerMain)
+blogReaderRouter.get("/", blogReadControllerMain);
 
 blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 
