@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import {
+  blogReadControllerMain,
   blogReadControllerGetAllPosts,
   blogReadControllerGetPostById,
   blogReadControllerCreateComment,
@@ -10,6 +11,8 @@ import {
 } from "../controllers/blogReadController.js";
 
 const blogReaderRouter = Router();
+
+blogReaderRouter.get('/',blogReadControllerMain)
 
 blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 

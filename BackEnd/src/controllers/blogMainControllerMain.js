@@ -7,8 +7,29 @@ import {
 async function blogMainControllerMain(req, res, next) {
   // console.log(await readAllPostsDb());
   res.json([
-    { Welcome: `Welcome To Blog API, Date is ${new Date()}` },
-    { Select: "Please select Route: /reader or /writer To continue!" },
+    { Welcome: `Welcome To Blog API by Amal K, Date is ${new Date()}` },
+    { AvailableRoutes: "Please select Route: /reader or /writer To continue!" },
+    {
+      ReaderRoutes: [
+        "GET:/reader/posts",
+        "GET:reader/posts/:id",
+        "GET:/reader/posts/comment",
+        "/POST:reader/posts/comment/:id/create",
+        "PUT:/reader/posts/comment/:id/update",
+        "DELETE:/reader/posts/comment/:id/delete",
+      ],
+    },
+    {
+      WriterRoutes: [
+        "GET:/write",
+        "POST:/write/post/:id/draft",
+        "POST:/write/post/:id/save",
+        "POST:/write/post/:id/edit",
+        "DELETE:/write/post/:id/delete",
+        "POST:/write/post/:id/publish",
+        "POST:/write/post/:id/unpublish",
+      ],
+    },
   ]);
   next();
 }
@@ -36,9 +57,9 @@ async function blogMainControllerLogin(req, res, next) {
   try {
     // const userDetailsObject=req.body;
 
-    const userDetailsObject={
-      user_email: 'maverick5@gmail.com',
-      password: 'encryptThePassword',
+    const userDetailsObject = {
+      user_email: "maverick5@gmail.com",
+      password: "encryptThePassword",
     };
 
     loginUserDb(userDetailsObject);

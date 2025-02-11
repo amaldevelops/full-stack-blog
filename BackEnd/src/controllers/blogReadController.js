@@ -7,6 +7,16 @@ import {
   deleteCommentDb,
 } from "../prisma/prismaQueries.js";
 
+async function blogReadControllerMain(req,res,next)
+{
+  try{
+ res.json({MainReadRoute:"Welcome to Main Read Route!"})
+  }
+  catch{
+    
+  }
+}
+
 async function blogReadControllerGetAllPosts(req, res, next) {
   try {
     res.json({ Allposts: await readAllPostsDb() });
@@ -63,6 +73,7 @@ async function blogReadControllerCreateComment(req, res, next) {
 }
 
 export {
+  blogReadControllerMain,
   blogReadControllerComment,
   blogReadControllerGetAllPosts,
   blogReadControllerGetPostById,
