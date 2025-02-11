@@ -1,5 +1,6 @@
 import {
   createPostDb,
+  draftSavePostDb,
   updatePostDb,
   updatePostStatusDb,
   deletePostDb,
@@ -10,10 +11,11 @@ async function blogWriteControllerMain(req, res, next) {
 }
 
 async function blogWriteControllerCreate(req, res, next) {
-  const postToBeSaved = {blog_post_title:"Test Title 6",
-    blog_post_content:"Test Content about Software Development 6",
-    blog_post_publish_status:false,
-    blog_post_author_id:1,
+  const postToBeSaved = {
+    blog_post_title: "Test Title 6",
+    blog_post_content: "Test Content about Software Development 6",
+    blog_post_publish_status: false,
+    blog_post_author_id: 1,
   };
 
   createPostDb(postToBeSaved);
@@ -21,8 +23,19 @@ async function blogWriteControllerCreate(req, res, next) {
 }
 
 async function blogWriteControllerDraft(req, res, next) {
+  //This middleware will load a Post based on post ID
   try {
-    res.json({ Route: "Draft Route" });
+    const postToBeSaved = {
+      blog_post_title: "Test Title 6",
+      blog_post_content: "Test Content about Software Development 6",
+      blog_post_publish_status: false,
+      blog_post_author_id: 1,
+    };
+
+    const draftToEdit = parseInt(req.params.id);
+    // console.log(draftToEdit);
+    const returnedPost = await draftSavePostDb(draftToEdit, postToBeSaved);
+    res.json({ Route: returnedPost });
   } catch (error) {
     throw error;
   }

@@ -93,6 +93,20 @@ async function createPostDb(postDetailsObject) {
   }
 }
 
+async function draftSavePostDb(postID,postDetailsObject)
+{
+  try{
+    const blogPostDraft=await newPrismaClient.blogContent.findUnique({
+      where:{id:postID}
+    })
+    return blogPostDraft
+  }
+  catch(error)
+  {
+    throw error;
+  }
+}
+
 async function updatePostDb() {
   try {
   } catch (error) {
@@ -151,6 +165,7 @@ export {
   loginUserDb,
   logOutUserDb,
   createPostDb,
+  draftSavePostDb,
   readAllPostsDb,
   readPostByIdDb,
   updatePostDb,
