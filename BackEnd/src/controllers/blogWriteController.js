@@ -10,6 +10,13 @@ async function blogWriteControllerMain(req, res, next) {
 }
 
 async function blogWriteControllerCreate(req, res, next) {
+  const postToBeSaved = {blog_post_title:"Test Title 6",
+    blog_post_content:"Test Content about Software Development 6",
+    blog_post_publish_status:false,
+    blog_post_author_id:1,
+  };
+
+  createPostDb(postToBeSaved);
   res.json({ WriteRoute: "Welcome To Create Post!" });
 }
 

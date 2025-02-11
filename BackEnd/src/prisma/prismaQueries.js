@@ -84,7 +84,10 @@ async function readPostByIdDb(ID) {
 
 async function createPostDb(postDetailsObject) {
   try {
-    const postToBeSaved = {};
+    console.log(postDetailsObject)
+    await newPrismaClient.blogContent.create({
+      data: postDetailsObject,
+    });
   } catch (error) {
     throw error;
   }
