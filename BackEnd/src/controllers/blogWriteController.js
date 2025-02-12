@@ -8,7 +8,19 @@ import {
 } from "../prisma/prismaQueries.js";
 
 async function blogWriteControllerMain(req, res, next) {
-  res.json({ Welcome: "Write Route!" });
+  res.json({
+    WriterRoutes: [
+      "GET:/writer",
+      "GET:/writer/post/create",
+      "GET:/writer/post/drafts",
+      "POST:/writer/post/:id/draft",
+      "POST:/writer/post/:id/save",
+      "POST:/writer/post/:id/edit",
+      "DELETE:/writer/post/:id/delete",
+      "POST:/writer/post/:id/publish",
+      "POST:/writer/post/:id/unpublish",
+    ],
+  });
 }
 
 async function blogWriteControllerCreate(req, res, next) {

@@ -106,6 +106,7 @@ async function loadAllDraftPostsFromDb() {
     const blogPostDraft = await newPrismaClient.blogContent.findMany({
       where: { blog_post_publish_status: false },
     });
+    console.log(blogPostDraft);
     return blogPostDraft;
   } catch (error) {
     throw error;

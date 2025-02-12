@@ -9,7 +9,16 @@ import {
 
 async function blogReadControllerMain(req, res, next) {
   try {
-    res.json({ MainReadRoute: "Welcome to Main Read Route!" });
+    res.json({
+      ReaderRoutes: [
+        "GET:/reader/posts",
+        "GET:reader/posts/:id",
+        "GET:/reader/posts/comment",
+        "/POST:reader/posts/comment/:id/create",
+        "PUT:/reader/posts/comment/:id/update",
+        "DELETE:/reader/posts/comment/:id/delete",
+      ],
+    });
   } catch {}
 }
 
