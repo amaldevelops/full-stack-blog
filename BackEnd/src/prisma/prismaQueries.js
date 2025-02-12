@@ -113,8 +113,8 @@ async function loadAllDraftPostsFromDb() {
   }
 }
 
-// This function will load the Unpublished drafts from the DB based on postID to Edit the post
-async function draftSavePostDb(postID, postDetailsObject) {
+// This function will load the drafts from the DB based on postID to Edit the post
+async function loadDraftByIdDb(postID) {
   try {
     const blogPostDraft = await newPrismaClient.blogContent.findUnique({
       where: { id: postID },
@@ -125,8 +125,16 @@ async function draftSavePostDb(postID, postDetailsObject) {
   }
 }
 
-async function updatePostDb() {
+async function updateDraftByIdDb(draftIdToEdit, draftDataToEdit) {
   try {
+    console.log(draftDataToEdit);
+    const updatePost = await newPrismaClient.blogContent.update({
+      where: {
+        id: draftIdToEdit,
+      },
+      data: draftDataToEdit,
+    });
+    return `Successfully updated record ID: ${draftIdToEdit}`;
   } catch (error) {
     throw error;
   }
@@ -183,11 +191,11 @@ export {
   loginUserDb,
   logOutUserDb,
   createPostDb,
-  draftSavePostDb,
+  loadDraftByIdDb,
   loadAllDraftPostsFromDb,
   readAllPostsDb,
   readPostByIdDb,
-  updatePostDb,
+  updateDraftByIdDb,
   updatePostStatusDb,
   deletePostDb,
   createCommentDb,

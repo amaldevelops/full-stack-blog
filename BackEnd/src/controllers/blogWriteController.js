@@ -1,12 +1,13 @@
 import {
   createPostDb,
   loadAllDraftPostsFromDb,
-  draftSavePostDb,
-  updatePostDb,
+  loadDraftByIdDb,
+  updateDraftByIdDb,
   updatePostStatusDb,
   deletePostDb,
 } from "../prisma/prismaQueries.js";
 
+// This function will send the available Writer routes
 async function blogWriteControllerMain(req, res, next) {
   res.json({
     WriterRoutes: [
@@ -23,6 +24,7 @@ async function blogWriteControllerMain(req, res, next) {
   });
 }
 
+// This function will create a New Post by receiving form data from the front end as JSON and will create a new Database post entry
 async function blogWriteControllerCreate(req, res, next) {
   const postToBeSaved = {
     blog_post_title: "Test Title 6",
@@ -32,10 +34,10 @@ async function blogWriteControllerCreate(req, res, next) {
   };
 
   createPostDb(postToBeSaved);
-  res.json({ WriteRoute: "Welcome To Create Post!" });
+  res.json({ status: postToBeSaved });
 }
 
-// This middleware will load all Drafts as JSON from the DB and send to the frontEnd
+// This middleware will load all Drafts as JSON from the DB and send to the frontEnd, this will enable frontend to select a post to edit or publish
 
 async function blogWriteControllerLoadAllDrafts(req, res, next) {
   try {
@@ -46,26 +48,45 @@ async function blogWriteControllerLoadAllDrafts(req, res, next) {
   }
 }
 
-async function blogWriteControllerDraft(req, res, next) {
-  // This middleware will load a Post based on post ID and sent as JSON so it can be edited
+// This middleware will load a Post based on post ID and send as JSON so it can be edited using the post ID
+async function blogWriteControllerDraftLoadById(req, res, next) {
   try {
-    //Test Object, remove after front end is connected
-    const postToBeSaved = {
-      blog_post_title: "Test Title 6",
-      blog_post_content: "Test Content about Software Development 6",
-      blog_post_publish_status: false,
-      blog_post_author_id: 1,
-    };
-
-    const draftToEdit = parseInt(req.params.id);
-    // console.log(draftToEdit);
-    const returnedPost = await draftSavePostDb(draftToEdit, postToBeSaved);
+    const draftIdToEdit = parseInt(req.params.id);
+    const returnedPost = await loadDraftByIdDb(draftIdToEdit);
     res.json({ Route: returnedPost });
   } catch (error) {
     throw error;
   }
 }
 
+//blogWriteControllerDraft
+// This middleware will Update a Post/Draft based on post ID into the DB
+async function blogWriteControllerDraftSaveById(req, res, next) {
+  try {
+    //Test Object, remove after front end is connected
+    const draftDataToEdit = {
+      blog_post_title: "Test Title 9887",
+      blog_post_content: "Test Content about Software Development 88",
+      blog_post_publish_status: false,
+      blog_post_author_id: 1,
+    };
+
+    const draftIdToEdit = parseInt(req.params.id);
+    console.log(draftIdToEdit);
+    const returnedPost = await updateDraftByIdDb(
+      draftIdToEdit,
+      draftDataToEdit
+    );
+
+    res.json({ Status: returnedPost });
+
+    // res.json({ Route: returnedPost });
+  } catch (error) {
+    throw error;
+  }
+}
+
+// This function will save Blog posts as Drafts
 async function blogWriteControllerSave(req, res, next) {
   try {
     res.json({ Route: "Save Route" });
@@ -110,7 +131,8 @@ export {
   blogWriteControllerMain,
   blogWriteControllerCreate,
   blogWriteControllerLoadAllDrafts,
-  blogWriteControllerDraft,
+  blogWriteControllerDraftLoadById,
+  blogWriteControllerDraftSaveById,
   blogWriteControllerSave,
   blogWriteControllerEdit,
   blogWriteControllerDelete,

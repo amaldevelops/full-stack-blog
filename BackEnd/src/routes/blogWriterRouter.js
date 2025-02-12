@@ -4,7 +4,8 @@ import {
   blogWriteControllerMain,
   blogWriteControllerCreate,
   blogWriteControllerLoadAllDrafts,
-  blogWriteControllerDraft,
+  blogWriteControllerDraftLoadById,
+  blogWriteControllerDraftSaveById,
   blogWriteControllerSave,
   blogWriteControllerEdit,
   blogWriteControllerDelete,
@@ -20,7 +21,7 @@ blogWriterRouter.post("/post/create", blogWriteControllerCreate);
 
 blogWriterRouter.get("/post/drafts", blogWriteControllerLoadAllDrafts);
 
-blogWriterRouter.post("/post/:id/draft", blogWriteControllerDraft);
+blogWriterRouter.post("/post/:id/draft", blogWriteControllerDraftSaveById);
 
 blogWriterRouter.post("/post/:id/save", blogWriteControllerSave);
 
