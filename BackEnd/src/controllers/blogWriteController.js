@@ -39,7 +39,7 @@ async function blogWriteControllerCreate(req, res, next) {
 
 async function blogWriteControllerLoadAllDrafts(req, res, next) {
   try {
-    const loadAllDrafts = await updatePostStatusDb();
+    const loadAllDrafts = await loadAllDraftPostsFromDb();
     res.json({ AllDrafts: loadAllDrafts });
   } catch (error) {
     throw error;
