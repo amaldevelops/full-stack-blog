@@ -1,5 +1,6 @@
 import {
   createPostDb,
+  loadAllDraftPostsFromDb,
   draftSavePostDb,
   updatePostDb,
   updatePostStatusDb,
@@ -22,9 +23,21 @@ async function blogWriteControllerCreate(req, res, next) {
   res.json({ WriteRoute: "Welcome To Create Post!" });
 }
 
-async function blogWriteControllerDraft(req, res, next) {
-  //This middleware will load a Post based on post ID
+// This middleware will load all Drafts as JSON from the DB and send to the frontEnd
+
+async function blogWriteControllerLoadAllDrafts(req, res, next) {
   try {
+    const loadAllDrafts = await updatePostStatusDb();
+    res.json({ AllDrafts: loadAllDrafts });
+  } catch (error) {
+    throw error;
+  }
+}
+
+async function blogWriteControllerDraft(req, res, next) {
+  // This middleware will load a Post based on post ID and sent as JSON so it can be edited
+  try {
+    //Test Object, remove after front end is connected
     const postToBeSaved = {
       blog_post_title: "Test Title 6",
       blog_post_content: "Test Content about Software Development 6",
@@ -84,6 +97,7 @@ async function blogWriteControllerUnpublish(req, res, next) {
 export {
   blogWriteControllerMain,
   blogWriteControllerCreate,
+  blogWriteControllerLoadAllDrafts,
   blogWriteControllerDraft,
   blogWriteControllerSave,
   blogWriteControllerEdit,

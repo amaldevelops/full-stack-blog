@@ -3,6 +3,7 @@ import { Router } from "express";
 import {
   blogWriteControllerMain,
   blogWriteControllerCreate,
+  blogWriteControllerLoadAllDrafts,
   blogWriteControllerDraft,
   blogWriteControllerSave,
   blogWriteControllerEdit,
@@ -16,6 +17,8 @@ const blogWriterRouter = Router();
 blogWriterRouter.get("/", blogWriteControllerMain);
 
 blogWriterRouter.post("/post/create", blogWriteControllerCreate);
+
+blogWriterRouter.get("/post/drafts", blogWriteControllerLoadAllDrafts);
 
 blogWriterRouter.post("/post/:id/draft", blogWriteControllerDraft);
 
