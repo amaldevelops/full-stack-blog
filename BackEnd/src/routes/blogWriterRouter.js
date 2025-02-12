@@ -6,11 +6,11 @@ import {
   blogWriteControllerLoadAllDrafts,
   blogWriteControllerDraftLoadById,
   blogWriteControllerDraftSaveById,
-  blogWriteControllerSave,
+  // blogWriteControllerSave,
   blogWriteControllerEdit,
   blogWriteControllerDelete,
-  blogWriteControllerPublish,
-  blogWriteControllerUnpublish,
+  blogWriteControllerPublishToggle,
+  // blogWriteControllerUnpublish,
 } from "../controllers/blogWriteController.js";
 
 const blogWriterRouter = Router();
@@ -23,14 +23,14 @@ blogWriterRouter.get("/post/drafts", blogWriteControllerLoadAllDrafts);
 
 blogWriterRouter.post("/post/:id/draft", blogWriteControllerDraftSaveById);
 
-blogWriterRouter.post("/post/:id/save", blogWriteControllerSave);
+// blogWriterRouter.post("/post/:id/save", blogWriteControllerSave);
 
 blogWriterRouter.put("/post/:id/edit", blogWriteControllerEdit);
 
 blogWriterRouter.delete("/post/:id/delete", blogWriteControllerDelete);
 
-blogWriterRouter.post("/post/:id/publish", blogWriteControllerPublish);
+blogWriterRouter.post("/post/:id/publish", blogWriteControllerPublishToggle);
 
-blogWriterRouter.post("/post/:id/unpublish", blogWriteControllerUnpublish);
+// blogWriterRouter.post("/post/:id/unpublish", blogWriteControllerUnpublish);
 
 export default blogWriterRouter;

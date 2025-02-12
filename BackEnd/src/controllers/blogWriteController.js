@@ -87,14 +87,16 @@ async function blogWriteControllerDraftSaveById(req, res, next) {
 }
 
 // This function will save Blog posts as Drafts
-async function blogWriteControllerSave(req, res, next) {
-  try {
-    res.json({ Route: "Save Route" });
-  } catch (error) {
-    throw error;
-  }
-}
+// async function blogWriteControllerSave(req, res, next) {
+//   try {
+//     res.json({ Route: "Save Route" });
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
+
+// This middleware function will edit existing posts
 async function blogWriteControllerEdit(req, res, next) {
   try {
     res.json({ Route: "Edit Route" });
@@ -103,6 +105,7 @@ async function blogWriteControllerEdit(req, res, next) {
   }
 }
 
+// This middleware function will Delete existing posts
 async function blogWriteControllerDelete(req, res, next) {
   try {
     res.json({ Route: "Delete Route" });
@@ -111,7 +114,8 @@ async function blogWriteControllerDelete(req, res, next) {
   }
 }
 
-async function blogWriteControllerPublish(req, res, next) {
+// This middleware function will toggle database flag to publish/unpublish existing posts
+async function blogWriteControllerPublishToggle(req, res, next) {
   try {
     res.json({ Route: "Publish Route" });
   } catch (error) {
@@ -119,13 +123,13 @@ async function blogWriteControllerPublish(req, res, next) {
   }
 }
 
-async function blogWriteControllerUnpublish(req, res, next) {
-  try {
-    res.json({ Route: "Unpublish Route" });
-  } catch (error) {
-    throw error;
-  }
-}
+// async function blogWriteControllerUnpublish(req, res, next) {
+//   try {
+//     res.json({ Route: "Unpublish Route" });
+//   } catch (error) {
+//     throw error;
+//   }
+// }
 
 export {
   blogWriteControllerMain,
@@ -133,9 +137,9 @@ export {
   blogWriteControllerLoadAllDrafts,
   blogWriteControllerDraftLoadById,
   blogWriteControllerDraftSaveById,
-  blogWriteControllerSave,
+  // blogWriteControllerSave,
   blogWriteControllerEdit,
   blogWriteControllerDelete,
-  blogWriteControllerPublish,
-  blogWriteControllerUnpublish,
+  blogWriteControllerPublishToggle,
+  // blogWriteControllerUnpublish,
 };
