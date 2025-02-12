@@ -107,7 +107,9 @@ async function blogWriteControllerEdit(req, res, next) {
 // This middleware function will Delete existing posts
 async function blogWriteControllerDelete(req, res, next) {
   try {
-    res.json({ Route: "Delete Route" });
+    const postID=parseInt(req.params.id);
+    const DeleteStatus=await deletePostDb(postID)
+    res.json({ Status: `Delete Post Status: ${DeleteStatus}` });
   } catch (error) {
     throw error;
   }
@@ -116,10 +118,11 @@ async function blogWriteControllerDelete(req, res, next) {
 // This middleware function will toggle database flag to publish/unpublish existing posts
 async function blogWriteControllerPublishToggle(req, res, next) {
   try {
+    //Publish:true/false
+    //Post ID: Integer
     const requiredPublishStatus = JSON.parse(req.body.Publish);
     const requiredPostId = parseInt(req.params.id, 10);
-    console.log(requiredPostId);
-    // console.log(requiredPublishStatus);
+
     const updatePublishStatus = await updatePostStatusDb(
       requiredPostId,
       requiredPublishStatus

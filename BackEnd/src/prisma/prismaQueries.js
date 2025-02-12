@@ -143,31 +143,45 @@ async function updateDraftByIdDb(draftIdToEdit, draftDataToEdit) {
 //This function will toggle between publish/unpublish
 async function updatePostStatusDb(postID, publishStatus) {
   try {
-
-    const updateStatus=await newPrismaClient.blogContent.update({
-      where:{id:postID},
-      data:{blog_post_publish_status:publishStatus }
-    })
+    const updateStatus = await newPrismaClient.blogContent.update({
+      where: { id: postID },
+      data: { blog_post_publish_status: publishStatus },
+    });
 
     console.log(updateStatus);
 
-    return  (updateStatus.blog_post_publish_status);
-
+    return updateStatus.blog_post_publish_status;
   } catch (error) {
     throw error;
   }
 }
 
-async function deletePostDb() {
+//This function will post by ID
+async function deletePostDb(PostId) {
   try {
+    const DeletePost = await newPrismaClient.blogContent.delete({
+      where: {
+        id: PostId,
+      },
+    });
+    return "Deleted";
   } catch (error) {
+    if (error.code === "P2025") {
+      // Prisma error code for "Record to delete does not exist"
+      return `Post with ID ${PostId} not found.`;
+    }
     throw error;
   }
 }
 
 //Table Operations for 'BlogComments'
-async function createCommentDb() {
+async function createCommentDb(postDetailsObject) {
   try {
+    // console.log(postDetailsObject)
+    await newPrismaClient.blogComments.create({
+      data: postDetailsObject,
+    });
+    return "Comment Created !";
   } catch (error) {
     throw error;
   }
@@ -182,16 +196,34 @@ async function readCommentDb() {
   }
 }
 
-async function updateCommentDb() {
+async function updateCommentDb(commentIdToEdit, commentDataToEdit) {
   try {
+    console.log(draftDataToEdit);
+    const updateComment = await newPrismaClient.blogComments.update({
+      where: {
+        id: commentIdToEdit,
+      },
+      data: commentDataToEdit,
+    });
+    return `Successfully updated record ID: ${draftIdToEdit}`;
   } catch (error) {
     throw error;
   }
 }
 
-async function deleteCommentDb() {
+async function deleteCommentDb(commentId) {
   try {
+    const DeleteComment = await newPrismaClient.blogComments.delete({
+      where: {
+        id: commentId,
+      },
+    });
+    return "Deleted";
   } catch (error) {
+    if (error.code === "P2025") {
+      // Prisma error code for "Record to delete does not exist"
+      return `Comment with ID ${commentId} not found.`;
+    }
     throw error;
   }
 }
