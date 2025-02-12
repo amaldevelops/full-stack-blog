@@ -95,7 +95,6 @@ async function blogWriteControllerDraftSaveById(req, res, next) {
 //   }
 // }
 
-
 // This middleware function will edit existing posts
 async function blogWriteControllerEdit(req, res, next) {
   try {
@@ -117,7 +116,15 @@ async function blogWriteControllerDelete(req, res, next) {
 // This middleware function will toggle database flag to publish/unpublish existing posts
 async function blogWriteControllerPublishToggle(req, res, next) {
   try {
-    res.json({ Route: "Publish Route" });
+    const requiredPublishStatus = JSON.parse(req.body.Publish);
+    const requiredPostId = parseInt(req.params.id, 10);
+    console.log(requiredPostId);
+    // console.log(requiredPublishStatus);
+    const updatePublishStatus = await updatePostStatusDb(
+      requiredPostId,
+      requiredPublishStatus
+    );
+    res.json({ status: `Post Publish Status: ${updatePublishStatus}` });
   } catch (error) {
     throw error;
   }

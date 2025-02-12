@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
@@ -13,7 +13,8 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 4000;
 
-app.use(express.json());
+app.use(express.json()); // Parses application/json
+app.use(urlencoded({extended:true})) // Parses application/x-www-form-urlencoded
 app.use(cors());
 
 app.use("/", blogMainRouter);

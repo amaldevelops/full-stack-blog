@@ -124,7 +124,7 @@ async function loadDraftByIdDb(postID) {
     throw error;
   }
 }
-
+// This function will update posts/drafts using post ID
 async function updateDraftByIdDb(draftIdToEdit, draftDataToEdit) {
   try {
     console.log(draftDataToEdit);
@@ -140,8 +140,19 @@ async function updateDraftByIdDb(draftIdToEdit, draftDataToEdit) {
   }
 }
 
-async function updatePostStatusDb() {
+//This function will toggle between publish/unpublish
+async function updatePostStatusDb(postID, publishStatus) {
   try {
+
+    const updateStatus=await newPrismaClient.blogContent.update({
+      where:{id:postID},
+      data:{blog_post_publish_status:publishStatus }
+    })
+
+    console.log(updateStatus);
+
+    return  (updateStatus.blog_post_publish_status);
+
   } catch (error) {
     throw error;
   }
