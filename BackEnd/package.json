@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "seed": "node src/prisma/seedSampleData.js",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "studio": "npx prisma studio --schema src/prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^6.3.1",
