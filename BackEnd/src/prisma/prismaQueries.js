@@ -187,10 +187,15 @@ async function createCommentDb(postDetailsObject) {
   }
 }
 
-async function readCommentDb() {
+async function readCommentDb(postId) {
   try {
-    const readComment = await newPrismaClient.blogComments.findMany();
-    return readComment;
+    const postWithComments = await newPrismaClient.blogContent.findUnique({
+      where: { id: postId },
+      include: {
+        comments: true, // Include the comments related to this post
+      },
+    });
+    return postWithComments;
   } catch (error) {
     throw error;
   }

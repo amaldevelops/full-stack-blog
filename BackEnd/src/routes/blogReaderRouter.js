@@ -16,20 +16,20 @@ blogReaderRouter.get("/", blogReadControllerMain);
 
 blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 
-blogReaderRouter.get("/posts/comment", blogReadControllerComment);
+blogReaderRouter.get("/posts/:id/comment", blogReadControllerComment);
 
 blogReaderRouter.post(
-  "/posts/comment/:id/create",
+  "/posts/:id/comment/:id/create",
   blogReadControllerCreateComment
 );
 
 blogReaderRouter.put(
-  "/posts/comment/:id/update",
+  "/posts/:id/comment/:id/update",
   blogReadControllerUpdateComment
 );
 
 blogReaderRouter.delete(
-  "/posts/comment/:id/delete",
+  "/posts/:id/comment/:id/delete",
   blogReadControllerDeleteComment
 );
 

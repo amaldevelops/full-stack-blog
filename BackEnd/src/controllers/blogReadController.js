@@ -22,6 +22,7 @@ async function blogReadControllerMain(req, res, next) {
   } catch {}
 }
 
+// This middleware will send all posts as JSON
 async function blogReadControllerGetAllPosts(req, res, next) {
   try {
     res.json({ data: await readAllPostsDb() });
@@ -30,6 +31,7 @@ async function blogReadControllerGetAllPosts(req, res, next) {
   }
 }
 
+// This middleware will send posts by Post Id as JSON
 async function blogReadControllerGetPostById(req, res, next) {
   try {
     const IdToSearch = parseInt(req.params.id);
@@ -44,10 +46,14 @@ async function blogReadControllerGetPostById(req, res, next) {
   }
 }
 
+// This middleware will send all post with comments by Post Id as JSON
+
 async function blogReadControllerComment(req, res, next) {
   try {
-    const allComments = await readCommentDb();
-    res.json({ Comment: allComments });
+    const PostId = parseInt(req.params.id);
+    console.log(`Comment ID: ${PostId}`);
+    const ReturnedComments = await readCommentDb(PostId);
+    res.json({ data: ReturnedComments });
   } catch (error) {
     throw error;
   }
