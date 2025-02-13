@@ -24,7 +24,7 @@ async function blogReadControllerMain(req, res, next) {
 
 async function blogReadControllerGetAllPosts(req, res, next) {
   try {
-    res.json({ Allposts: await readAllPostsDb() });
+    res.json({ data: await readAllPostsDb() });
   } catch (error) {
     throw error;
   }
@@ -37,7 +37,7 @@ async function blogReadControllerGetPostById(req, res, next) {
       const returnedPost = await readPostByIdDb(IdToSearch);
       res.json({ PostById: [returnedPost] });
     } else {
-      res.json({ Error: "Invalid Id Format, ID should be a number" });
+      res.json({ error: "Invalid Id Format, ID should be a number" });
     }
   } catch (error) {
     next(error);
@@ -55,7 +55,7 @@ async function blogReadControllerComment(req, res, next) {
 
 async function blogReadControllerUpdateComment(req, res, next) {
   try {
-    res.json({ UpdateComment: "Reader Comment update Route" });
+    res.json({ status: "Reader Comment update Route" });
   } catch (error) {
     throw error;
   }
@@ -63,7 +63,7 @@ async function blogReadControllerUpdateComment(req, res, next) {
 
 async function blogReadControllerDeleteComment(req, res, next) {
   try {
-    res.json({ DeleteComment: "Reader Delete Comment Route" });
+    res.json({ status: "Reader Delete Comment Route" });
   } catch (error) {
     throw error;
   }
@@ -71,7 +71,7 @@ async function blogReadControllerDeleteComment(req, res, next) {
 
 async function blogReadControllerCreateComment(req, res, next) {
   try {
-    res.json({ Message: "Create Comment" });
+    res.json({ status: "Create Comment" });
   } catch (error) {
     next(error);
   }

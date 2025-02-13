@@ -38,7 +38,7 @@ async function blogMainControllerMain(req, res, next) {
 
 async function blogMainControllerRegister(req, res, next) {
   try {
-    // Following is just Some sample data for testing
+    // Test Data, remove after Front End is connected and tested
     const userDetailsObject = {
       user_email: "maverick5@gmail.com",
       user_name: "maverick5",
@@ -46,10 +46,8 @@ async function blogMainControllerRegister(req, res, next) {
       author: false,
     };
 
-    // const userDetailsObject=req.body;
-
     registerNewUserDb(userDetailsObject);
-    res.json({ Register: "Register User Route" });
+    res.json({ status: "Register User Route" });
   } catch (error) {
     throw error;
   }
@@ -73,7 +71,7 @@ async function blogMainControllerLogin(req, res, next) {
 
 async function blogMainControllerLogout(req, res, next) {
   try {
-    res.json({ Logout: "Logout Route" });
+    res.json({ status: "Logout Route" });
   } catch (error) {
     throw error;
   }

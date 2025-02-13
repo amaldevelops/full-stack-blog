@@ -26,6 +26,8 @@ async function blogWriteControllerMain(req, res, next) {
 
 // This function will create a New Post by receiving form data from the front end as JSON and will create a new Database post entry
 async function blogWriteControllerCreate(req, res, next) {
+
+  // Test Data, remove after Front End is connected and tested
   const postToBeSaved = {
     blog_post_title: "Test Title 6",
     blog_post_content: "Test Content about Software Development 6",
@@ -42,7 +44,7 @@ async function blogWriteControllerCreate(req, res, next) {
 async function blogWriteControllerLoadAllDrafts(req, res, next) {
   try {
     const loadAllDrafts = await loadAllDraftPostsFromDb();
-    res.json({ AllDrafts: loadAllDrafts });
+    res.json({ data: loadAllDrafts });
   } catch (error) {
     throw error;
   }
@@ -53,7 +55,7 @@ async function blogWriteControllerDraftLoadById(req, res, next) {
   try {
     const draftIdToEdit = parseInt(req.params.id);
     const returnedPost = await loadDraftByIdDb(draftIdToEdit);
-    res.json({ Route: returnedPost });
+    res.json({ data: returnedPost });
   } catch (error) {
     throw error;
   }
@@ -63,7 +65,8 @@ async function blogWriteControllerDraftLoadById(req, res, next) {
 // This middleware will Update a Post/Draft based on post ID into the DB
 async function blogWriteControllerDraftSaveById(req, res, next) {
   try {
-    //Test Object, remove after front end is connected
+
+   // Test Data, remove after Front End is connected and tested
     const draftDataToEdit = {
       blog_post_title: "Test Title 9887",
       blog_post_content: "Test Content about Software Development 88",
@@ -98,7 +101,7 @@ async function blogWriteControllerDraftSaveById(req, res, next) {
 // This middleware function will edit existing posts
 async function blogWriteControllerEdit(req, res, next) {
   try {
-    res.json({ Route: "Edit Route" });
+    res.json({ data: "Edit Route" });
   } catch (error) {
     throw error;
   }
@@ -109,7 +112,7 @@ async function blogWriteControllerDelete(req, res, next) {
   try {
     const postID=parseInt(req.params.id);
     const DeleteStatus=await deletePostDb(postID)
-    res.json({ Status: `Delete Post Status: ${DeleteStatus}` });
+    res.json({ status: `Delete Post Status: ${DeleteStatus}` });
   } catch (error) {
     throw error;
   }
