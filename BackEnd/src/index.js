@@ -8,6 +8,13 @@ import blogReaderRouter from "./routes/blogReaderRouter.js";
 
 import blogWriterRouter from "./routes/blogWriterRouter.js";
 
+// import { passportInstance, passport } from "../src/middleware/passportConfig.js";
+
+// app.use(passport.initialize());
+
+// app.use(passport.session());
+
+
 dotenv.config();
 
 const app = express();
