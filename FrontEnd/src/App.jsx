@@ -10,7 +10,11 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Blog Front End connected to a RESTful API </h1>
+      <h1>Blog Web App </h1>
+      <p>
+        Create/Read/Update/Delete (CRUD), Publish/Unpublish and comment on Blog
+        Posts
+      </p>
       <div className="card">
         <form>
           <label id="username">User Name </label>
@@ -26,9 +30,9 @@ function App() {
       </div>
 
       <div className="card">
-        <h1>Blog Reader/Writer - Front End Technical Information</h1>
+        <h2>Project Technical Information</h2>
 
-        <h2>Frontend Stack</h2>
+        <h3>Frontend Reader/Writer</h3>
         <ul>
           <li>JavaScript,React, Vite HTML, CSS</li>
           <li>
@@ -37,10 +41,6 @@ function App() {
           <li>
             User-friendly interface for browsing and interacting with content.
           </li>
-        </ul>
-
-        <h2>Reader/Writer Client</h2>
-        <ul>
           <li>
             Reader Client: Provides a user-friendly interface for consuming blog
             content.
@@ -51,10 +51,21 @@ function App() {
             for authors to manage blog content and administrative tasks.
           </li>
         </ul>
-
       </div>
       <div>
-        <h1>Back End RESTful API Technical Information</h1>
+        <h3>Back End RESTful API Technical Information</h3>
+        <ul>
+          <li>RESTful API built with Node.js, Express and PostgreSQL.</li>
+          <li>Prisma ORM for database interaction.</li>
+          <li>JWT authentication for secure access to protected routes.</li>
+          <li>
+            Endpoints for managing blog posts, comments, and user accounts.
+          </li>
+          <li>
+            The API serves as the central data and logic hub, handling requests
+            from both front-end clients.
+          </li>
+        </ul>
       </div>
     </>
   );
