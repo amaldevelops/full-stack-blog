@@ -1,6 +1,9 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
+import { useNavigate } from "react-router-dom";
+import reactLogo from "../assets/react.svg";
+import "../assets/App.css";
+
+// import Login from "./login";
 
 function App() {
   return (
@@ -15,19 +18,8 @@ function App() {
         Create/Read/Update/Delete (CRUD), Publish/Unpublish and comment on Blog
         Posts
       </p>
-      <div className="card">
-        <form>
-          <label id="username">User Name </label>
-          <br></br>
-          <input name="username" id="username" type="email"></input>
-          <br></br>
-          <label id="password">Password </label> <br></br>
-          <input name="password" id="password" type="password"></input>
-          <br></br>
-          <button>Login</button>
-          <button>Register</button>
-        </form>
-      </div>
+
+      {/* <Login></Login> */}
 
       <div className="card">
         <h2>Project Technical Information</h2>
