@@ -10,7 +10,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Blog API Front End</h1>
+      <h1>Blog Front End connected to a RESTful API </h1>
       <div className="card">
         <form>
           <label id="username">User Name </label>
@@ -26,7 +26,7 @@ function App() {
       </div>
 
       <div className="card">
-        <h1>Blog Reader - Front End Technical Information</h1>
+        <h1>Blog Reader/Writer - Front End Technical Information</h1>
 
         <h2>Frontend Stack</h2>
         <ul>
@@ -51,6 +51,10 @@ function App() {
             for authors to manage blog content and administrative tasks.
           </li>
         </ul>
+
+      </div>
+      <div>
+        <h1>Back End RESTful API Technical Information</h1>
       </div>
     </>
   );
