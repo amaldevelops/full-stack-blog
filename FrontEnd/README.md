@@ -1,8 +1,12 @@
-# React + Vite
+# Blog Reader - Front End
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Frontend Stack
 
-Currently, two official plugins are available:
+- JavaScript,React, Vite HTML, CSS
+- React-based front-end for reading blog posts and leaving comments.
+- User-friendly interface for browsing and interacting with content.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Reader/Writer Client
+
+- Reader Client: Provides a user-friendly interface for consuming blog content.
+- Writer Client: Features for managing posts (publishing/unpublishing, editing), comments (deleting, editing). Offers a dedicated interface for authors to manage blog content and administrative tasks.
