@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import reactLogo from "../assets/react.svg";
 import "../assets/App.css";
 
-// import Login from "./login";
+import Login from "./Login";
+import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   return (
@@ -18,8 +19,11 @@ function App() {
         Create/Read/Update/Delete (CRUD), Publish/Unpublish and comment on Blog
         Posts
       </p>
+<ErrorBoundary>
+<Login/>
+</ErrorBoundary>
 
-      {/* <Login></Login> */}
+      
 
       <div className="card">
         <h2>Project Technical Information</h2>
