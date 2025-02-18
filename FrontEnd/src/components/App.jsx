@@ -19,11 +19,9 @@ function App() {
         Create/Read/Update/Delete (CRUD), Publish/Unpublish and comment on Blog
         Posts
       </p>
-<ErrorBoundary>
-<Login/>
-</ErrorBoundary>
-
-      
+      <ErrorBoundary>
+        <Login />
+      </ErrorBoundary>
 
       <div className="card">
         <h2>Project Technical Information</h2>
