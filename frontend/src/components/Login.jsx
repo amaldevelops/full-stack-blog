@@ -16,6 +16,11 @@ function Login() {
   };
   return (
     <div className="card">
+      <h1>Blog Web App Login</h1>
+      <p>
+        Create/Read/Update/Delete (CRUD), Publish/Unpublish and comment on Blog
+        Posts
+      </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">User Name </label>
         <br></br>
