@@ -15,10 +15,10 @@ function AllPosts() {
         const fetchAllPosts = await getAllPosts(apiPathAllPosts);
         const fetchPostById = await getAllPosts(apiPathPostById);
 
-        console.log(fetchPostById.PostById[0]);
+        console.log(fetchPostById.data);
         setAllThePosts(fetchAllPosts.data);
-        setPostById(fetchPostById.PostById[0]);
-        console.log(postById);
+        setPostById(fetchPostById.data[0]);
+        // console.log(postById);
       } catch (error) {
         setError(error.message);
       }
@@ -62,7 +62,8 @@ function AllPosts() {
           </ul>
         ))} */}
 
-        {<p>{postById.blog_post_title}</p>}
+        {<p>{postById.blog_post_title}: {postById.blog_post_content
+        }</p>}
       </div>
     </div>
   );
