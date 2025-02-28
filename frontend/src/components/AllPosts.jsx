@@ -4,16 +4,21 @@ import { useState, useEffect } from "react";
 import { getAllPosts } from "../utils/apiReaderQueries";
 function AllPosts() {
   const [allThePosts, setAllThePosts] = useState([]);
+  const [postById, setPostById] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchPosts() {
       try {
         const apiPathAllPosts = "reader/posts";
+        const apiPathPostById = "reader/posts/14";
         const fetchAllPosts = await getAllPosts(apiPathAllPosts);
+        const fetchPostById = await getAllPosts(apiPathPostById);
 
-        console.log(fetchAllPosts.data);
+        console.log(fetchPostById.PostById[0]);
         setAllThePosts(fetchAllPosts.data);
+        setPostById(fetchPostById.PostById[0]);
+        console.log(postById);
       } catch (error) {
         setError(error.message);
       }
@@ -39,7 +44,7 @@ function AllPosts() {
       <div>
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
-            <li>
+            <li key={posts.id}>
               <a href={`reader/posts/${posts.id}`}>
                 Title: {posts.blog_post_title}{" "}
               </a>
@@ -48,6 +53,16 @@ function AllPosts() {
             </li>
           </ul>
         ))}
+      </div>
+
+      <div>
+        {/* {postById.map((posts) => (
+          <ul key={posts.id}>
+            <li key={posts.id}>{posts.blog_post_title}</li>
+          </ul>
+        ))} */}
+
+        {<p>{postById.blog_post_title}</p>}
       </div>
     </div>
   );
