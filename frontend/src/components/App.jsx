@@ -6,7 +6,6 @@ import "../assets/App.css";
 import Login from "./Login";
 import TechnicalInfo from "./TechnicalInfo";
 import AllPosts from "./AllPosts";
-import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
   return (
@@ -17,13 +16,8 @@ function App() {
         </a>
       </div>
 
-      <ErrorBoundary>
-        <Login />
-
-        <AllPosts />
-
-        <TechnicalInfo />
-      </ErrorBoundary>
+      <Login />
+      <TechnicalInfo />
     </>
   );
 }
