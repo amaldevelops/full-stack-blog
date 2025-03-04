@@ -9,7 +9,7 @@ const readerRoutes = [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/full-stack-blog/reader",
+    path: "/full-stack-blog/reader/home",
     element: <AllPosts />,
     errorElement: <ErrorPage />,
   },

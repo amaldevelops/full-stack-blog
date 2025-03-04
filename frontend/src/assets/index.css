@@ -67,3 +67,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.Logos{
+  height: 50px;
+  width:50px;
+  padding: 10px;
+}

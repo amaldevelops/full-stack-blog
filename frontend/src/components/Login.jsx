@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import TechnicalInfo from "./TechnicalInfo";
+
 
 function Login() {
   // const navigate = useNavigate();
@@ -48,6 +50,7 @@ function Login() {
           Register
         </button>
       </form>
+      <TechnicalInfo />
     </div>
   );
 }
