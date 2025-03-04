@@ -22,22 +22,22 @@ function Login() {
         Posts
       </p>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">User Name </label>
+        <label htmlFor="currentUserName">User Name </label>
         <br></br>
         <input
-          name="username"
-          id="username"
+          name="currentUserName"
+          id="currentUserName"
           type="email"
           value={formData.username}
           onChange={handleChange}
           required
         ></input>
         <br></br>
-        <label htmlFor="password">Password </label> <br></br>
+        <label htmlFor="currentPassword">Password </label> <br></br>
         <input
-          name="password"
-          id="password"
-          type="password"
+          name="currentPassword"
+          id="currentPassword"
+          type="currentPassword"
           value={formData.password}
           onChange={handleChange}
           required

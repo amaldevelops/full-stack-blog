@@ -4,12 +4,12 @@ import ErrorPage from "../components/ErrorPage";
 
 const readerRoutes = [
   {
-    path: "/",
+    path: "/full-stack-blog",
     element: <App />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/reader",
+    path: "/full-stack-blog/reader",
     element: <AllPosts />,
     errorElement: <ErrorPage />,
   },
