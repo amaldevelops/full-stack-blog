@@ -5,7 +5,7 @@ import "../assets/App.css";
 
 import Login from "./Login";
 import TechnicalInfo from "./TechnicalInfo";
-import AllPosts from "./AllPosts"
+import AllPosts from "./AllPosts";
 import ErrorBoundary from "./ErrorBoundary";
 
 function App() {
@@ -20,13 +20,10 @@ function App() {
       <ErrorBoundary>
         <Login />
 
-<AllPosts/>
+        <AllPosts />
 
-        <TechnicalInfo/>
-
+        <TechnicalInfo />
       </ErrorBoundary>
-
-
     </>
   );
 }
