@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 import TechStack from "../components/TechStack";
 import "../assets/App.css";
 
@@ -9,6 +10,7 @@ import AllPosts from "./AllPosts";
 function App() {
   return (
     <>
+    <Link to="reader/home">All Posts</Link>
       <TechStack />
 
       <Login />

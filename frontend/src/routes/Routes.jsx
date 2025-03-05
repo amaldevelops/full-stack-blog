@@ -2,7 +2,7 @@ import App from "../components/App";
 import AllPosts from "../components/AllPosts";
 import ErrorPage from "../components/ErrorPage";
 
-const readerRoutes = [
+const Routes = [
   {
     path: "/full-stack-blog",
     element: <App />,
@@ -15,4 +15,4 @@ const readerRoutes = [
   },
 ];
 
-export default readerRoutes;
+export default Routes;

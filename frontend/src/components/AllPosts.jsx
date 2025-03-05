@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { getAllPosts } from "../utils/apiReaderQueries";
+import { Link } from "react-router-dom";
+
 function AllPosts() {
   const [allThePosts, setAllThePosts] = useState([]);
   const [postById, setPostById] = useState([]);
@@ -62,9 +64,13 @@ function AllPosts() {
           </ul>
         ))} */}
 
-        {<p>{postById.blog_post_title}: {postById.blog_post_content
-        }</p>}
+        {
+          <p>
+            {postById.blog_post_title}: {postById.blog_post_content}
+          </p>
+        }
       </div>
+      <Link to="/full-stack-blog">Home</Link>
     </div>
   );
 }
