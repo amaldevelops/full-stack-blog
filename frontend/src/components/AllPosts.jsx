@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { getAllPosts } from "../utils/apiReaderQueries";
 import { Link } from "react-router-dom";
 
+import TechStack from "../components/TechStack";
+
 function AllPosts() {
   const [allThePosts, setAllThePosts] = useState([]);
   const [postById, setPostById] = useState([]);
@@ -42,6 +44,7 @@ function AllPosts() {
 
   return (
     <div>
+     
       <h1>All Posts</h1>
       <div>
         {allThePosts.map((posts) => (
@@ -70,6 +73,8 @@ function AllPosts() {
           </p>
         }
       </div>
+      
+      <TechStack/>
       <Link to="/full-stack-blog">Home</Link>
     </div>
   );

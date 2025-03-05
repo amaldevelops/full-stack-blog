@@ -1,5 +1,6 @@
 import App from "../components/App";
 import AllPosts from "../components/AllPosts";
+import Home from "../components/Home";
 import ErrorPage from "../components/ErrorPage";
 
 const Routes = [
@@ -10,8 +11,11 @@ const Routes = [
   },
   {
     path: "/full-stack-blog/reader/home",
-    element: <AllPosts />,
+    element: <Home />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/full-stack-blog/reader/home/post",
   },
 ];
 
