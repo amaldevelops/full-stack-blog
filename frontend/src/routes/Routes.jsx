@@ -6,6 +6,7 @@ import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
 import CreatePost from "../components/CreatePost";
 import Register from "../components/Register";
+import APIDocs from "../components/APIDocs";
 
 const Routes = [
   {
@@ -34,6 +35,11 @@ const Routes = [
     element: <Register />,
     errorElement: <ErrorPage />,
   },
+  {
+    path:"/api-docs",
+    element:<APIDocs/>,
+    errorElement:<ErrorPage/>
+  }
 ];
 
 export default Routes;

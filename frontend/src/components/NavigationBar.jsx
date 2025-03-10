@@ -10,6 +10,7 @@ function NavigationBar() {
       <Link to="/full-stack-blog/writer/home" className="Links">
         Create New Post
       </Link>
+      <Link to="/api-docs">API Docs</Link>
     </div>
   );
 }
