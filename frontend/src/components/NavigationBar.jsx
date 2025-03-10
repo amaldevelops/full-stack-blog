@@ -9,6 +9,7 @@ function NavigationBar() {
       <Link to="/writer/home" className="Links">
         Create Posts
       </Link>
+      <Link to="/full-stack-blog/login">Login</Link>
     </div>
   );
 }

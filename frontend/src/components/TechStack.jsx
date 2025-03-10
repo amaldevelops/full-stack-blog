@@ -8,9 +8,12 @@ import logoPostman from "../assets/logo-postman.svg";
 import logoPrisma from "../assets/logo-prisma.svg";
 import logoVite from "../assets/logo-vite.svg";
 
+import TechnicalInfo from "./TechnicalInfo";
+
 function TechStack() {
   return (
     <div>
+      <TechnicalInfo/>
       <h3>Front End Stack</h3>
       <img src={logoJs} className="Logos" alt="JavaScript Logo" />
       <img src={logoReact} className="Logos" alt="React logo" />

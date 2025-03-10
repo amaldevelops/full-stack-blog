@@ -1,7 +1,7 @@
 function TechnicalInfo() {
   return (
     <div className="card">
-      <h2>Project Technical Information</h2>
+      <h2>Blog API and Front End Technical Information</h2>
       <div>
         <h3>Frontend Reader/Writer</h3>
         <ul>

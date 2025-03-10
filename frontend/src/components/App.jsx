@@ -7,14 +7,14 @@ import TechStack from "../components/TechStack";
 import NavigationBar from "./NavigationBar";
 import Login from "./Login";
 import AllPosts from "./AllPosts";
+import TechnicalInfo from "./TechnicalInfo";
 
 function App() {
   return (
     <>
       <NavigationBar />
-      <TechStack />
       <AllPosts />
-      <Login />
+      <TechStack />
     </>
   );
 }
