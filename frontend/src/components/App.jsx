@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import TechStack from "../components/TechStack";
 // import "../assets/App.css";
 
+import NavigationBar from "./NavigationBar";
 import Login from "./Login";
 import AllPosts from "./AllPosts";
+
 
 function App() {
   return (
     <>
-      <Link to="reader/home">All Posts</Link>
+    <NavigationBar/>
       <TechStack />
 
       <Login />

@@ -2,11 +2,14 @@ import AllPosts from "./AllPosts";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
+import NavigationBar from "../components/NavigationBar"
 import Post from "../components/Post";
+
 
 function Home() {
   return (
     <div>
+      <NavigationBar/>
       <h1>Blog DashBoard</h1>
       <Link to="post">Write a new Post</Link>
       <Outlet />
