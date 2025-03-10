@@ -11,7 +11,7 @@ const Routes = [
     errorElement: <ErrorPage />,
   },
   {
-    path: "/full-stack-blog/reader/home",
+    path: "/reader/home",
     element: <Home />,
     children: [{ path: "post", element: <Post /> }],
     errorElement: <ErrorPage />,

@@ -8,13 +8,12 @@ import NavigationBar from "./NavigationBar";
 import Login from "./Login";
 import AllPosts from "./AllPosts";
 
-
 function App() {
   return (
     <>
-    <NavigationBar/>
+      <NavigationBar />
       <TechStack />
-
+      <AllPosts />
       <Login />
     </>
   );
