@@ -44,7 +44,7 @@ function AllPosts() {
 
   return (
     <div>
-      <h1>All Posts</h1>
+      <h2>Blog API : All Posts view</h2>
       <div>
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
@@ -57,20 +57,6 @@ function AllPosts() {
             </li>
           </ul>
         ))}
-      </div>
-
-      <div>
-        {/* {postById.map((posts) => (
-          <ul key={posts.id}>
-            <li key={posts.id}>{posts.blog_post_title}</li>
-          </ul>
-        ))} */}
-
-        {
-          <p>
-            {postById.blog_post_title}: {postById.blog_post_content}
-          </p>
-        }
       </div>
     </div>
   );
