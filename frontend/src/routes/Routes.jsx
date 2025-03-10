@@ -36,7 +36,7 @@ const Routes = [
     errorElement: <ErrorPage />,
   },
   {
-    path:"/api-docs",
+    path:"/full-stack-blog/api-docs",
     element:<APIDocs/>,
     errorElement:<ErrorPage/>
   }
