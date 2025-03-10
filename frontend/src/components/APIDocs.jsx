@@ -29,6 +29,28 @@ function APIDocs() {
       <p>
         <strong>Route : </strong>/reader/posts
       </p>
+      <p><strong>Output Format : </strong><code>{`
+    "data": [
+        {
+            "id": 13,
+            "blog_post_title": "The Basics of JavaScript",
+            "blog_post_content": "JavaScript is a versatile programming language used in web development...",
+            "blog_post_publish_status": true,
+            "blog_post_publish_timestamp": "2025-02-13T02:47:01.180Z",
+            "blog_post_author_id": 10
+        },
+        {
+            "id": 14,
+            "blog_post_title": "Understanding Asynchronous Programming",
+            "blog_post_content": "Asynchronous programming is essential for handling network requests efficiently...",
+            "blog_post_publish_status": true,
+            "blog_post_publish_timestamp": "2025-02-13T02:47:01.182Z",
+            "blog_post_author_id": 10
+        }
+    ]`
+}
+        </code>
+        </p>
 
       <h3>Get posts by ID</h3>
       <p>
@@ -43,7 +65,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>GET
       </p>
       <p>
-        <strong>Route : </strong>/reader/posts/comment
+        <strong>Route : </strong>/reader/posts/:id/comment
       </p>
 
       <h3>Create a new comment</h3>
