@@ -5,6 +5,7 @@ import Post from "../components/Post";
 import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
 import CreatePost from "../components/CreatePost";
+import Register from "../components/Register";
 
 const Routes = [
   {
@@ -26,6 +27,11 @@ const Routes = [
   {
     path: "/full-stack-blog/writer/home",
     element: <CreatePost />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/full-stack-blog/register",
+    element: <Register />,
     errorElement: <ErrorPage />,
   },
 ];

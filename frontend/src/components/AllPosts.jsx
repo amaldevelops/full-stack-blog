@@ -52,8 +52,7 @@ function AllPosts() {
               <a href={`reader/posts/${posts.id}`}>
                 Title: {posts.blog_post_title}{" "}
               </a>
-              Published Date: {posts.blog_post_publish_timestamp}, Author ID:
-              {posts.blog_post_author_id}, Post ID:{posts.id}
+              Published Date: {posts.blog_post_publish_timestamp}
             </li>
           </ul>
         ))}
