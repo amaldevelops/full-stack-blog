@@ -1,5 +1,5 @@
 const apiURL = "http://localhost:3000";
-async function getAllPosts(apiPath) {
+async function getReadRouteQueries(apiPath) {
   try {
     // let response = await fetch(`${apiURL}/reader/posts`);
     let response = await fetch(`${apiURL}/${apiPath}`);
@@ -17,4 +17,4 @@ async function getAllPosts(apiPath) {
   }
 }
 
-export { getAllPosts };
+export { getReadRouteQueries };

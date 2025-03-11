@@ -1,7 +1,7 @@
 // This component Will read all the posts from the API and display them as a list, users can click and read the full article and comments and make comments
 
 import { useState, useEffect } from "react";
-import { getAllPosts } from "../utils/apiReaderQueries";
+import { getReadRouteQueries } from "../utils/apiReaderQueries";
 import { Link } from "react-router-dom";
 
 import TechStack from "../components/TechStack";
@@ -16,8 +16,8 @@ function AllPosts() {
       try {
         const apiPathAllPosts = "reader/posts";
         const apiPathPostById = "reader/posts/14";
-        const fetchAllPosts = await getAllPosts(apiPathAllPosts);
-        const fetchPostById = await getAllPosts(apiPathPostById);
+        const fetchAllPosts = await getReadRouteQueries(apiPathAllPosts);
+        const fetchPostById = await getReadRouteQueries(apiPathPostById);
 
         console.log(fetchPostById.data);
         setAllThePosts(fetchAllPosts.data);
@@ -49,7 +49,7 @@ function AllPosts() {
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
             <li key={posts.id}>
-              <a href={`reader/posts/${posts.id}`}>
+              <a href={`/full-stack-blog/reader/posts/${posts.id}`}>
                 Title: {posts.blog_post_title}{" "}
               </a>
               Published Date: {posts.blog_post_publish_timestamp}

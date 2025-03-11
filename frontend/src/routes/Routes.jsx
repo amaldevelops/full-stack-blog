@@ -36,10 +36,15 @@ const Routes = [
     errorElement: <ErrorPage />,
   },
   {
-    path:"/full-stack-blog/api-docs",
-    element:<APIDocs/>,
-    errorElement:<ErrorPage/>
-  }
+    path: "/full-stack-blog/api-docs",
+    element: <APIDocs />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/full-stack-blog/reader/posts/:id",
+    element: <Post />,
+    errorElement: <ErrorPage />,
+  },
 ];
 
 export default Routes;

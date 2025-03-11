@@ -29,7 +29,10 @@ function APIDocs() {
       <p>
         <strong>Route : </strong>/reader/posts
       </p>
-      <p><strong>Output Format : </strong><code>{`
+      <p>
+        <strong>Output Format : </strong>
+        <code>
+          {`
     "data": [
         {
             "id": 13,
@@ -47,10 +50,9 @@ function APIDocs() {
             "blog_post_publish_timestamp": "2025-02-13T02:47:01.182Z",
             "blog_post_author_id": 10
         }
-    ]`
-}
+    ]`}
         </code>
-        </p>
+      </p>
 
       <h3>Get posts by ID</h3>
       <p>
