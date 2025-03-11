@@ -8,9 +8,9 @@ async function getAllPosts(apiPath) {
       throw new Error(`HTTP Error! status:${response.status}`);
     }
 
-    const allPosts = await response.json();
+    const queryResult = await response.json();
     // console.log(allPosts);
-    return allPosts;
+    return queryResult;
   } catch (error) {
     console.error("Error catching posts:", error);
     throw error;
