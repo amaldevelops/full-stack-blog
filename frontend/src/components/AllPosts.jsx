@@ -43,7 +43,7 @@ function AllPosts() {
     <div>
       <h2>Blog API : All Posts view</h2>
       <div>
-        <Post postID={13} />
+
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
             <li key={posts.id}>
