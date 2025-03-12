@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { getReadRouteQueries } from "../utils/apiReaderQueries";
 import { Link } from "react-router-dom";
 
+import Post from "./Post";
+
 // import TechStack from "../components/TechStack";
 
 function AllPosts() {
@@ -19,6 +21,7 @@ function AllPosts() {
         // console.log(postById);
       } catch (error) {
         setError(error.message);
+        // return <div>{error}</div>;
       }
     }
     fetchPosts();
@@ -40,11 +43,12 @@ function AllPosts() {
     <div>
       <h2>Blog API : All Posts view</h2>
       <div>
+        <Post postID={13} />
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
             <li key={posts.id}>
               <Link to={`/full-stack-blog/reader/posts/${posts.id}`}>
-                Title: {posts.blog_post_title}
+                {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
             </li>
