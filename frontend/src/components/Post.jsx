@@ -9,7 +9,8 @@ import { getReadRouteQueries } from "../utils/apiReaderQueries";
 import NavigationBar from "./NavigationBar";
 
 function Post({ postID=14}) {
-  const [APIPathPostById, setAPIPathPostById] = useState(postID);
+  const APIPathPostById=postID;
+  // const [APIPathPostById, setAPIPathPostById] = useState(postID);
   const [postById, setPostById] = useState(null);
   const [error, setError] = useState(null);
 
