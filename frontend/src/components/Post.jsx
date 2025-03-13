@@ -2,14 +2,18 @@
 
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+
 import PropTypes from "prop-types";
 
 import { getReadRouteQueries } from "../utils/apiReaderQueries";
 
 import NavigationBar from "./NavigationBar";
 
-function Post({ postID = 14 }) {
-  const APIPathPostById = postID;
+function Post() {
+  const { id } = useParams();
+  console.log(id);
+  const APIPathPostById = id;
   // const [APIPathPostById, setAPIPathPostById] = useState(postID);
   const [postById, setPostById] = useState(null);
   const [error, setError] = useState(null);
@@ -56,8 +60,8 @@ function Post({ postID = 14 }) {
   );
 }
 
-Post.propTypes = {
-  postID: PropTypes.number.isRequired,
-};
+// Post.propTypes = {
+//   postID: PropTypes.number.isRequired,
+// };
 
 export default Post;
