@@ -16,17 +16,26 @@ function Post() {
   const APIPathPostById = id;
   // const [APIPathPostById, setAPIPathPostById] = useState(postID);
   const [postById, setPostById] = useState(null);
+  const [postComments, setPostComments] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getPostById() {
       try {
         const apiPathPostById = `reader/posts/${APIPathPostById}`;
+        const apiPathPostComments = `reader/posts/${APIPathPostById}/comment`;
+
         const fetchPostById = await getReadRouteQueries(apiPathPostById);
+        const fetchPostComments = await getReadRouteQueries(
+          apiPathPostComments
+        );
+
+        console.log(fetchPostComments);
 
         setPostById(fetchPostById["data"][0]);
+        setPostComments(fetchPostComments["data"]["comments"]);
         // console.log(postById);
-        console.log(fetchPostById);
+        // console.log(fetchPostById);
       } catch (error) {
         setError(error.message);
         return <div>{error}</div>;
@@ -54,8 +63,18 @@ function Post() {
       <h2>{postById.blog_post_title}</h2>
       <p>{postById.blog_post_content}</p>
       <p>Posted on: {postById.blog_post_publish_timestamp}</p>
-      {/* <p>{JSON.stringify(postById)}
-      </p> */}
+
+      {/* <p>{JSON.stringify(postById)}</p> */}
+      <h3>Comments</h3>
+
+      {/* {postComments[0].map((posts)=>{
+        <div> 
+        <p>{posts.id}</p>
+        <p>{posts.comment_text}</p>
+        </div>
+      })} */}
+      {/* <p>{postComments[0]["comment_text"]}</p> */}
+      <p>{JSON.stringify(postComments)}</p>
     </div>
   );
 }
