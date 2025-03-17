@@ -1,8 +1,8 @@
-import NavigationBar from "./NavigationBar";
+// import NavigationBar from "./NavigationBar";
 function APIDocs() {
   return (
     <div>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <h1>Welcome to Blog API docs</h1>
       <p>
         Blog API is developed using Restful principles and is designed to be

@@ -1,8 +1,6 @@
-import NavigationBar from "./NavigationBar";
 function CreatePost() {
   return (
     <div>
-      <NavigationBar />
       <h1>Create Post</h1>
       <form>
         <label htmlFor="postTitle">Post Title: </label>

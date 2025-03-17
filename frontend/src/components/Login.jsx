@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import TechnicalInfo from "./TechnicalInfo";
-import NavigationBar from "./NavigationBar";
+// import TechnicalInfo from "./TechnicalInfo";
+// import NavigationBar from "./NavigationBar";
 
 function Login() {
   // const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Login() {
   };
   return (
     <div className="card">
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <h1>Blog Web App Login</h1>
       <p>
         While you can read posts and comments on this blog, you will need to

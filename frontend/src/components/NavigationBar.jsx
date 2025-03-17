@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function NavigationBar() {
   return (
-    <div className="NavigationBarDiv">
+    <div>
       <Link to="/full-stack-blog" className="Links">
         Home
       </Link>

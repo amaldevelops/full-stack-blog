@@ -13,6 +13,41 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.layoutContainer {
+  position: relative;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-style: solid;
+  border: solid #1a1a1a 1px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: white;
+  border-top: 1px solid #eee;
+}
+
+.content {
+  padding-top: 60px;
+  padding-bottom: 80px;
+  min-height: calc(100vh-140px);
+  overflow-y: auto;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -125,9 +160,4 @@ ul {
 
 .Links {
   padding: 1rem;
-}
-
-.NavigationBarDiv {
-  border-style: solid;
-  border: solid #1a1a1a 1px;
 }

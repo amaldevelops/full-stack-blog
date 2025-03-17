@@ -1,8 +1,8 @@
-import NavigationBar from "./NavigationBar";
+// import NavigationBar from "./NavigationBar";
 function Register() {
   return (
     <div>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <h1>Register New User</h1>
     </div>
   );

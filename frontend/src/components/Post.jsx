@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 
 import { getReadRouteQueries } from "../utils/apiReaderQueries";
 
-import NavigationBar from "./NavigationBar";
+// import NavigationBar from "./NavigationBar";
 
 function Post() {
   const { id } = useParams();
@@ -59,7 +59,7 @@ function Post() {
 
   return (
     <div>
-      <NavigationBar />
+      {/* <NavigationBar /> */}
       <h2>{postById.blog_post_title}</h2>
       <p>{postById.blog_post_content}</p>
       <p>Posted on: {postById.blog_post_publish_timestamp}</p>
