@@ -37,5 +37,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Blog API is running on port ${port}`);
+  console.log(`Blog API is running on Port ${port} i.e for development visit http://localhost:${port}`);
 });
