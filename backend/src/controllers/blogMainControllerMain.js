@@ -14,7 +14,7 @@ async function blogMainControllerMain(req, res, next) {
         "GET:/reader/posts",
         "GET:reader/posts/:id",
         "GET:/reader/posts/comment",
-        "/POST:reader/posts/comment/:id/create",
+        "POST:reader/posts/comment/:id/create",
         "PUT:/reader/posts/comment/:id/update",
         "DELETE:/reader/posts/comment/:id/delete",
       ],
@@ -62,7 +62,9 @@ async function blogMainControllerLogin(req, res, next) {
       password: "encryptThePassword",
     };
 
-    loginUserDb(userDetailsObject);
+    // loginUserDb(userDetailsObject); 
+    console.log(userDetailsObject)
+
     res.json({ Login: "Login Route" });
   } catch (error) {
     throw error;
