@@ -56,17 +56,21 @@ async function blogMainControllerRegister(req, res, next) {
 async function blogMainControllerLogin(req, res, next) {
   try {
     // const userDetailsObject=req.body;
-
+    // Test Data to check login
     const userDetailsObject = {
       user_email: "dev1@example.com",
       user_name: "DevGuru",
       password: "password123",
     };
 
-    loginUserDb(userDetailsObject);
-    // console.log(userDetailsObject)
+    let loginStatus = await loginUserDb(userDetailsObject);
+    console.log(loginStatus);
 
-    res.json({ Login: "Login Route" });
+    if (loginStatus === "successLogin") {
+      res.json({ Login: "Login Successful" });
+    } else {
+      res.json({ Login: "Login Unsuccessful" });
+    }
   } catch (error) {
     throw error;
   }

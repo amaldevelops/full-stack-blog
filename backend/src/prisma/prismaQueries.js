@@ -54,9 +54,12 @@ async function loginUserDb(userDetailsObject) {
       console.log(PasswordMatch);
 
       if (PasswordMatch === true) {
+
         console.log("Passwords Matched!");
+        return "successLogin"
       } else {
         console.log("Passwords DO NOT Match !");
+        return "failureLogin";
       }
     }
   } catch (error) {
