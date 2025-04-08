@@ -47,6 +47,7 @@ async function blogMainControllerRegister(req, res, next) {
     };
 
     registerNewUserDb(userDetailsObject);
+
     res.json({ status: "Register User Route" });
   } catch (error) {
     throw error;
@@ -55,13 +56,17 @@ async function blogMainControllerRegister(req, res, next) {
 
 async function blogMainControllerLogin(req, res, next) {
   try {
-    // const userDetailsObject=req.body;
-    // Test Data to check login
+    // This will destructure form data from req.body
+    const { user_email, user_name, password } = req.body;
+
+    //This will assign the destructured form data into a object which can be sent to the Prisma to query database for user submitted login details
     const userDetailsObject = {
-      user_email: "dev1@example.com",
-      user_name: "DevGuru",
-      password: "password123",
+      user_email: user_email,
+      user_name: user_name,
+      password: password,
     };
+
+    // console.log(req.body)
 
     let loginStatus = await loginUserDb(userDetailsObject);
     console.log(loginStatus);
