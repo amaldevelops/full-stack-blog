@@ -7,6 +7,7 @@ import {
   deletePostDb,
 } from "../prisma/prismaQueries.js";
 
+
 // This function will send the available Writer routes
 async function blogWriteControllerMain(req, res, next) {
   res.json({
@@ -35,7 +36,7 @@ async function blogWriteControllerCreate(req, res, next) {
     blog_post_author_id: 1,
   };
 
-  createPostDb(postToBeSaved);
+  // await createPostDb(postToBeSaved);
   res.json({ status: postToBeSaved });
 }
 

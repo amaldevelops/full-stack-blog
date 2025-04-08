@@ -1,6 +1,9 @@
 import { Router } from "express";
 import { authenticateUserRoute } from "../middleware/authenticator.js";
 
+import {verifyToken} from "../middleware/authenticator.js"
+
+
 import {
   blogWriteControllerMain,
   blogWriteControllerCreate,
@@ -18,7 +21,7 @@ const blogWriterRouter = Router();
 
 blogWriterRouter.get("/", blogWriteControllerMain);
 
-blogWriterRouter.post("/post/create", blogWriteControllerCreate);
+blogWriterRouter.post("/post/create", verifyToken, blogWriteControllerCreate);
 
 blogWriterRouter.get("/post/drafts", blogWriteControllerLoadAllDrafts);
 
