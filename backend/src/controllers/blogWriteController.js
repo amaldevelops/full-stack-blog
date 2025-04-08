@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+// import dotenv from "dotenv";
 
 import {
   createPostDb,
@@ -26,9 +27,19 @@ async function blogWriteControllerMain(req, res, next) {
   });
 }
 
+// Test Data, remove after Front End is connected and tested
+const postToBeSaved = {
+  blog_post_title: "Test Title 6",
+  blog_post_content: "Test Content about Software Development 6",
+  blog_post_publish_status: false,
+  blog_post_author_id: 1,
+};
+
 // This function will create a New Post by receiving form data from the front end as JSON and will create a new Database post entry
 async function blogWriteControllerCreate(req, res, next) {
-  jwt.verify(req.token, "testSecretKey", (err, authData) => {
+  // console.log(process.env.JWT_SECRET_KEY);
+
+  jwt.verify(req.token, process.env.JWT_SECRET_KEY, (err, authData) => {
     if (err) {
       res.sendStatus(403);
     } else {
@@ -36,18 +47,10 @@ async function blogWriteControllerCreate(req, res, next) {
         message: "Post Created....",
         authData,
       });
+      // createPostDb(postToBeSaved);
     }
   });
 
-  // Test Data, remove after Front End is connected and tested
-  const postToBeSaved = {
-    blog_post_title: "Test Title 6",
-    blog_post_content: "Test Content about Software Development 6",
-    blog_post_publish_status: false,
-    blog_post_author_id: 1,
-  };
-
-  // await createPostDb(postToBeSaved);
   // res.json({ status: postToBeSaved });
 }
 

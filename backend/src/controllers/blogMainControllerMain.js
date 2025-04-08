@@ -74,8 +74,8 @@ async function blogMainControllerLogin(req, res, next) {
     if (loginStatus.status === "successLogin") {
       jwt.sign(
         { user: loginStatus.user_name },
-        "testSecretKey",
-        { expiresIn: "600s" },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "1800s" },
         (err, token) => {
           res.json({
             Login: "Login Successful",

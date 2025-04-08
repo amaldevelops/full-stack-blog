@@ -14,14 +14,13 @@ import blogWriterRouter from "./routes/blogWriterRouter.js";
 
 // app.use(passport.session());
 
-
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json()); // Parses application/json
-app.use(urlencoded({extended:true})) // Parses application/x-www-form-urlencoded
+app.use(urlencoded({ extended: true })); // Parses application/x-www-form-urlencoded
 app.use(cors());
 
 app.use("/", blogMainRouter);
@@ -37,5 +36,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Blog API is running on Port ${port} i.e for development visit http://localhost:${port}`);
+  console.log(
+    `Blog API is running on Port ${port} i.e for development visit http://localhost:${port}`
+  );
 });
