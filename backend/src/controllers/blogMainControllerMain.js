@@ -71,7 +71,8 @@ async function blogMainControllerLogin(req, res, next) {
     let loginStatus = await loginUserDb(userDetailsObject);
     console.log(loginStatus);
 
-    if (loginStatus === "successLogin") {
+    if (loginStatus.status === "successLogin") {
+      // jwt.sign()
       res.json({ Login: "Login Successful" });
     } else {
       res.json({ Login: "Login Unsuccessful" });

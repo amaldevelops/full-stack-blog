@@ -40,11 +40,6 @@ async function loginUserDb(userDetailsObject) {
       where: { user_email: ProcessedUserLoginData.user_email },
     });
 
-    // console.log(DataBaseRecord);
-    // console.log(userDetailsObject.user_email);
-    // console.log(ProcessedUserLoginData.password)
-    // console.log(DataBaseRecord.password)
-
     if (DataBaseRecord !== null) {
       const PasswordMatch = await bcrypt.compare(
         ProcessedUserLoginData.password,
@@ -54,13 +49,15 @@ async function loginUserDb(userDetailsObject) {
       console.log(PasswordMatch);
 
       if (PasswordMatch === true) {
-
         console.log("Passwords Matched!");
-        return "successLogin"
+        return { userName: DataBaseRecord.user_name, status: "successLogin" };
       } else {
         console.log("Passwords DO NOT Match !");
-        return "failureLogin";
+        return { userName: DataBaseRecord.user_name, status: "failureLogin" };
       }
+    } else {
+      console.log("Username Not found !");
+      return { status: "failureLogin" };
     }
   } catch (error) {
     throw error;
