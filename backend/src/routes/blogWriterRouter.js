@@ -1,8 +1,7 @@
 import { Router } from "express";
 import { authenticateUserRoute } from "../middleware/authenticator.js";
 
-import {verifyToken} from "../middleware/authenticator.js"
-
+import { verifyToken } from "../middleware/authenticator.js";
 
 import {
   blogWriteControllerMain,
@@ -37,9 +36,6 @@ blogWriterRouter.post("/post/:id/publish", blogWriteControllerPublishToggle);
 
 // blogWriterRouter.post("/post/:id/unpublish", blogWriteControllerUnpublish);
 
-blogWriterRouter.get('/auth', authenticateUserRoute);
-
-
-
+blogWriterRouter.get("/auth", authenticateUserRoute);
 
 export default blogWriterRouter;

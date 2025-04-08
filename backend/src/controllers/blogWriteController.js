@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 import {
   createPostDb,
   loadAllDraftPostsFromDb,
@@ -6,7 +8,6 @@ import {
   updatePostStatusDb,
   deletePostDb,
 } from "../prisma/prismaQueries.js";
-
 
 // This function will send the available Writer routes
 async function blogWriteControllerMain(req, res, next) {
@@ -27,6 +28,16 @@ async function blogWriteControllerMain(req, res, next) {
 
 // This function will create a New Post by receiving form data from the front end as JSON and will create a new Database post entry
 async function blogWriteControllerCreate(req, res, next) {
+  jwt.verify(req.token, "testSecretKey", (err, authData) => {
+    if (err) {
+      res.sendStatus(403);
+    } else {
+      res.json({
+        message: "Post Created....",
+        authData,
+      });
+    }
+  });
 
   // Test Data, remove after Front End is connected and tested
   const postToBeSaved = {
@@ -37,7 +48,7 @@ async function blogWriteControllerCreate(req, res, next) {
   };
 
   // await createPostDb(postToBeSaved);
-  res.json({ status: postToBeSaved });
+  // res.json({ status: postToBeSaved });
 }
 
 // This middleware will load all Drafts as JSON from the DB and send to the frontEnd, this will enable frontend to select a post to edit or publish
@@ -66,8 +77,7 @@ async function blogWriteControllerDraftLoadById(req, res, next) {
 // This middleware will Update a Post/Draft based on post ID into the DB
 async function blogWriteControllerDraftSaveById(req, res, next) {
   try {
-
-   // Test Data, remove after Front End is connected and tested
+    // Test Data, remove after Front End is connected and tested
     const draftDataToEdit = {
       blog_post_title: "Test Title 9887",
       blog_post_content: "Test Content about Software Development 88",
@@ -111,8 +121,8 @@ async function blogWriteControllerEdit(req, res, next) {
 // This middleware function will Delete existing posts
 async function blogWriteControllerDelete(req, res, next) {
   try {
-    const postID=parseInt(req.params.id);
-    const DeleteStatus=await deletePostDb(postID)
+    const postID = parseInt(req.params.id);
+    const DeleteStatus = await deletePostDb(postID);
     res.json({ status: `Delete Post Status: ${DeleteStatus}` });
   } catch (error) {
     throw error;

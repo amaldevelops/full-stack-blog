@@ -68,8 +68,6 @@ async function blogMainControllerLogin(req, res, next) {
       password: password,
     };
 
-    // console.log(req.body)
-
     let loginStatus = await loginUserDb(userDetailsObject);
     console.log(loginStatus);
 
@@ -77,6 +75,7 @@ async function blogMainControllerLogin(req, res, next) {
       jwt.sign(
         { user: loginStatus.user_name },
         "testSecretKey",
+        { expiresIn: "600s" },
         (err, token) => {
           res.json({
             Login: "Login Successful",
