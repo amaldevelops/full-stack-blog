@@ -58,12 +58,13 @@ async function blogMainControllerLogin(req, res, next) {
     // const userDetailsObject=req.body;
 
     const userDetailsObject = {
-      user_email: "maverick5@gmail.com",
-      password: "encryptThePassword",
+      user_email: "dev1@example.com",
+      user_name: "DevGuru",
+      password: "password123",
     };
 
-    // loginUserDb(userDetailsObject); 
-    console.log(userDetailsObject)
+    loginUserDb(userDetailsObject);
+    // console.log(userDetailsObject)
 
     res.json({ Login: "Login Route" });
   } catch (error) {

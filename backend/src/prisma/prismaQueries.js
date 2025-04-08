@@ -36,18 +36,28 @@ async function loginUserDb(userDetailsObject) {
       password: userDetailsObject.password,
     };
 
-    const DataBaseRecord = await newPrismaClient.blogUsers.findUnique({
-      where: { user_email: userDetailsObject.user_email },
+    const DataBaseRecord = await newPrismaClient.BlogUsers.findUnique({
+      where: { user_email: ProcessedUserLoginData.user_email },
     });
 
-    const PasswordMatch = await bcrypt.compare(
-      userDetailsObject.password,
-      DataBaseRecord["password"]
-    );
-    if (PasswordMatch) {
-      console.log("Passwords Matched!");
-    } else {
-      console.log("Passwords DO NOT Match !");
+    // console.log(DataBaseRecord);
+    // console.log(userDetailsObject.user_email);
+    // console.log(ProcessedUserLoginData.password)
+    // console.log(DataBaseRecord.password)
+
+    if (DataBaseRecord !== null) {
+      const PasswordMatch = await bcrypt.compare(
+        ProcessedUserLoginData.password,
+        DataBaseRecord.password
+      );
+
+      console.log(PasswordMatch);
+
+      if (PasswordMatch === true) {
+        console.log("Passwords Matched!");
+      } else {
+        console.log("Passwords DO NOT Match !");
+      }
     }
   } catch (error) {
     throw error;
