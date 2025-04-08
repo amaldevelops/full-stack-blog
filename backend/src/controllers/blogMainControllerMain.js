@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 import {
   registerNewUserDb,
   loginUserDb,
@@ -72,8 +74,16 @@ async function blogMainControllerLogin(req, res, next) {
     console.log(loginStatus);
 
     if (loginStatus.status === "successLogin") {
-      // jwt.sign()
-      res.json({ Login: "Login Successful" });
+      jwt.sign(
+        { user: loginStatus.user_name },
+        "testSecretKey",
+        (err, token) => {
+          res.json({
+            Login: "Login Successful",
+            token: token,
+          });
+        }
+      );
     } else {
       res.json({ Login: "Login Unsuccessful" });
     }
