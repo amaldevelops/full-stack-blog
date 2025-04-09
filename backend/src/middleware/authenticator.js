@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 function authenticateUserRoute() {
   try {
     console.log("Authenticate route called");
@@ -16,7 +18,7 @@ function authenticateUserRoute() {
 function verifyToken(req, res, next) {
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
-    console.log("bearerHeader Ok");
+    // console.log("bearerHeader Ok");
     // Split the Bearer <access_token> and get the <access_token>
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1];
@@ -24,8 +26,31 @@ function verifyToken(req, res, next) {
     next();
   } else {
     console.log("Forbidden, No valid JSON Web Token found");
-    res.sendStatus(403);
+    res.json({
+      message:
+        "Forbidden path, please log in with a user account with higher privileges",
+    });
   }
 }
 
-export { authenticateUserRoute, verifyToken };
+function authenticateToken(req, res, next) {
+  jwt.verify(req.token, process.env.JWT_SECRET_KEY, (err, authData) => {
+    if (err) {
+      // res.sendStatus(403);
+      console.log("Forbidden, No valid JSON Web Token found");
+      res.json({
+        message:
+          "Forbidden path, please log in with a user account with higher privileges",
+      });
+    } else {
+      res.json({
+        message: "Token Verified and access granted to route",
+        authData,
+      });
+
+      next();
+    }
+  });
+}
+
+export { authenticateUserRoute, verifyToken, authenticateToken };

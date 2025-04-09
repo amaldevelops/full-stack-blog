@@ -37,21 +37,10 @@ const postToBeSaved = {
 
 // This function will create a New Post by receiving form data from the front end as JSON and will create a new Database post entry
 async function blogWriteControllerCreate(req, res, next) {
-  // console.log(process.env.JWT_SECRET_KEY);
-
-  jwt.verify(req.token, process.env.JWT_SECRET_KEY, (err, authData) => {
-    if (err) {
-      res.sendStatus(403);
-    } else {
-      res.json({
-        message: "Post Created....",
-        authData,
-      });
-      // createPostDb(postToBeSaved);
-    }
-  });
-
+  // createPostDb(postToBeSaved);
   // res.json({ status: postToBeSaved });
+
+  console.log("Hit the Create post route");
 }
 
 // This middleware will load all Drafts as JSON from the DB and send to the frontEnd, this will enable frontend to select a post to edit or publish
