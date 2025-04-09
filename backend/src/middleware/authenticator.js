@@ -15,20 +15,22 @@ function authenticateUserRoute() {
 // It is required to use format "Bearer <JWT>" as below;
 // Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDQwOTcyOTYsImV4cCI6MTc0NDA5OTA5Nn0.PboRrhU7xFTzQUltX_ZA59eWs-pxXfH8JHC_tU7jIKA
 
-function verifyToken(req, res, next) {
+function extractToken(req, res, next) {
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
-    // console.log("bearerHeader Ok");
     // Split the Bearer <access_token> and get the <access_token>
     const bearer = bearerHeader.split(" ");
     const bearerToken = bearer[1];
     req.token = bearerToken;
+
     next();
   } else {
-    console.log("Forbidden, No valid JSON Web Token found");
+    console.log(
+      "Forbidden path, No valid JSON Web Token found ! Please log in with a user account with higher privileges"
+    );
     res.json({
       message:
-        "Forbidden path, please log in with a user account with higher privileges",
+        "Forbidden path, No valid JSON Web Token found ! Please log in with a user account with higher privileges",
     });
   }
 }
@@ -53,4 +55,4 @@ function authenticateToken(req, res, next) {
   });
 }
 
-export { authenticateUserRoute, verifyToken, authenticateToken };
+export { authenticateUserRoute, extractToken, authenticateToken };

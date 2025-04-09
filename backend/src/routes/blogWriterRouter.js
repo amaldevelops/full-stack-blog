@@ -2,9 +2,8 @@ import { Router } from "express";
 import {
   authenticateUserRoute,
   authenticateToken,
+  extractToken,
 } from "../middleware/authenticator.js";
-
-import { verifyToken } from "../middleware/authenticator.js";
 
 import {
   blogWriteControllerMain,
@@ -25,7 +24,7 @@ blogWriterRouter.get("/", blogWriteControllerMain);
 
 blogWriterRouter.post(
   "/post/create",
-  verifyToken,
+  extractToken,
   authenticateToken,
   blogWriteControllerCreate
 );
