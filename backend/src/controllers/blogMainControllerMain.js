@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
 
+import { createJWT } from "../middleware/authenticator.js";
+
 import {
   registerNewUserDb,
   loginUserDb,
@@ -69,20 +71,10 @@ async function blogMainControllerLogin(req, res, next) {
     };
 
     let loginStatus = await loginUserDb(userDetailsObject);
-    console.log(loginStatus);
 
     if (loginStatus.status === "successLogin") {
-      jwt.sign(
-        { user: loginStatus.user_name },
-        process.env.JWT_SECRET_KEY,
-        { expiresIn: "1800s" },
-        (err, token) => {
-          res.json({
-            Login: "Login Successful",
-            token: token,
-          });
-        }
-      );
+      let JWT = await createJWT(loginStatus);
+      res.json(JWT);
     } else {
       res.json({ Login: "Login Unsuccessful" });
     }

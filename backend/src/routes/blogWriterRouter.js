@@ -1,6 +1,5 @@
 import { Router } from "express";
 import {
-  authenticateUserRoute,
   authenticateToken,
   extractToken,
 } from "../middleware/authenticator.js";
@@ -72,7 +71,7 @@ blogWriterRouter.get(
   "/auth",
   extractToken,
   authenticateToken,
-  authenticateUserRoute
+  
 );
 
 export default blogWriterRouter;

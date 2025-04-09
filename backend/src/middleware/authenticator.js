@@ -1,13 +1,31 @@
 import jwt from "jsonwebtoken";
 
-function authenticateUserRoute() {
+async function createJWT(loginStatus) {
   try {
-    console.log("Authenticate route called");
+    return new Promise((resolve, reject) => {
+      jwt.sign(
+        { userName: loginStatus.userName, status: loginStatus.status },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "1800s" },
+        (err, token) => {
+          if (err) {
+            return reject(err);
+          }
 
-    //   passport.authenticate("jwt", { session: false });
+          resolve({
+            Login: "Login Successful",
+            token: token,
+          });
+
+          // console.log(token);
+        }
+      );
+    });
   } catch (error) {
     throw error;
   }
+
+  // return;
 }
 
 // Client will need to save the token in the browser local storage
@@ -38,7 +56,6 @@ function extractToken(req, res, next) {
 function authenticateToken(req, res, next) {
   jwt.verify(req.token, process.env.JWT_SECRET_KEY, (err, authData) => {
     if (err) {
-      // res.sendStatus(403);
       console.log("Forbidden, No valid JSON Web Token found");
       res.json({
         message:
@@ -55,4 +72,4 @@ function authenticateToken(req, res, next) {
   });
 }
 
-export { authenticateUserRoute, extractToken, authenticateToken };
+export { createJWT, extractToken, authenticateToken };
