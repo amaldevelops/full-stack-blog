@@ -4,7 +4,11 @@ async function createJWT(loginStatus) {
   try {
     return new Promise((resolve, reject) => {
       jwt.sign(
-        { userName: loginStatus.userName, status: loginStatus.status },
+        {
+          userName: loginStatus.userName,
+          status: loginStatus.status,
+          author: loginStatus.author,
+        },
         process.env.JWT_SECRET_KEY,
         { expiresIn: "1800s" },
         (err, token) => {
@@ -33,43 +37,28 @@ async function createJWT(loginStatus) {
 // It is required to use format "Bearer <JWT>" as below;
 // Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3NDQwOTcyOTYsImV4cCI6MTc0NDA5OTA5Nn0.PboRrhU7xFTzQUltX_ZA59eWs-pxXfH8JHC_tU7jIKA
 
-function extractToken(req, res, next) {
-  const bearerHeader = req.headers["authorization"];
-  if (typeof bearerHeader !== "undefined") {
-    // Split the Bearer <access_token> and get the <access_token>
-    const bearer = bearerHeader.split(" ");
-    const bearerToken = bearer[1];
-    req.token = bearerToken;
+function authenticateJWT(req, res, next) {
+  // Split the Bearer <access_token> and get the <access_token>
+  const token = req.token || req.headers["authorization"]?.split(" ")[1];
 
-    next();
-  } else {
-    console.log(
-      "Forbidden path, No valid JSON Web Token found ! Please log in with a user account with higher privileges"
-    );
-    res.json({
-      message:
-        "Forbidden path, No valid JSON Web Token found ! Please log in with a user account with higher privileges",
-    });
+  if (!token) {
+    return res
+      .status(401)
+      .json({ message: "Access denied. No token provided." });
   }
-}
 
-function authenticateToken(req, res, next) {
-  jwt.verify(req.token, process.env.JWT_SECRET_KEY, (err, authData) => {
+  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, authData) => {
     if (err) {
-      console.log("Forbidden, No valid JSON Web Token found");
-      res.json({
-        message:
-          "Forbidden path, please log in with a user account with higher privileges",
+      console.log("Forbidden: Invalid or expired token");
+      return res.status(403).json({
+        message: "Forbidden: Invalid or expired token",
       });
-    } else {
-      res.json({
-        message: "Token Verified and access granted to route",
-        authData,
-      });
-
-      next();
     }
+
+    // Token is valid, attach user info to req object
+    req.authData = authData;
+    next();
   });
 }
 
-export { createJWT, extractToken, authenticateToken };
+export { createJWT, authenticateJWT };

@@ -36,8 +36,10 @@ const postToBeSaved = {
 async function blogWriteControllerCreate(req, res, next) {
   // createPostDb(postToBeSaved);
   // res.json({ status: postToBeSaved });
+  console.log(req.authData);
 
   console.log("Hit the Create post route");
+  next();
 }
 
 // This middleware will load all Drafts as JSON from the DB and send to the frontEnd, this will enable frontend to select a post to edit or publish

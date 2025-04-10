@@ -1,8 +1,5 @@
 import { Router } from "express";
-import {
-  authenticateToken,
-  extractToken,
-} from "../middleware/authenticator.js";
+import { authenticateJWT } from "../middleware/authenticator.js";
 
 import {
   blogWriteControllerMain,
@@ -23,22 +20,19 @@ blogWriterRouter.get("/", blogWriteControllerMain);
 
 blogWriterRouter.post(
   "/post/create",
-  extractToken,
-  authenticateToken,
+  authenticateJWT,
   blogWriteControllerCreate
 );
 
 blogWriterRouter.get(
   "/post/drafts",
-  extractToken,
-  authenticateToken,
+  authenticateJWT,
   blogWriteControllerLoadAllDrafts
 );
 
 blogWriterRouter.post(
   "/post/:id/draft",
-  extractToken,
-  authenticateToken,
+  authenticateJWT,
   blogWriteControllerDraftSaveById
 );
 
@@ -46,32 +40,24 @@ blogWriterRouter.post(
 
 blogWriterRouter.put(
   "/post/:id/edit",
-  extractToken,
-  authenticateToken,
+  authenticateJWT,
   blogWriteControllerEdit
 );
 
 blogWriterRouter.delete(
   "/post/:id/delete",
-  extractToken,
-  authenticateToken,
+  authenticateJWT,
   blogWriteControllerDelete
 );
 
 blogWriterRouter.post(
   "/post/:id/publish",
-  extractToken,
-  authenticateToken,
+  authenticateJWT,
   blogWriteControllerPublishToggle
 );
 
 // blogWriterRouter.post("/post/:id/unpublish", blogWriteControllerUnpublish);
 
-blogWriterRouter.get(
-  "/auth",
-  extractToken,
-  authenticateToken,
-  
-);
+blogWriterRouter.get("/auth", authenticateJWT);
 
 export default blogWriterRouter;
