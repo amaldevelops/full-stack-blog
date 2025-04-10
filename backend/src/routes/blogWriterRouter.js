@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { authenticateJWT } from "../middleware/authenticator.js";
+import {
+  authenticateJWT,
+  checkAuthorStatus,
+} from "../middleware/authenticator.js";
 
 import {
   blogWriteControllerMain,
@@ -21,18 +24,21 @@ blogWriterRouter.get("/", blogWriteControllerMain);
 blogWriterRouter.post(
   "/post/create",
   authenticateJWT,
+  checkAuthorStatus,
   blogWriteControllerCreate
 );
 
 blogWriterRouter.get(
   "/post/drafts",
   authenticateJWT,
+  checkAuthorStatus,
   blogWriteControllerLoadAllDrafts
 );
 
 blogWriterRouter.post(
   "/post/:id/draft",
   authenticateJWT,
+  checkAuthorStatus,
   blogWriteControllerDraftSaveById
 );
 
@@ -41,23 +47,26 @@ blogWriterRouter.post(
 blogWriterRouter.put(
   "/post/:id/edit",
   authenticateJWT,
+  checkAuthorStatus,
   blogWriteControllerEdit
 );
 
 blogWriterRouter.delete(
   "/post/:id/delete",
   authenticateJWT,
+  checkAuthorStatus,
   blogWriteControllerDelete
 );
 
 blogWriterRouter.post(
   "/post/:id/publish",
   authenticateJWT,
+  checkAuthorStatus,
   blogWriteControllerPublishToggle
 );
 
 // blogWriterRouter.post("/post/:id/unpublish", blogWriteControllerUnpublish);
 
-blogWriterRouter.get("/auth", authenticateJWT);
+blogWriterRouter.get("/auth", authenticateJWT, checkAuthorStatus);
 
 export default blogWriterRouter;
