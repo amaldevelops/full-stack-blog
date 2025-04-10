@@ -30,33 +30,42 @@ async function registerNewUserDb(userDetailsObject) {
 
 // This function will Authenticate user using e-mail and Password
 async function loginUserDb(userDetailsObject) {
+  console.log(userDetailsObject);
   try {
-    const ProcessedUserLoginData = {
-      user_email: userDetailsObject.user_email,
-      password: userDetailsObject.password,
-    };
+    if (
+      typeof userDetailsObject.user_email === "string" &&
+      typeof userDetailsObject.password === "string"
+    ) {
+      const ProcessedUserLoginData = {
+        user_email: userDetailsObject.user_email,
+        password: userDetailsObject.password,
+      };
 
-    const DataBaseRecord = await newPrismaClient.BlogUsers.findUnique({
-      where: { user_email: ProcessedUserLoginData.user_email },
-    });
+      const DataBaseRecord = await newPrismaClient.BlogUsers.findUnique({
+        where: { user_email: ProcessedUserLoginData.user_email },
+      });
 
-    if (DataBaseRecord !== null) {
-      const PasswordMatch = await bcrypt.compare(
-        ProcessedUserLoginData.password,
-        DataBaseRecord.password
-      );
+      if (DataBaseRecord !== null) {
+        const PasswordMatch = await bcrypt.compare(
+          ProcessedUserLoginData.password,
+          DataBaseRecord.password
+        );
 
-      console.log(PasswordMatch);
+        console.log(PasswordMatch);
 
-      if (PasswordMatch === true) {
-        console.log("Passwords Matched!");
-        return { userName: DataBaseRecord.user_name, status: "successLogin" };
+        if (PasswordMatch === true) {
+          console.log("Passwords Matched!");
+          return { userName: DataBaseRecord.user_name, status: "successLogin" };
+        } else {
+          console.log("Passwords DO NOT Match !");
+          return { userName: DataBaseRecord.user_name, status: "failureLogin" };
+        }
       } else {
-        console.log("Passwords DO NOT Match !");
-        return { userName: DataBaseRecord.user_name, status: "failureLogin" };
+        console.log("Username Not found !");
+        return { status: "failureLogin" };
       }
     } else {
-      console.log("Username Not found !");
+      console.log("Please enter both username and Password!");
       return { status: "failureLogin" };
     }
   } catch (error) {
