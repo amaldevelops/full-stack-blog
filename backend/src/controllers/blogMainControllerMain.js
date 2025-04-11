@@ -42,19 +42,23 @@ async function blogMainControllerMain(req, res, next) {
 
 async function blogMainControllerRegister(req, res, next) {
   try {
-    // Test Data, remove after Front End is connected and tested
+    const { user_email, user_name, password } = req.body;
+
     const userDetailsObject = {
-      user_email: "maverick5@gmail.com",
-      user_name: "maverick5",
-      password: "encryptThePassword",
+      user_email: user_email,
+      user_name: user_name,
+      password: password,
       author: false,
     };
 
-    registerNewUserDb(userDetailsObject);
+    const registerUserStatus = await registerNewUserDb(userDetailsObject);
 
-    res.json({ status: "Register User Route" });
+    console.log(registerUserStatus);
+
+    res.json({ status: `User Created: ${registerUserStatus}` });
   } catch (error) {
-    throw error;
+    console.error(error);
+    res.json(error);
   }
 }
 

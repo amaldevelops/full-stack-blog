@@ -20,11 +20,14 @@ async function registerNewUserDb(userDetailsObject) {
       author: userDetailsObject.author,
     };
 
-    await newPrismaClient.blogUsers.create({
+    const userCreationStatus = await newPrismaClient.blogUsers.create({
       data: ProcessedUserRegistrationData,
     });
+    console.log("User Creation Status:", userCreationStatus);
+    return userCreationStatus.user_name;
   } catch (error) {
-    throw error;
+    console.error(error);
+    return error;
   }
 }
 
