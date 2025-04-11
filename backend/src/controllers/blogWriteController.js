@@ -73,19 +73,21 @@ async function blogWriteControllerDraftLoadById(req, res, next) {
   }
 }
 
-//blogWriteControllerDraft
 // This middleware will Update a Post/Draft based on post ID into the DB
 async function blogWriteControllerDraftSaveById(req, res, next) {
   try {
-    // Test Data, remove after Front End is connected and tested
+    const draftIdToEdit = parseInt(req.params.id);
+    const { title, content } = req.body;
+    const { userName, UserID } = req.authData;
+
     const draftDataToEdit = {
-      blog_post_title: "Test Title 9887",
-      blog_post_content: "Test Content about Software Development 88",
+      blog_post_title: title,
+      blog_post_content: content,
       blog_post_publish_status: false,
-      blog_post_author_id: 1,
+      blog_post_author_id: UserID,
     };
 
-    const draftIdToEdit = parseInt(req.params.id);
+    
     console.log(draftIdToEdit);
     const returnedPost = await updateDraftByIdDb(
       draftIdToEdit,

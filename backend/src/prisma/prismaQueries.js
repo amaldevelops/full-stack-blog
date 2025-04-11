@@ -164,7 +164,7 @@ async function updateDraftByIdDb(draftIdToEdit, draftDataToEdit) {
     });
     return `Successfully updated record ID: ${draftIdToEdit}`;
   } catch (error) {
-    throw error;
+    return "Record to update not found.";
   }
 }
 

@@ -72,7 +72,7 @@ async function blogMainControllerLogin(req, res, next) {
 
     let loginStatus = await loginUserDb(userDetailsObject);
 
-    console.log(`User details Object:${userDetailsObject.id}`)
+    console.log(`User details Object:${userDetailsObject.id}`);
 
     if (loginStatus.status === "successLogin") {
       let JWT = await createJWT(loginStatus);
