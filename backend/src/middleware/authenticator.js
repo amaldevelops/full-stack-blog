@@ -8,6 +8,7 @@ async function createJWT(loginStatus) {
           userName: loginStatus.userName,
           status: loginStatus.status,
           author: loginStatus.author,
+          UserID: loginStatus.UserID,
         },
         process.env.JWT_SECRET_KEY,
         { expiresIn: "1800s" },
@@ -61,26 +62,16 @@ function authenticateJWT(req, res, next) {
   });
 }
 
-function checkAuthorStatus(req,res,next)
-{
-
-  if (req.authData.author===true)
-  {
+function checkAuthorStatus(req, res, next) {
+  if (req.authData.author === true) {
     console.log(`Are you an Author : ${req.authData.author}`);
     next();
+  } else {
+    console.log("You are not an author!");
+    return res.status(401).json({
+      message: "You are not an Author!",
+    });
   }
-
-else {
-  console.log("You are not an author!");
-  return res.status(401).json(
-    {
-      message:"You are not an Author!"
-    }
-  )
 }
 
-
-
-}
-
-export { createJWT, authenticateJWT,checkAuthorStatus };
+export { createJWT, authenticateJWT, checkAuthorStatus };

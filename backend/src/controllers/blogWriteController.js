@@ -25,20 +25,27 @@ async function blogWriteControllerMain(req, res, next) {
 }
 
 // Test Data, remove after Front End is connected and tested
-const postToBeSaved = {
-  blog_post_title: "Test Title 6",
-  blog_post_content: "Test Content about Software Development 6",
-  blog_post_publish_status: false,
-  blog_post_author_id: 1,
-};
 
 // This function will create a New Post by receiving form data from the front end as JSON and will create a new Database post entry
 async function blogWriteControllerCreate(req, res, next) {
-  // createPostDb(postToBeSaved);
   // res.json({ status: postToBeSaved });
-  console.log(req.authData);
+  // console.log(req.authData);
 
   console.log("Hit the Create post route");
+  const { title, content } = req.body;
+  const { userName, UserID } = req.authData;
+  console.log(
+    `Title:${title} and the Content:${content} and the Author:${userName}`
+  );
+
+  const postToBeSaved = {
+    blog_post_title: title,
+    blog_post_content: content,
+    blog_post_publish_status: false,
+    blog_post_author_id: UserID,
+  };
+  createPostDb(postToBeSaved);
+
   next();
 }
 

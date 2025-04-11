@@ -53,13 +53,16 @@ async function loginUserDb(userDetailsObject) {
           DataBaseRecord.password
         );
 
-        console.log(PasswordMatch);
+        // console.log(PasswordMatch);
+
+        console.log(DataBaseRecord.id);
 
         if (PasswordMatch === true) {
           console.log("Passwords Matched!");
           return {
             userName: DataBaseRecord.user_name,
             author: DataBaseRecord.author,
+            UserID: DataBaseRecord.id,
             status: "successLogin",
           };
         } else {
