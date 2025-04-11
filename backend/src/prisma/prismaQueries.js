@@ -234,16 +234,18 @@ async function readCommentDb(postId) {
 
 async function updateCommentDb(commentIdToEdit, commentDataToEdit) {
   try {
-    console.log(draftDataToEdit);
+    // console.log(draftDataToEdit);
     const updateComment = await newPrismaClient.blogComments.update({
       where: {
         id: commentIdToEdit,
       },
-      data: commentDataToEdit,
+      data: {
+        comment_text: commentDataToEdit,
+      },
     });
-    return `Successfully updated record ID: ${draftIdToEdit}`;
+    return `Successfully updated record ID: ${commentIdToEdit}`;
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 }
 

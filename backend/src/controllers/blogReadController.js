@@ -58,9 +58,15 @@ async function blogReadControllerComment(req, res, next) {
     throw error;
   }
 }
-
+// HTML form fields names
+// comment_text
+// id (This is the comment ID)
 async function blogReadControllerUpdateComment(req, res, next) {
   try {
+    const commentIdToEdit = parseInt(req.body.id);
+    const commentDataToEdit = req.body.comment_text;
+    console.log(commentIdToEdit, commentDataToEdit);
+    updateCommentDb(commentIdToEdit, commentDataToEdit);
     res.json({ status: "Reader Comment update Route" });
   } catch (error) {
     throw error;
