@@ -37,10 +37,10 @@ async function blogWriteControllerCreate(req, res, next) {
   console.log(
     `Title:${title} and the Content:${content} and the Author:${userName}`
   );
-// Make sure to send the form data with following structure from the front end
-// <input type="text" name="title" required> 
-// <textarea name="content" required></textarea>
-//<input type="number" name="UserID" required> This is not mandatory as UserID is taken from the JWT
+  // Make sure to send the form data with following structure from the front end
+  // <input type="text" name="title" required>
+  // <textarea name="content" required></textarea>
+  //<input type="number" name="UserID" required> This is not mandatory as UserID is taken from the JWT
   const postToBeSaved = {
     blog_post_title: title,
     blog_post_content: content,
@@ -48,8 +48,10 @@ async function blogWriteControllerCreate(req, res, next) {
     blog_post_author_id: UserID,
   };
   createPostDb(postToBeSaved);
-
-  next();
+  res.json({
+    message: "Successfully Saved message as Draft",
+    postToBeSaved,
+  });
 }
 
 // This middleware will load all Drafts as JSON from the DB and send to the frontEnd, this will enable frontend to select a post to edit or publish
