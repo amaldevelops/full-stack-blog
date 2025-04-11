@@ -37,7 +37,10 @@ async function blogWriteControllerCreate(req, res, next) {
   console.log(
     `Title:${title} and the Content:${content} and the Author:${userName}`
   );
-
+// Make sure to send the form data with following structure from the front end
+// <input type="text" name="title" required> 
+// <textarea name="content" required></textarea>
+//<input type="number" name="UserID" required> This is not mandatory as UserID is taken from the JWT
   const postToBeSaved = {
     blog_post_title: title,
     blog_post_content: content,
