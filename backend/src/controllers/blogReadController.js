@@ -74,10 +74,21 @@ async function blogReadControllerDeleteComment(req, res, next) {
     throw error;
   }
 }
-
+// To create a comment send these values via the HTML form
+// comment_text
+// blog_post_id
+// comment_author_id
 async function blogReadControllerCreateComment(req, res, next) {
   try {
-    res.json({ status: "Create Comment" });
+    const commentObject = {
+      comment_text: req.body.comment_text,
+      blog_post_id: parseInt(req.body.blog_post_id),
+      comment_author_id: parseInt(req.body.comment_author_id),
+    };
+
+    console.log(commentObject);
+    createCommentDb(commentObject);
+    res.json({ status: "Comment Created Successfully" });
   } catch (error) {
     next(error);
   }
