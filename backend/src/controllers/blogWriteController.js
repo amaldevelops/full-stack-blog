@@ -28,10 +28,6 @@ async function blogWriteControllerMain(req, res, next) {
 
 // This function will create a New Post by receiving form data from the front end as JSON and will create a new Database post entry
 async function blogWriteControllerCreate(req, res, next) {
-  // res.json({ status: postToBeSaved });
-  // console.log(req.authData);
-
-  console.log("Hit the Create post route");
   const { title, content } = req.body;
   const { userName, UserID } = req.authData;
   console.log(
@@ -69,6 +65,7 @@ async function blogWriteControllerLoadAllDrafts(req, res, next) {
 async function blogWriteControllerDraftLoadById(req, res, next) {
   try {
     const draftIdToEdit = parseInt(req.params.id);
+    console.log(draftIdToEdit)
     const returnedPost = await loadDraftByIdDb(draftIdToEdit);
     res.json({ data: returnedPost });
   } catch (error) {

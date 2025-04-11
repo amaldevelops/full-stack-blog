@@ -35,8 +35,15 @@ blogWriterRouter.get(
   blogWriteControllerLoadAllDrafts
 );
 
+blogWriterRouter.get(
+  "/post/:id/drafts",
+  authenticateJWT,
+  checkAuthorStatus,
+  blogWriteControllerDraftLoadById
+);
+
 blogWriterRouter.post(
-  "/post/:id/draft",
+  "/post/:id/drafts",
   authenticateJWT,
   checkAuthorStatus,
   blogWriteControllerDraftSaveById
