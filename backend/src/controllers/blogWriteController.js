@@ -102,23 +102,14 @@ async function blogWriteControllerDraftSaveById(req, res, next) {
   }
 }
 
-// This function will save Blog posts as Drafts
-// async function blogWriteControllerSave(req, res, next) {
+// This middleware function will edit existing posts
+// async function blogWriteControllerEdit(req, res, next) {
 //   try {
-//     res.json({ Route: "Save Route" });
+//     res.json({ data: "Edit Route" });
 //   } catch (error) {
 //     throw error;
 //   }
 // }
-
-// This middleware function will edit existing posts
-async function blogWriteControllerEdit(req, res, next) {
-  try {
-    res.json({ data: "Edit Route" });
-  } catch (error) {
-    throw error;
-  }
-}
 
 // This middleware function will Delete existing posts
 async function blogWriteControllerDelete(req, res, next) {
@@ -164,7 +155,7 @@ export {
   blogWriteControllerDraftLoadById,
   blogWriteControllerDraftSaveById,
   // blogWriteControllerSave,
-  blogWriteControllerEdit,
+  // blogWriteControllerEdit,
   blogWriteControllerDelete,
   blogWriteControllerPublishToggle,
   // blogWriteControllerUnpublish,

@@ -11,7 +11,7 @@ import {
   blogWriteControllerDraftLoadById,
   blogWriteControllerDraftSaveById,
   // blogWriteControllerSave,
-  blogWriteControllerEdit,
+  // blogWriteControllerEdit,
   blogWriteControllerDelete,
   blogWriteControllerPublishToggle,
   // blogWriteControllerUnpublish,
@@ -51,12 +51,12 @@ blogWriterRouter.post(
 
 // blogWriterRouter.post("/post/:id/save", blogWriteControllerSave);
 
-blogWriterRouter.put(
-  "/post/:id/edit",
-  authenticateJWT,
-  checkAuthorStatus,
-  blogWriteControllerEdit
-);
+// blogWriterRouter.put(
+//   "/post/:id/edit",
+//   authenticateJWT,
+//   checkAuthorStatus,
+//   blogWriteControllerEdit
+// );
 
 blogWriterRouter.delete(
   "/post/:id/delete",
