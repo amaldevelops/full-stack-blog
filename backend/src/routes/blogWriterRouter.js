@@ -42,7 +42,7 @@ blogWriterRouter.get(
   blogWriteControllerDraftLoadById
 );
 
-blogWriterRouter.post(
+blogWriterRouter.put(
   "/post/:id/drafts",
   authenticateJWT,
   checkAuthorStatus,
@@ -65,7 +65,7 @@ blogWriterRouter.delete(
   blogWriteControllerDelete
 );
 
-blogWriterRouter.post(
+blogWriterRouter.put(
   "/post/:id/publish",
   authenticateJWT,
   checkAuthorStatus,
