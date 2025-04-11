@@ -262,7 +262,7 @@ async function deleteCommentDb(commentId) {
       // Prisma error code for "Record to delete does not exist"
       return `Comment with ID ${commentId} not found.`;
     }
-    throw error;
+    console.error(error);
   }
 }
 

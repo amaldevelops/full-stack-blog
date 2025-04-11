@@ -72,12 +72,15 @@ async function blogReadControllerUpdateComment(req, res, next) {
     throw error;
   }
 }
-
+// To create a comment send these values via the HTML form
+// id (comment ID)
 async function blogReadControllerDeleteComment(req, res, next) {
   try {
-    res.json({ status: "Reader Delete Comment Route" });
+    const commentId = parseInt(req.body.id);
+    deleteCommentDb(commentId);
+    res.json({ status: "Comment Deleted" });
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 }
 // To create a comment send these values via the HTML form
