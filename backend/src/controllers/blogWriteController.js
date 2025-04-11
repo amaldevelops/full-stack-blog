@@ -127,14 +127,34 @@ async function blogWriteControllerPublishToggle(req, res, next) {
   try {
     //Publish:true/false
     //Post ID: Integer
-    const requiredPublishStatus = JSON.parse(req.body.Publish);
+    let requiredPublishStatus = req.body.Publish;
     const requiredPostId = parseInt(req.params.id, 10);
+
+    if (requiredPublishStatus==="true")
+    {
+      requiredPublishStatus=true;
+    }
+
+    else if (requiredPublishStatus==="false")
+      {
+        requiredPublishStatus=false;
+      }
+
+    else {
+      requiredPublishStatus=false;
+    }
+
+    
+
+    console.log(requiredPublishStatus)
 
     const updatePublishStatus = await updatePostStatusDb(
       requiredPostId,
       requiredPublishStatus
     );
     res.json({ status: `Post Publish Status: ${updatePublishStatus}` });
+
+    next();
   } catch (error) {
     throw error;
   }
