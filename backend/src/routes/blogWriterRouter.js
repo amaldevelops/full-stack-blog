@@ -74,6 +74,6 @@ blogWriterRouter.put(
 
 // blogWriterRouter.post("/post/:id/unpublish", blogWriteControllerUnpublish);
 
-blogWriterRouter.get("/auth", authenticateJWT, checkAuthorStatus);
+// blogWriterRouter.get("/auth", authenticateJWT, checkAuthorStatus);
 
 export default blogWriterRouter;

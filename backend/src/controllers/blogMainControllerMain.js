@@ -28,7 +28,7 @@ async function blogMainControllerMain(req, res, next) {
         "GET:/writer",
         "GET:/writer/post/create",
         "GET:/writer/post/drafts",
-        "POST:/writer/post/:id/draft",
+        "POST:/writer/post/:id/drafts",
         "POST:/writer/post/:id/save",
         "POST:/writer/post/:id/edit",
         "DELETE:/writer/post/:id/delete",

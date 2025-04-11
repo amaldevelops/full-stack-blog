@@ -65,7 +65,7 @@ async function blogWriteControllerLoadAllDrafts(req, res, next) {
 async function blogWriteControllerDraftLoadById(req, res, next) {
   try {
     const draftIdToEdit = parseInt(req.params.id);
-    console.log(draftIdToEdit)
+    console.log(draftIdToEdit);
     const returnedPost = await loadDraftByIdDb(draftIdToEdit);
     res.json({ data: returnedPost });
   } catch (error) {
@@ -87,7 +87,6 @@ async function blogWriteControllerDraftSaveById(req, res, next) {
       blog_post_author_id: UserID,
     };
 
-    
     console.log(draftIdToEdit);
     const returnedPost = await updateDraftByIdDb(
       draftIdToEdit,
@@ -130,23 +129,15 @@ async function blogWriteControllerPublishToggle(req, res, next) {
     let requiredPublishStatus = req.body.Publish;
     const requiredPostId = parseInt(req.params.id, 10);
 
-    if (requiredPublishStatus==="true")
-    {
-      requiredPublishStatus=true;
+    if (requiredPublishStatus === "true") {
+      requiredPublishStatus = true;
+    } else if (requiredPublishStatus === "false") {
+      requiredPublishStatus = false;
+    } else {
+      requiredPublishStatus = false;
     }
 
-    else if (requiredPublishStatus==="false")
-      {
-        requiredPublishStatus=false;
-      }
-
-    else {
-      requiredPublishStatus=false;
-    }
-
-    
-
-    console.log(requiredPublishStatus)
+    console.log(requiredPublishStatus);
 
     const updatePublishStatus = await updatePostStatusDb(
       requiredPostId,
