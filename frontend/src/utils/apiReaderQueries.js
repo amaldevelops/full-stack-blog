@@ -1,4 +1,5 @@
-const apiURL = "http://localhost:3000";
+const apiURL = import.meta.env.VITE_API_URL;
+
 async function getReadRouteQueries(apiPath) {
   try {
     // let response = await fetch(`${apiURL}/reader/posts`);
