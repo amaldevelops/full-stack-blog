@@ -8,7 +8,7 @@ function Home() {
   return (
     <div>
       <h1>Blog DashBoard</h1>
-      <Link to="post">Write a new Post</Link>
+      {/* <Link to="post">Write a new Post</Link> */}
       <Outlet />
       <AllPosts />
     </div>

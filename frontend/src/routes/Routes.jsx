@@ -15,7 +15,7 @@ const Routes = [
     children: [
       { path: "/full-stack-blog", element: <App />, errorElement: <ErrorPage /> },
       {
-        path: "/reader/home",
+        path: "/full-stack-blog/reader/home",
         element: <Home />,
         children: [{ path: "post", element: <Post /> }],
         errorElement: <ErrorPage />,
