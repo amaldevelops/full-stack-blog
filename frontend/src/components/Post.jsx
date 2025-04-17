@@ -59,22 +59,34 @@ function Post() {
 
   return (
     <div>
-      {/* <NavigationBar /> */}
       <h2>{postById.blog_post_title}</h2>
       <p>{postById.blog_post_content}</p>
       <p>Posted on: {postById.blog_post_publish_timestamp}</p>
 
-      {/* <p>{JSON.stringify(postById)}</p> */}
       <h3>Comments</h3>
 
-      {/* {postComments[0].map((posts)=>{
-        <div> 
-        <p>{posts.id}</p>
-        <p>{posts.comment_text}</p>
-        </div>
-      })} */}
-      {/* <p>{postComments[0]["comment_text"]}</p> */}
-      <p>{JSON.stringify(postComments)}</p>
+      <ul>
+        {postComments.map((comment, index) => (
+          <li key={index}>
+            <strong>{comment.comment_timestamp}</strong>: {comment.comment_text}{" "}
+            ,Author ID:{comment.comment_author_id}
+          </li>
+        ))}
+      </ul>
+      <PostComment />
+    </div>
+  );
+}
+
+function PostComment() {
+  return (
+    <div>
+      <h3>Create a new Comment</h3>
+      <form>
+        <label htmlFor="newComment">New Comment</label>
+        <br></br>
+        <textarea id="newComment" rows="5" cols="50"></textarea>
+      </form>
     </div>
   );
 }
