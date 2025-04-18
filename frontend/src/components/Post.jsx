@@ -80,11 +80,20 @@ function Post() {
 
 function PostComment({ commentObject }) {
   const [comment, setComment] = useState("");
+  const [formValidationStatus, SetFormValidationStatus]=useState("")
 
   const onSubmit = (event) => {
     event.preventDefault();
+
+    if (!comment.trim()) {
+      console.log("Empty comment, please try again !");
+      SetFormValidationStatus("Empty comment, please try again !");
+      return;
+    }
+    commentObject?.(comment);
+    console.log("Submitted Comment:", comment);
+    setComment("");
   };
-  console.log(comment);
 
   return (
     <div>
@@ -103,7 +112,9 @@ function PostComment({ commentObject }) {
         ></textarea>
         <br />
         <button type="submit">Create Comment</button>
+
       </form>
+      <p>{formValidationStatus}</p>
     </div>
   );
 }
