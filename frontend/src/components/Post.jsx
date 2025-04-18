@@ -78,14 +78,31 @@ function Post() {
   );
 }
 
-function PostComment() {
+function PostComment({ commentObject }) {
+  const [comment, setComment] = useState("");
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
+  console.log(comment);
+
   return (
     <div>
       <h3>Create a new Comment</h3>
-      <form>
+      <form onSubmit={onSubmit}>
         <label htmlFor="newComment">New Comment</label>
-        <br></br>
-        <textarea id="newComment" rows="5" cols="50"></textarea>
+        <br />
+        <textarea
+          id="newComment"
+          rows="5"
+          cols="50"
+          value={comment}
+          onChange={(event) => {
+            setComment(event.target.value);
+          }}
+        ></textarea>
+        <br />
+        <button type="submit">Create Comment</button>
       </form>
     </div>
   );
