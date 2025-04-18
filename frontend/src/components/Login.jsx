@@ -7,18 +7,13 @@ function Login() {
   // const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     console.log("Logging in With", formData);
     // Add authentication logic here
   };
   return (
     <div className="card">
-      {/* <NavigationBar /> */}
       <h1>Blog Web App Login</h1>
       <p>
         While you can read posts and comments on this blog, you will need to
@@ -32,24 +27,34 @@ function Login() {
       </p>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="currentUserName">User Name </label>
+        <label htmlFor="username">User Name </label>
         <br></br>
         <input
-          name="currentUserName"
-          id="currentUserName"
+          name="username"
+          id="username"
           type="email"
           value={formData.username}
-          onChange={handleChange}
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              [event.target.name]: event.target.value,
+            });
+          }}
           required
         ></input>
         <br></br>
-        <label htmlFor="currentPassword">Password </label> <br></br>
+        <label htmlFor="password">Password </label> <br></br>
         <input
-          name="currentPassword"
-          id="currentPassword"
-          type="currentPassword"
+          name="password"
+          id="password"
+          type="password"
           value={formData.password}
-          onChange={handleChange}
+          onChange={(event) => {
+            setFormData({
+              ...formData,
+              [event.target.name]: event.target.value,
+            });
+          }}
           required
         ></input>
         <br></br>

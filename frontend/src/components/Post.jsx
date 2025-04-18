@@ -80,7 +80,7 @@ function Post() {
 
 function PostComment({ commentObject }) {
   const [comment, setComment] = useState("");
-  const [formValidationStatus, SetFormValidationStatus]=useState("")
+  const [formValidationStatus, SetFormValidationStatus] = useState("");
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -103,6 +103,8 @@ function PostComment({ commentObject }) {
         <br />
         <textarea
           id="newComment"
+          type="text"
+          maxLength={500}
           rows="5"
           cols="50"
           value={comment}
@@ -112,7 +114,6 @@ function PostComment({ commentObject }) {
         ></textarea>
         <br />
         <button type="submit">Create Comment</button>
-
       </form>
       <p>{formValidationStatus}</p>
     </div>
