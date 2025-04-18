@@ -9,9 +9,9 @@ function CreatePost() {
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-    console.log("Prevented");
+    console.log(newPostObject);
   };
-  console.log(newPostObject);
+
   return (
     <div>
       <h1>Create Post</h1>
@@ -23,6 +23,7 @@ function CreatePost() {
           name="postTitle"
           rows="2"
           cols="50"
+          type="text"
           value={newPostObject.postTitle}
           onChange={(event) => {
             SetNewPostObject({
@@ -39,6 +40,7 @@ function CreatePost() {
           name="postContent"
           rows="10"
           cols="50"
+          type="text"
           value={newPostObject.postContent}
           onChange={(event) => {
             SetNewPostObject({
@@ -63,7 +65,7 @@ function CreatePost() {
           readOnly
         ></input>
         <br />
-        <button type="button">Create Post</button>
+        <button type="submit">Create Post</button>
       </form>
     </div>
   );

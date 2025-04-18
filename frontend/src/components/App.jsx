@@ -12,7 +12,6 @@ import TechnicalInfo from "./TechnicalInfo";
 function App() {
   return (
     <>
-      {/* <NavigationBar /> */}
       <AllPosts />
       <TechStack />
     </>

@@ -6,11 +6,18 @@ function NavigationBar() {
       <Link to="/full-stack-blog" className="Links">
         Home
       </Link>
-      <Link to="/full-stack-blog/login">Login</Link>
-      <Link to="/full-stack-blog/writer/home" className="Links">
-        Create New Post
+      <Link to="/full-stack-blog/login" className="Links">
+        Login
       </Link>
-      <Link to="/full-stack-blog/api-docs">API Docs</Link>
+      <Link to="/full-stack-blog/reader/home" className="Links">
+        Blog Reader
+      </Link>
+      <Link to="/full-stack-blog/writer/home" className="Links">
+        Blog Writer
+      </Link>
+      <Link to="/full-stack-blog/api-docs" className="Links">
+        Documentation
+      </Link>
     </div>
   );
 }
