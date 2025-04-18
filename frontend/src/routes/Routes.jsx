@@ -46,6 +46,11 @@ const Routes = [
         errorElement: <ErrorPage />,
       },
       {
+        path: "/full-stack-blog/register",
+        element: <Register />,
+        errorElement: <ErrorPage />,
+      },
+      {
         path: "/full-stack-blog/reader/posts/:id",
         element: <Post />,
         errorElement: <ErrorPage />,

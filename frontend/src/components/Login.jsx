@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 // import TechnicalInfo from "./TechnicalInfo";
 // import NavigationBar from "./NavigationBar";
@@ -59,10 +59,11 @@ function Login() {
         ></input>
         <br></br>
         <button type="submit">Login</button>
-        <button type="button" onClick={() => navigate("/register")}>
+        {/* <button type="button" onClick={() => navigate("/register")}>
           Register
-        </button>
+        </button> */}
       </form>
+      <Link to="/full-stack-blog/register">Register new user</Link>
     </div>
   );
 }
