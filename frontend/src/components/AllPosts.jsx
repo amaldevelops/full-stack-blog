@@ -41,7 +41,7 @@ function AllPosts() {
 
   return (
     <div>
-      <h2>Blog API : All Posts view</h2>
+      <h2>Blog All Posts view</h2>
       <div>
 
         {allThePosts.map((posts) => (
@@ -51,6 +51,8 @@ function AllPosts() {
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
+              <button>Edit</button>
+              <button>Delete</button>
             </li>
           </ul>
         ))}

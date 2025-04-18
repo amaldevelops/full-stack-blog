@@ -3,7 +3,8 @@ function APIDocs() {
   return (
     <div>
       {/* <NavigationBar /> */}
-      <h1>Welcome to Blog API docs</h1>
+      <h1>Documentation for Blog API & Blog Reader / Writer Front End</h1>
+      <h2>Blog API</h2>
       <p>
         Blog API is developed using Restful principles and is designed to be
         used with either one or two front ends. i.e Blog Reader and a Blog

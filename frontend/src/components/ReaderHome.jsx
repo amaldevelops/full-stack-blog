@@ -2,14 +2,14 @@ import AllPosts from "./AllPosts";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
-function Home() {
+function ReaderHome() {
   return (
     <div>
-      <h1>Blog DashBoard</h1>
+      <h1>Blog Reader</h1>
       <Outlet />
       <AllPosts />
     </div>
   );
 }
 
-export default Home;
+export default ReaderHome;

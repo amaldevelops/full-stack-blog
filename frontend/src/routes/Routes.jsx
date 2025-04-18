@@ -1,11 +1,12 @@
 import App from "../components/App";
-import Home from "../components/Home";
+import ReaderHome from "../components/ReaderHome";
+import WriterHome from "../components/WriterHome";
 import Post from "../components/Post";
 import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
 import CreatePost from "../components/CreatePost";
 import Register from "../components/Register";
-import APIDocs from "../components/APIDocs";
+import APIDocs from "../components/Documentation";
 import Layout from "../components/Layout";
 
 const Routes = [
@@ -19,7 +20,7 @@ const Routes = [
       },
       {
         path: "/full-stack-blog/reader",
-        element: <Home />,
+        element: <ReaderHome />,
         children: [{ path: "post", element: <Post /> }],
         errorElement: <ErrorPage />,
       },
@@ -30,7 +31,7 @@ const Routes = [
       },
       {
         path: "/full-stack-blog/writer",
-        element: <CreatePost />,
+        element: <WriterHome />,
         errorElement: <ErrorPage />,
       },
       {

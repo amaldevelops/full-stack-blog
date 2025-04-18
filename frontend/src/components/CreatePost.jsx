@@ -14,7 +14,7 @@ function CreatePost() {
 
   return (
     <div>
-      <h1>Create Post</h1>
+      <h1>Create New Blog Post</h1>
       <form onSubmit={formSubmissionHandler}>
         <label htmlFor="postTitle">Post Title: </label>
         <br />
