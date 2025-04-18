@@ -12,7 +12,7 @@ import TechnicalInfo from "./TechnicalInfo";
 function App() {
   return (
     <>
-      <AllPosts />
+      {/* <AllPosts /> */}
       <TechStack />
     </>
   );

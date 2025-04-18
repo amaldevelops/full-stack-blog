@@ -9,10 +9,10 @@ function NavigationBar() {
       <Link to="/full-stack-blog/login" className="Links">
         Login
       </Link>
-      <Link to="/full-stack-blog/reader/home" className="Links">
+      <Link to="/full-stack-blog/reader" className="Links">
         Blog Reader
       </Link>
-      <Link to="/full-stack-blog/writer/home" className="Links">
+      <Link to="/full-stack-blog/writer" className="Links">
         Blog Writer
       </Link>
       <Link to="/full-stack-blog/api-docs" className="Links">
