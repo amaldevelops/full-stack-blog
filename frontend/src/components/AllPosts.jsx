@@ -1,7 +1,7 @@
 // This component Will read all the posts from the API and display them as a list, users can click and read the full article and comments and make comments
 
 import { useState, useEffect } from "react";
-import { getReadRouteQueries } from "../utils/apiReaderQueries";
+import { queryApiReadPosts } from "../utils/apiReaderQueries";
 import { Link } from "react-router-dom";
 
 import Post from "./Post";
@@ -16,7 +16,7 @@ function AllPosts() {
     async function fetchPosts() {
       try {
         const apiPathAllPosts = "reader/posts";
-        const fetchAllPosts = await getReadRouteQueries(apiPathAllPosts);
+        const fetchAllPosts = await queryApiReadPosts(apiPathAllPosts);
         setAllThePosts(fetchAllPosts.data);
         // console.log(postById);
       } catch (error) {

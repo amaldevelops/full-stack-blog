@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
-import { getReadRouteQueries } from "../utils/apiReaderQueries";
+import { queryApiReadPosts } from "../utils/apiReaderQueries";
 
 // import NavigationBar from "./NavigationBar";
 
@@ -25,8 +25,8 @@ function Post() {
         const apiPathPostById = `reader/posts/${APIPathPostById}`;
         const apiPathPostComments = `reader/posts/${APIPathPostById}/comment`;
 
-        const fetchPostById = await getReadRouteQueries(apiPathPostById);
-        const fetchPostComments = await getReadRouteQueries(
+        const fetchPostById = await queryApiReadPosts(apiPathPostById);
+        const fetchPostComments = await queryApiReadPosts(
           apiPathPostComments
         );
 

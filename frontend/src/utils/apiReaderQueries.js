@@ -1,6 +1,7 @@
 const apiURL = import.meta.env.VITE_API_URL;
+const loginURL = import.meta.env.VITE_API_LOGIN_URL;
 
-async function getReadRouteQueries(apiPath) {
+async function queryApiReadPosts(apiPath) {
   try {
     // let response = await fetch(`${apiURL}/reader/posts`);
     let response = await fetch(`${apiURL}/${apiPath}`);
@@ -18,4 +19,19 @@ async function getReadRouteQueries(apiPath) {
   }
 }
 
-export { getReadRouteQueries };
+async function queryApiLogin(formData) {
+  try {
+    let response = await fetch(`${apiURL}/${loginURL}`);
+
+    if (!response.ok) {
+      throw new Error(`HTTP Error! Status: ${response.status}`);
+    }
+
+    const queryResult = await response.json();
+    console.log(queryResult);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { queryApiReadPosts, queryApiLogin };
