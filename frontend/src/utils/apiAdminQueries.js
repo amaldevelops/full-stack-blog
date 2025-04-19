@@ -51,4 +51,9 @@ async function queryApiCreateUser(formData) {
   }
 }
 
-export { queryApiLogin, queryApiCreateUser };
+function decodeJWTPayload() {
+  const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
+  const jwtExtractPayLoad = jwtToken.split(".")[1];
+}
+
+export { queryApiLogin, queryApiCreateUser, decodeJWTPayload };
