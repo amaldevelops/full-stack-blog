@@ -11,11 +11,7 @@ async function queryApiLogin(formData) {
         password: formData.password,
       }),
     });
-    console.log("API Login query", {
-      user_email: formData.user_email,
-      password: formData.password,
-      formData,
-    });
+    console.log("API Login query", formData);
     if (!response.ok) {
       throw new Error(`HTTP Error! Status: ${response.status}`);
     }

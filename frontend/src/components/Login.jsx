@@ -1,15 +1,15 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-import {queryApiLogin} from "../utils/apiAdminQueries"
+import { queryApiLogin } from "../utils/apiAdminQueries";
 
 function Login() {
-  const [formData, setFormData] = useState({ username: "", password: "" });
+  const [formData, setFormData] = useState({ user_email: "", password: "" });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Logging in With", formData);
     // Add authentication logic here
-    queryApiLogin(formData)
+    queryApiLogin(formData);
   };
   return (
     <div className="card">
@@ -26,13 +26,13 @@ function Login() {
       </p>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">User Name </label>
+        <label htmlFor="user_email">User E-Mail </label>
         <br></br>
         <input
-          name="username"
-          id="username"
+          name="user_email"
+          id="user_email"
           type="email"
-          value={formData.username}
+          value={formData.user_email}
           onChange={(event) => {
             setFormData({
               ...formData,
