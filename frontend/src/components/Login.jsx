@@ -1,16 +1,15 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
-// import TechnicalInfo from "./TechnicalInfo";
-// import NavigationBar from "./NavigationBar";
+import {queryApiLogin} from "../utils/apiAdminQueries"
 
 function Login() {
-  // const navigate = useNavigate();
   const [formData, setFormData] = useState({ username: "", password: "" });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Logging in With", formData);
     // Add authentication logic here
+    queryApiLogin(formData)
   };
   return (
     <div className="card">
