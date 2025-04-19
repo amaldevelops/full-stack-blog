@@ -21,7 +21,7 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json()); // Parses application/json
 app.use(urlencoded({ extended: true })); // Parses application/x-www-form-urlencoded
-app.use(cors());
+app.use(cors({ origin: process.env.CORS_URL}));
 
 app.use("/", blogMainRouter);
 app.use("/reader", blogReaderRouter);

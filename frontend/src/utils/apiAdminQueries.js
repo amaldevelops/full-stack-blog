@@ -6,9 +6,16 @@ async function queryApiLogin(formData) {
     let response = await fetch(`${apiURL}/${loginURL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: { user_email: "dev1@example.com", password: "password123" },
+      body: JSON.stringify({
+        user_email: formData.user_email,
+        password: formData.password,
+      }),
     });
-
+    console.log("API Login query", {
+      user_email: formData.user_email,
+      password: formData.password,
+      formData,
+    });
     if (!response.ok) {
       throw new Error(`HTTP Error! Status: ${response.status}`);
     }
