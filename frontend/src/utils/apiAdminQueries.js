@@ -44,6 +44,7 @@ async function queryApiCreateUser(formData) {
 
     const responseData = await response.json();
     console.log("Create New User Response Data:", responseData);
+
     return responseData.status;
   } catch (error) {
     console.error(error);

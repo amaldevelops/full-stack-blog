@@ -47,6 +47,9 @@ function Register() {
     }
 
     // Proceed with actual form handling (e.g., API call)
+    // const queryResponseStatus=queryApiCreateUser(formData);
+    // setQueryResponse("Creation Of User Successful",queryResponseStatus);
+
     setQueryResponse(queryApiCreateUser(formData));
   };
   return (
