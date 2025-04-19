@@ -55,7 +55,7 @@ async function blogMainControllerRegister(req, res, next) {
 
     console.log(registerUserStatus);
 
-    res.json({ status: `User Created: ${registerUserStatus}` });
+    res.json({ status: `status: ${registerUserStatus}` });
   } catch (error) {
     console.error(error);
     res.json(error);

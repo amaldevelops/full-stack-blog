@@ -1,6 +1,8 @@
 import { useState } from "react";
+import {queryApiCreateUser} from "../utils/apiAdminQueries"
 
 function Register() {
+  const [queryResponse,setQueryResponse]=useState();
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
@@ -45,8 +47,10 @@ function Register() {
     }
 
     // Proceed with actual form handling (e.g., API call)
-  };
+    setQueryResponse(queryApiCreateUser(formData));
 
+
+  };
   return (
     <div>
       <h1>Register New User</h1>
@@ -89,6 +93,7 @@ function Register() {
 
         <button type="submit">Create User</button>
       </form>
+      <p>{queryResponse}</p>
     </div>
   );
 }
