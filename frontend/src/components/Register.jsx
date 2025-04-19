@@ -1,8 +1,8 @@
 import { useState } from "react";
-import {queryApiCreateUser} from "../utils/apiAdminQueries"
+import { queryApiCreateUser } from "../utils/apiAdminQueries";
 
 function Register() {
-  const [queryResponse,setQueryResponse]=useState();
+  const [queryResponse, setQueryResponse] = useState();
   const [formData, setFormData] = useState({
     userName: "",
     password: "",
@@ -48,25 +48,12 @@ function Register() {
 
     // Proceed with actual form handling (e.g., API call)
     setQueryResponse(queryApiCreateUser(formData));
-
-
   };
   return (
     <div>
       <h1>Register New User</h1>
       <form onSubmit={formSubmission}>
-        <label htmlFor="userName">User Name:</label>
-        <br />
-        <input
-          id="userName"
-          name="userName"
-          type="text"
-          value={formData.userName}
-          onChange={handleInputChange}
-        />
-        <br />
-
-        <label htmlFor="email">E-Mail:</label>
+        <label htmlFor="email">E-Mail (Please enter your e-mail)</label>
         <br />
         <input
           id="email"
@@ -76,8 +63,22 @@ function Register() {
           onChange={handleInputChange}
         />
         <br />
-
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="userName">
+          User Name (Please enter a unique user name)
+        </label>
+        <br />
+        <input
+          id="userName"
+          name="userName"
+          type="text"
+          value={formData.userName}
+          onChange={handleInputChange}
+        />
+        <br />
+        <label htmlFor="password">
+          Password (Password must be at least 8 characters long and include
+          uppercase, lowercase, number, and special character.)
+        </label>
         <br />
         <input
           id="password"
@@ -85,12 +86,12 @@ function Register() {
           type="password"
           value={formData.password}
           onChange={handleInputChange}
-        />
+        />{" "}
+        <br />
         {passwordError && (
           <p style={{ color: "red", fontSize: "0.9em" }}>{passwordError}</p>
         )}
         <br />
-
         <button type="submit">Create User</button>
       </form>
       <p>{queryResponse}</p>
