@@ -3,6 +3,7 @@ const loginURL = import.meta.env.VITE_API_LOGIN_URL;
 
 async function queryApiLogin(formData) {
   try {
+    // This will send a query with Authentication data from login form and will save the received JWT in the browser local storage
     let response = await fetch(`${apiURL}/${loginURL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -17,7 +18,11 @@ async function queryApiLogin(formData) {
     }
 
     const queryResult = await response.json();
-    console.log(queryResult);
+    localStorage.setItem("jwtToken", queryResult.token); // Save to local storage
+
+    const ReadLocalStorageToken = localStorage.getItem("jwtToken"); // Read from Local storage
+
+    console.log(ReadLocalStorageToken);
   } catch (error) {
     console.error(error);
   }
