@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { queryApiReadPosts } from "../utils/apiReaderQueries";
 import { Link } from "react-router-dom";
 
+const PostByIdURL = import.meta.env.VITE_API_LOAD_POST_BY_ID;
+
 import Post from "./Post";
 
 // import TechStack from "../components/TechStack";
@@ -15,7 +17,7 @@ function AllPosts() {
   useEffect(() => {
     async function fetchPosts() {
       try {
-        const apiPathAllPosts = "reader/posts";
+        const apiPathAllPosts = import.meta.env.VITE_API_LOAD_ALL_POSTS; //"reader/posts";
         const fetchAllPosts = await queryApiReadPosts(apiPathAllPosts);
         setAllThePosts(fetchAllPosts.data);
         // console.log(postById);
@@ -46,17 +48,44 @@ function AllPosts() {
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
             <li key={posts.id}>
+              <Link to={`${PostByIdURL}/${posts.id}`}>
+                {posts.blog_post_title},
+              </Link>
+              Published Date: {posts.blog_post_publish_timestamp}
+            </li>
+            <form>
+              <button id={posts.id}>Edit</button>
+            </form>
+            <form>
+              <button id={posts.id}>Delete</button>
+            </form>
+            <form>
+              <button id={posts.id}>Unpublish</button>
+            </form>
+          </ul>
+        ))}
+      </div>
+      <div>
+        <h2>Draft Posts view</h2>
+        {allThePosts.map((posts) => (
+          <ul key={posts.id}>
+            <li key={posts.id}>
               <Link to={`/full-stack-blog/reader/posts/${posts.id}`}>
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
             </li>
-            <form><button id={posts.id}>Edit</button></form>
-            
-            <button id={posts.id}>Delete</button>
+            <form>
+              <button id={posts.id}>Edit</button>
+            </form>
+            <form>
+              <button id={posts.id}>Delete</button>
+            </form>
+            <form>
+              <button id={posts.id}>Unpublish</button>
+            </form>
           </ul>
         ))}
-        
       </div>
     </div>
   );
