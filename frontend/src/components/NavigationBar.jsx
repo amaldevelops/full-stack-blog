@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import UserDetailsDisplay from "./UserDetails"
 
 function NavigationBar() {
   return (
@@ -19,9 +18,6 @@ function NavigationBar() {
       <Link to="/full-stack-blog/api-docs" className="Links">
         Documentation
       </Link>
-      <div><UserDetailsDisplay/></div>
-      
-
     </div>
   );
 }

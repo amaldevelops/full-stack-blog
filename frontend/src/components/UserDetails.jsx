@@ -1,14 +1,23 @@
 import { decodeJWTPayload } from "../utils/apiAdminQueries";
 
 function UserDetailsDisplay() {
-  const decodedJWT = decodeJWTPayload();
-  const isJWTAvailable = !Object.keys(decodedJWT).length == 0;
-  const userName = "User Name : " + decodedJWT.userName;
-  const author = "Author : " + String(decodedJWT.author);
-  const loginStatus = "Login Status :" + decodedJWT.status;
-  const jwtTokenExpiry =
-    "JWT Token Expiry : " + new Date(decodedJWT.exp * 1000).toString();
-  console.log(decodedJWT);
+  let userName = "n/A";
+  let author = "n/A";
+  let loginStatus = "n/A";
+  let jwtTokenExpiry = "n/A";
+
+  let decodedJWT = decodeJWTPayload();
+  let isJWTAvailable = !Object.keys(decodedJWT).length == 0;
+  console.log(isJWTAvailable);
+  if (isJWTAvailable) {
+    userName = "User Name : " + decodedJWT.userName;
+    author = "Author : " + String(decodedJWT.author);
+    loginStatus = "Login Status :" + decodedJWT.status;
+    jwtTokenExpiry =
+      "JWT Token Expiry : " + new Date(decodedJWT.exp * 1000).toString();
+  } else {
+    console.log(decodedJWT);
+  }
 
   return (
     <div>

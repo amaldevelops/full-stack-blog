@@ -53,8 +53,8 @@ async function queryApiCreateUser(formData) {
 
 function decodeJWTPayload() {
   const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
-//   if (Object.keys(jwtToken).length==0)
-//   {}
+  //   if (Object.keys(jwtToken).length==0)
+  //   {}
   const jwtExtractPayLoad = jwtToken.split(".")[1];
 
   function base64UrlToJsonString(string) {
