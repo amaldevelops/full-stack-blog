@@ -52,9 +52,10 @@ async function queryApiCreateUser(formData) {
   }
 }
 
-function decodeJWTPayload() {
+function decodeJWTPayload(runOnRequest) {
   try {
     const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
+    console.log(runOnRequest);
 
     if (jwtToken !== null) {
       const jwtExtractPayLoad = jwtToken.split(".")[1];

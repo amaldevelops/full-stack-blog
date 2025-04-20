@@ -1,19 +1,25 @@
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { queryApiLogin } from "../utils/apiAdminQueries";
+import UserDetailsDisplay from "./UserDetails";
 
 function Login() {
   const [formData, setFormData] = useState({ user_email: "", password: "" });
+  const [loginStatus, setLoginStatus] = useState("");
+  const [reloadKey, setReloadKey] = useState(0);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("Logging in With", formData);
     // Add authentication logic here
     queryApiLogin(formData);
+    setLoginStatus("User Details Submitted");
+    setReloadKey((prevKey) => prevKey + 1); // Trigger re-mount
   };
   return (
     <div className="card">
       <h1>Single Sign on to Blog reader / Blog writer</h1>
+      <UserDetailsDisplay key={reloadKey} />
       <p>
         While you can read posts and comments on this blog, you will need to
         login with a valid username and password to Create/Read/Update/Delete
@@ -58,10 +64,9 @@ function Login() {
         ></input>
         <br></br>
         <button type="submit">Login</button>
-        {/* <button type="button" onClick={() => navigate("/register")}>
-          Register
-        </button> */}
       </form>
+      <p>{loginStatus}</p>
+
       <Link to="/full-stack-blog/register">Register new user</Link>
     </div>
   );
