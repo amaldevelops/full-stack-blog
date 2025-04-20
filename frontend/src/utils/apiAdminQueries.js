@@ -105,14 +105,13 @@ async function queryApiCreatePost(formData) {
   try {
     const loadedJwtToken = loadJwtTokenToHttpHeader();
     console.log("Loaded JWT:", loadedJwtToken);
+    console.log("FormData is: ", formData);
     let response = await fetch(`${apiURL}/${createPostURL}`, {
       method: "POST",
       headers: { ...loadedJwtToken, "Content-Type": "application/json" },
       body: JSON.stringify({
-        blog_post_title: formData.postTitle,
-        blog_post_content: formData.postContent,
-        blog_post_publish_status: false,
-        authorName: formData.authorName,
+        title: formData.postTitle,
+        content: formData.postContent,
       }),
     });
 
