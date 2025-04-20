@@ -83,4 +83,18 @@ function decodeJWTPayload() {
   }
 }
 
-export { queryApiLogin, queryApiCreateUser, decodeJWTPayload };
+function loadJwtTokenToHttpHeader() {
+  try {
+    const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
+    console.log("JWT Token From Local Storage", jwtToken);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export {
+  queryApiLogin,
+  queryApiCreateUser,
+  decodeJWTPayload,
+  loadJwtTokenToHttpHeader,
+};

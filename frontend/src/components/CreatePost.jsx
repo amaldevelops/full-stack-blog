@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { loadJwtTokenToHttpHeader } from "../utils/apiAdminQueries";
 
 function CreatePost() {
   const [newPostObject, SetNewPostObject] = useState({
@@ -9,6 +10,9 @@ function CreatePost() {
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
+
+    loadJwtTokenToHttpHeader();
+
     console.log(newPostObject);
   };
 
