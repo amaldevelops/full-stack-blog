@@ -1,18 +1,22 @@
 import { useState } from "react";
-import { loadJwtTokenToHttpHeader } from "../utils/apiAdminQueries";
+import {
+  loadJwtTokenToHttpHeader,
+  queryApiCreatePost,
+  decodeJWTPayload,
+} from "../utils/apiAdminQueries";
 
 function CreatePost() {
+  const authorName = decodeJWTPayload();
+
   const [newPostObject, SetNewPostObject] = useState({
     postTitle: "",
     postContent: "",
-    authorName: "",
+    authorName: authorName.userName,
   });
-
+  // console.log(authorName.userName)
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-
-    loadJwtTokenToHttpHeader();
-
+    queryApiCreatePost(newPostObject);
     console.log(newPostObject);
   };
 

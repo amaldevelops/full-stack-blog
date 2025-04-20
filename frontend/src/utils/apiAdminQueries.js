@@ -1,6 +1,7 @@
 const apiURL = import.meta.env.VITE_API_URL;
 const loginURL = import.meta.env.VITE_API_LOGIN_URL;
 const createUserURL = import.meta.env.VITE_API_CREATE_USER_URL;
+const createPostURL = import.meta.env.VITE_API_CREATE_POST_URL;
 
 async function queryApiLogin(formData) {
   try {
@@ -86,7 +87,36 @@ function decodeJWTPayload() {
 function loadJwtTokenToHttpHeader() {
   try {
     const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
-    console.log("JWT Token From Local Storage", jwtToken);
+
+    if (!jwtToken) {
+      console.log("JWT Token Invalid");
+    }
+
+    const Headers = { Authorization: `Bearer ${jwtToken}` };
+    // console.log(Headers);
+    return Headers;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+async function queryApiCreatePost(formData) {
+  try {
+    const loadedJwtToken = loadJwtTokenToHttpHeader();
+    console.log("Loaded JWT:", loadedJwtToken);
+    let response = await fetch(`${apiURL}/${createPostURL}`, {
+      method: "POST",
+      headers: { ...loadedJwtToken, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        blog_post_title: formData.postTitle,
+        blog_post_content: formData.postContent,
+        blog_post_publish_status: false,
+        authorName: formData.authorName,
+      }),
+    });
+
+    console.log(response);
   } catch (error) {
     console.error(error);
   }
@@ -97,4 +127,5 @@ export {
   queryApiCreateUser,
   decodeJWTPayload,
   loadJwtTokenToHttpHeader,
+  queryApiCreatePost,
 };

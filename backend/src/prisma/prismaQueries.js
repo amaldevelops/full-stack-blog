@@ -81,7 +81,8 @@ async function loginUserDb(userDetailsObject) {
       return { status: "failureLogin" };
     }
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -103,7 +104,8 @@ async function readAllPostsDb() {
     });
     return allPosts;
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -115,7 +117,8 @@ async function readPostByIdDb(ID) {
     });
     return postById;
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -127,7 +130,8 @@ async function createPostDb(postDetailsObject) {
       data: postDetailsObject,
     });
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -140,7 +144,8 @@ async function loadAllDraftPostsFromDb() {
     console.log(blogPostDraft);
     return blogPostDraft;
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -152,7 +157,8 @@ async function loadDraftByIdDb(postID) {
     });
     return blogPostDraft;
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 // This function will update posts/drafts using post ID
@@ -183,7 +189,8 @@ async function updatePostStatusDb(postID, publishStatus) {
 
     return updateStatus.blog_post_publish_status;
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -201,7 +208,8 @@ async function deletePostDb(PostId) {
       // Prisma error code for "Record to delete does not exist"
       return `Post with ID ${PostId} not found.`;
     }
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -214,7 +222,8 @@ async function createCommentDb(postDetailsObject) {
     });
     return "Comment Created !";
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
@@ -228,7 +237,8 @@ async function readCommentDb(postId) {
     });
     return postWithComments;
   } catch (error) {
-    throw error;
+    // throw error;
+    console.error(error);
   }
 }
 
