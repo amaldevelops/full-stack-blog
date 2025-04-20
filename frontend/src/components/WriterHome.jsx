@@ -1,4 +1,4 @@
-import AllPosts from "./AllPosts";
+import AllPosts from "./AllPostsWriter";
 import CreatePost from "./CreatePost";
 import UserDetailsDisplay from "./UserDetails";
 
