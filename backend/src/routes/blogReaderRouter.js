@@ -24,7 +24,9 @@ blogReaderRouter.get("/posts", blogReadControllerGetAllPosts);
 blogReaderRouter.get("/posts/:id/comment", blogReadControllerComment);
 
 blogReaderRouter.post(
-  "/posts/:id/comment/:id/create",
+  // "/posts/:id/comment/:id/create",
+  "/posts/:id/comment/create",
+
   authenticateJWT,
   blogReadControllerCreateComment
 );

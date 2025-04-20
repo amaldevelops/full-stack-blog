@@ -6,7 +6,11 @@ import { useParams } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
-import { queryApiReadPosts } from "../utils/apiReaderQueries";
+import {
+  queryApiReadPosts,
+  queryApiCreateComment,
+} from "../utils/apiReaderQueries";
+import { decodeJWTPayload } from "../utils/apiAdminQueries";
 
 // import NavigationBar from "./NavigationBar";
 
@@ -26,9 +30,7 @@ function Post() {
         const apiPathPostComments = `reader/posts/${APIPathPostById}/comment`;
 
         const fetchPostById = await queryApiReadPosts(apiPathPostById);
-        const fetchPostComments = await queryApiReadPosts(
-          apiPathPostComments
-        );
+        const fetchPostComments = await queryApiReadPosts(apiPathPostComments);
 
         console.log(fetchPostComments);
 
@@ -73,14 +75,19 @@ function Post() {
           </li>
         ))}
       </ul>
-      <PostComment />
+
+      <PostComment postID={id} />
     </div>
   );
 }
 
-function PostComment({ commentObject }) {
+function PostComment({ postID }) {
   const [comment, setComment] = useState("");
   const [formValidationStatus, SetFormValidationStatus] = useState("");
+  const [commentSubmissionStatus, SetcommentSubmissionStatus] = useState("");
+
+  const authorID = decodeJWTPayload();
+  console.log("Author ID IS", authorID.UserID);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -90,9 +97,13 @@ function PostComment({ commentObject }) {
       SetFormValidationStatus("Empty comment, please try again !");
       return;
     }
-    commentObject?.(comment);
+    // commentObject?.(comment);
+    console.log("Comment ID is matey", parseInt(postID, 10));
+    const commentID = parseInt(postID, 10);
+    queryApiCreateComment(comment, commentID, authorID.UserID);
     console.log("Submitted Comment:", comment);
     setComment("");
+    SetcommentSubmissionStatus("Comment Submitted");
   };
 
   return (
@@ -116,6 +127,7 @@ function PostComment({ commentObject }) {
         <button type="submit">Create Comment</button>
       </form>
       <p>{formValidationStatus}</p>
+      <p>{commentSubmissionStatus}</p>
     </div>
   );
 }
