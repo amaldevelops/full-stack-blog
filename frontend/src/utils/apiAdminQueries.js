@@ -53,6 +53,8 @@ async function queryApiCreateUser(formData) {
 
 function decodeJWTPayload() {
   const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
+//   if (Object.keys(jwtToken).length==0)
+//   {}
   const jwtExtractPayLoad = jwtToken.split(".")[1];
 
   function base64UrlToJsonString(string) {
@@ -69,7 +71,7 @@ function decodeJWTPayload() {
 
   try {
     const payLoad = JSON.parse(base64UrlToJsonString(jwtExtractPayLoad));
-    console.log(payLoad);
+    // console.log(payLoad);
     return payLoad;
   } catch (error) {
     console.error("Failed to Decode JWT payload", error);
