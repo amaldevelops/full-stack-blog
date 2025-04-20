@@ -22,28 +22,28 @@ const blogWriterRouter = Router();
 blogWriterRouter.get("/", blogWriteControllerMain);
 
 blogWriterRouter.post(
-  "/post/create",
+  "/posts/create",
   authenticateJWT,
   checkAuthorStatus,
   blogWriteControllerCreate
 );
 
 blogWriterRouter.get(
-  "/post/drafts",
+  "/posts/drafts",
   authenticateJWT,
   checkAuthorStatus,
   blogWriteControllerLoadAllDrafts
 );
 
 blogWriterRouter.get(
-  "/post/:id/drafts",
+  "/posts/:id/drafts",
   authenticateJWT,
   checkAuthorStatus,
   blogWriteControllerDraftLoadById
 );
 
 blogWriterRouter.put(
-  "/post/:id/drafts",
+  "/posts/:id/drafts",
   authenticateJWT,
   checkAuthorStatus,
   blogWriteControllerDraftSaveById
@@ -59,14 +59,14 @@ blogWriterRouter.put(
 // );
 
 blogWriterRouter.delete(
-  "/post/:id/delete",
+  "/posts/:id/delete",
   authenticateJWT,
   checkAuthorStatus,
   blogWriteControllerDelete
 );
 
 blogWriterRouter.put(
-  "/post/:id/publish",
+  "/posts/:id/publish",
   authenticateJWT,
   checkAuthorStatus,
   blogWriteControllerPublishToggle
