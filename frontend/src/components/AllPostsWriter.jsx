@@ -14,6 +14,26 @@ function AllPosts() {
   const [allThePosts, setAllThePosts] = useState([]);
   const [error, setError] = useState(null);
 
+  function EditButton(id)
+  {
+    console.log(id)
+  }
+
+  function DeleteButton(id)
+  {
+    console.log(id)
+  }
+
+function UnpublishButton(id)
+{
+  console.log(id)
+}
+
+function PublishButton(id)
+{
+  console.log(id)
+}
+
   useEffect(() => {
     async function fetchPosts() {
       try {
@@ -52,16 +72,11 @@ function AllPosts() {
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
+              <button onClick={()=>UnpublishButton(posts.id)}>Unpublish</button>
+              <button onClick={() => EditButton(posts.id)}>Edit</button>
+              <button onClick={()=>DeleteButton(posts.id)}>Delete</button>
+              
             </li>
-            <form>
-              <button id={posts.id}>Edit</button>
-            </form>
-            <form>
-              <button id={posts.id}>Delete</button>
-            </form>
-            <form>
-              <button id={posts.id}>Unpublish</button>
-            </form>
           </ul>
         ))}
       </div>
@@ -73,17 +88,9 @@ function AllPosts() {
               <Link to={`/full-stack-blog/reader/posts/${posts.id}`}>
                 {posts.blog_post_title},
               </Link>
-              Published Date: {posts.blog_post_publish_timestamp}
+              Published Date: {posts.blog_post_publish_timestamp}<button onClick={()=>PublishButton(posts.id)}>Publish Post</button>
             </li>
-            <form>
-              <button id={posts.id}>Edit</button>
-            </form>
-            <form>
-              <button id={posts.id}>Delete</button>
-            </form>
-            <form>
-              <button id={posts.id}>Unpublish</button>
-            </form>
+     
           </ul>
         ))}
       </div>
