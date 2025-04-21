@@ -8,12 +8,6 @@ import blogReaderRouter from "./routes/blogReaderRouter.js";
 
 import blogWriterRouter from "./routes/blogWriterRouter.js";
 
-// import { passportInstance, passport } from "../src/middleware/passportConfig.js";
-
-// app.use(passport.initialize());
-
-// app.use(passport.session());
-
 dotenv.config();
 
 const app = express();
@@ -21,7 +15,7 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json()); // Parses application/json
 app.use(urlencoded({ extended: true })); // Parses application/x-www-form-urlencoded
-app.use(cors({ origin: process.env.CORS_URL}));
+app.use(cors({ origin: process.env.CORS_URL }));
 
 app.use("/", blogMainRouter);
 app.use("/reader", blogReaderRouter);

@@ -6,33 +6,25 @@ import { Link } from "react-router-dom";
 
 const PostByIdURL = import.meta.env.VITE_API_LOAD_POST_BY_ID;
 
-import Post from "./Post";
-
-// import TechStack from "../components/TechStack";
-
 function AllPosts() {
   const [allThePosts, setAllThePosts] = useState([]);
   const [error, setError] = useState(null);
 
-  function EditButton(id)
-  {
-    console.log(id)
+  function EditButton(id) {
+    console.log(id);
   }
 
-  function DeleteButton(id)
-  {
-    console.log(id)
+  function DeleteButton(id) {
+    console.log(id);
   }
 
-function UnpublishButton(id)
-{
-  console.log(id)
-}
+  function UnpublishButton(id) {
+    console.log(id);
+  }
 
-function PublishButton(id)
-{
-  console.log(id)
-}
+  function PublishButton(id) {
+    console.log(id);
+  }
 
   useEffect(() => {
     async function fetchPosts() {
@@ -40,10 +32,8 @@ function PublishButton(id)
         const apiPathAllPosts = import.meta.env.VITE_API_LOAD_ALL_POSTS; //"reader/posts";
         const fetchAllPosts = await queryApiReadPosts(apiPathAllPosts);
         setAllThePosts(fetchAllPosts.data);
-        // console.log(postById);
       } catch (error) {
         setError(error.message);
-        // return <div>{error}</div>;
       }
     }
     fetchPosts();
@@ -72,10 +62,11 @@ function PublishButton(id)
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
-              <button onClick={()=>UnpublishButton(posts.id)}>Unpublish</button>
+              <button onClick={() => UnpublishButton(posts.id)}>
+                Unpublish
+              </button>
               <button onClick={() => EditButton(posts.id)}>Edit</button>
-              <button onClick={()=>DeleteButton(posts.id)}>Delete</button>
-              
+              <button onClick={() => DeleteButton(posts.id)}>Delete</button>
             </li>
           </ul>
         ))}
@@ -88,9 +79,11 @@ function PublishButton(id)
               <Link to={`/full-stack-blog/reader/posts/${posts.id}`}>
                 {posts.blog_post_title},
               </Link>
-              Published Date: {posts.blog_post_publish_timestamp}<button onClick={()=>PublishButton(posts.id)}>Publish Post</button>
+              Published Date: {posts.blog_post_publish_timestamp}
+              <button onClick={() => PublishButton(posts.id)}>
+                Publish Post
+              </button>
             </li>
-     
           </ul>
         ))}
       </div>

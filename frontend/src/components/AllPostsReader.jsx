@@ -5,10 +5,7 @@ import { useState, useEffect } from "react";
 import { queryApiReadPosts } from "../utils/apiReaderQueries";
 import { Link } from "react-router-dom";
 
-import Post from "./Post";
 import UserDetails from "./UserDetails";
-
-// import TechStack from "../components/TechStack";
 
 function AllPosts() {
   const [allThePosts, setAllThePosts] = useState([]);
@@ -20,10 +17,8 @@ function AllPosts() {
         const apiPathAllPosts = import.meta.env.VITE_API_LOAD_ALL_POSTS; //"reader/posts";
         const fetchAllPosts = await queryApiReadPosts(apiPathAllPosts);
         setAllThePosts(fetchAllPosts.data);
-        // console.log(postById);
       } catch (error) {
         setError(error.message);
-        // return <div>{error}</div>;
       }
     }
     fetchPosts();
