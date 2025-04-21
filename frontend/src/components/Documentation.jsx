@@ -4,6 +4,15 @@ function APIDocs() {
     <div>
       {/* <NavigationBar /> */}
       <h1>Documentation for Blog API & Blog Reader / Writer Front End</h1>
+      <h2>Deploying to a PAAS</h2>
+      <ul>
+        <li>Set up your Prisma schema: npx prisma generate
+
+        </li>
+        <li>Push schema to Neon: npx prisma db push
+        </li>
+        <li>Seed sample data (This is saved in the package.json) : npm run seed</li>
+      </ul>
       <h2>Blog API</h2>
       <p>
         Blog API is developed using Restful principles and is designed to be
