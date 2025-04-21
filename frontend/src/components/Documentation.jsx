@@ -24,7 +24,8 @@ function APIDocs() {
           The core objective is to implement a secure and RESTful backend that
           can effectively differentiate between various types of users—such as
           readers and writers—while enforcing access restrictions accordingly
-          through clear and predictable endpoint behavior.
+          through clear and predictable endpoint behavior. Two front ends can be
+          connected (one for Blog Reader and one for Blog Writer).
         </p>
         <div></div>
       </div>
@@ -44,7 +45,7 @@ function APIDocs() {
             </a>
           </li>
           <li>
-            Backend hosted on Render (Please note: As this hosted on free
+            Backend hosted on Render (Please note: As this hosted on a free
             instance, it will spin down with inactivity, which can delay
             requests by 50 seconds or more. ):{" "}
             <a href="https://full-stack-blog-t1n4.onrender.com" target="_blank">
@@ -100,7 +101,7 @@ function APIDocs() {
             <img src={logoVite} className="Logos" alt="Vite logo" />
             <h3>Blog Reader</h3>
             <ul>
-              <li>JavaScript,React, Vite HTML, CSS</li>
+              <li>Stack: JavaScript,React, Vite HTML, CSS</li>
               <li>
                 React-based front-end for reading blog posts and leaving
                 comments.
@@ -118,7 +119,7 @@ function APIDocs() {
           <div>
             <h3>Blog Writer</h3>
             <ul>
-              <li>JavaScript,React, Vite HTML, CSS</li>
+              <li>Stack: JavaScript,React, Vite HTML, CSS</li>
               <li>
                 React-based front-end for reading blog posts and leaving
                 comments.
@@ -164,12 +165,13 @@ function APIDocs() {
         </div>
       </div>
 
-      <h2>How to deploy to a PAAS (Platform as a Service)</h2>
+      <h2>How to deploy to a PAAS (Platform As A Service)</h2>
       <ul>
         <li>Database, set up your Prisma schema: npx prisma generate</li>
         <li>Push schema to Neon: npx prisma db push</li>
         <li>
-          Seed sample data (This is saved in the package.json) : npm run seed
+          Seed sample data (This script is saved in the package.json) : npm run
+          seed
         </li>
         <li>
           Environment Variable setup
@@ -178,7 +180,8 @@ function APIDocs() {
             <li>DATABASE_URL: Input the database URL</li>
             <li>PORT : This is the Port that the program will run on</li>
             <li>
-              JWT_SECRET_KEY: This is the custom secret key used to encrypt JWT
+              JWT_SECRET_KEY: This is the custom secret key used to
+              encrypt/decrypt JWT
             </li>
           </ul>
         </li>
@@ -289,7 +292,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>GET
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/create
+        <strong>Route : </strong>/writer/posts/create
       </p>
 
       <h3>Save Post as Draft</h3>
@@ -297,7 +300,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>GET
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/drafts
+        <strong>Route : </strong>/writer/posts/drafts
       </p>
 
       <h3>Save post as Draft</h3>
@@ -305,7 +308,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>POST
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/:id/draft
+        <strong>Route : </strong>/writer/posts/:id/draft
       </p>
 
       <h3>Save post by ID </h3>
@@ -313,7 +316,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>POST
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/:id/save
+        <strong>Route : </strong>/writer/posts/:id/save
       </p>
 
       <h3>Edit post by ID</h3>
@@ -321,7 +324,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>POST
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/:id/edit
+        <strong>Route : </strong>/writer/posts/:id/edit
       </p>
 
       <h3>Delete Post by ID </h3>
@@ -329,7 +332,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>DELETE
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/:id/delete
+        <strong>Route : </strong>/writer/posts/:id/delete
       </p>
 
       <h3>Publish post by ID</h3>
@@ -337,7 +340,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>POST
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/:id/publish
+        <strong>Route : </strong>/writer/posts/:id/publish
       </p>
 
       <h3>Unpublish post by ID </h3>
@@ -345,7 +348,7 @@ function APIDocs() {
         <strong>HTTP Method : </strong>POST
       </p>
       <p>
-        <strong>Route : </strong>/writer/post/:id/unpublish
+        <strong>Route : </strong>/writer/posts/:id/unpublish
       </p>
     </div>
   );
