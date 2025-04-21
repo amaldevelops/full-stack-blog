@@ -12,15 +12,21 @@ function APIDocs() {
   return (
     <div>
       <div>
-        <h1>Introduction</h1>
+        <h2>Project Introduction</h2>
         <p>
-          This demo project is designed to strengthen the technical proficiency
-          in building a RESTful API with a strong emphasis on authentication,
-          route protection, and role-based access control using JSON Web Tokens
-          (JWTs). The core objective is to implement a secure backend that can
-          effectively differentiate between various types of users—such as
-          readers and writers—while enforcing access restrictions accordingly.{" "}
+          This demo project is designed to strengthen technical proficiency in
+          building an API that adheres to REST architectural principles, with a
+          strong emphasis on authentication, route protection, and role-based
+          access control using JSON Web Tokens (JWTs). The API follows REST
+          constraints such as a stateless client-server architecture,
+          resource-based routing, uniform interfaces via standard HTTP methods
+          (GET, POST, PUT, DELETE), and cacheable responses where applicable.
+          The core objective is to implement a secure and RESTful backend that
+          can effectively differentiate between various types of users—such as
+          readers and writers—while enforcing access restrictions accordingly
+          through clear and predictable endpoint behavior.
         </p>
+        <div></div>
       </div>
       <div>
         <h2>Live Demo</h2>
@@ -38,14 +44,51 @@ function APIDocs() {
             </a>
           </li>
           <li>
-            Backend hosted on Render:{" "}
+            Backend hosted on Render (Please note: As this hosted on free
+            instance, it will spin down with inactivity, which can delay
+            requests by 50 seconds or more. ):{" "}
             <a href="https://full-stack-blog-t1n4.onrender.com" target="_blank">
               https://full-stack-blog-t1n4.onrender.com
             </a>{" "}
           </li>
         </ul>
       </div>
-
+      <div>
+        <h2>Source Code</h2>
+        <p>
+          Both Back End and Front End code are hosted as an monolithic
+          repository (Back End code and Front End Code)
+        </p>
+        <ul>
+          <li>
+            GitHub Main Repository:{" "}
+            <a
+              href="https://github.com/amaldevelops/full-stack-blog"
+              target="_blank"
+            >
+              Main GitHub Repository
+            </a>
+          </li>
+          <li>
+            GitHub Front End Source Code:{" "}
+            <a
+              href="https://github.com/amaldevelops/full-stack-blog/tree/main/frontend"
+              target="_blank"
+            >
+              Front End Source Code
+            </a>
+          </li>
+          <li>
+            GitHub Backend Source Code:
+            <a
+              href="https://github.com/amaldevelops/full-stack-blog/tree/main/backend"
+              target="_blank"
+            >
+              Back End Source Code
+            </a>
+          </li>
+        </ul>
+      </div>
       <div className="card">
         <div>
           <div>
@@ -102,9 +145,12 @@ function APIDocs() {
           <img src={logoPrisma} className="Logos" alt="Prisma logo" />
           <img src={logoPostman} className="Logos" alt="Postman logo" />
 
-          <h3>RESTful API </h3>
+          <h3>API Information</h3>
           <ul>
-            <li>RESTful API built with Node.js, Express and PostgreSQL.</li>
+            <li>
+              REST architecture based API built with Node.js, Express and
+              PostgreSQL, Prisma ORM.
+            </li>
             <li>Prisma ORM for database interaction.</li>
             <li>JWT authentication for secure access to protected routes.</li>
             <li>
@@ -118,9 +164,9 @@ function APIDocs() {
         </div>
       </div>
 
-      <h2>How to deploy to a PAAS</h2>
+      <h2>How to deploy to a PAAS (Platform as a Service)</h2>
       <ul>
-        <li>Set up your Prisma schema: npx prisma generate</li>
+        <li>Database, set up your Prisma schema: npx prisma generate</li>
         <li>Push schema to Neon: npx prisma db push</li>
         <li>
           Seed sample data (This is saved in the package.json) : npm run seed
@@ -128,7 +174,7 @@ function APIDocs() {
         <li>
           Environment Variable setup
           <ul>
-            <li>CORS_URL:"https://www.amalk.au/"</li>
+            <li>CORS_URL: i.e. https://www.amalk.au </li>
             <li>DATABASE_URL: Input the database URL</li>
             <li>PORT : This is the Port that the program will run on</li>
             <li>
