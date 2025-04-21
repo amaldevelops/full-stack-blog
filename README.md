@@ -1,10 +1,22 @@
 # FullStack Blog API and Clients
 
-This project is a full-stack blog application built with a Node.js/Express API and two separate React-based front-end clients: one for readers and one for writers.
+This demo project is designed to strengthen technical proficiency in building an API that adheres to REST architectural principles, with a strong emphasis on authentication, route protection, and role-based access control using JSON Web Tokens (JWTs). The API follows REST constraints such as a stateless client-server architecture, resource-based routing, uniform interfaces via standard HTTP methods (GET, POST, PUT, DELETE), and cacheable responses where applicable. The core objective is to implement a secure and RESTful backend that can effectively differentiate between various types of users—such as readers and writers—while enforcing access restrictions accordingly through clear and predictable endpoint behavior. Two front ends can be connected (one for Blog Reader and one for Blog Writer).
 
 ## Live Demo
 
-## Features
+- Please note that the backend code and database are hosted on the free tiers of Neon PaaS and Render PaaS. Due to the limitations of their plans, response times may be slower than usual.
+
+- Front End Hosted on GitHub Pages: https://www.amalk.au/full-stack-blog
+- Database hosted on Neon:https://neon.tech/
+- Backend hosted on Render (Please note: As this hosted on a free instance, it will spin down with inactivity, which can delay requests by 50 seconds or more. ): https://full-stack-blog-t1n4.onrender.com
+
+## Source Code
+
+Both Back End and Front End code are hosted as an monolithic repository (Back End code and Front End Code)
+
+GitHub Main Repository: [Main GitHub Repository](https://github.com/amaldevelops/full-stack-blog)
+GitHub Front End Source Code: [Front End Source Code](https://github.com/amaldevelops/full-stack-blog/tree/main/frontend)
+GitHub Backend Source Code:[Back End Source Code](https://github.com/amaldevelops/full-stack-blog/tree/main/backend)
 
 ### Blog API
 
@@ -25,7 +37,6 @@ This project is a full-stack blog application built with a Node.js/Express API a
 - Separate React-based front-end for authors to write, edit, and publish posts.
 - Features for managing posts (publishing/unpublishing, editing), comments (deleting, editing), and user accounts.
 - Writer Client: Offers a dedicated interface for authors to manage blog content and administrative tasks.
-
 
 ## Architecture
 
