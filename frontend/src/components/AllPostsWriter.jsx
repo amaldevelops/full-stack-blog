@@ -2,13 +2,25 @@
 
 import { useState, useEffect } from "react";
 import { queryApiReadPosts } from "../utils/apiReaderQueries";
+import {
+  queryApiDeletePost,
+  queryApiReadDrafts,
+} from "../utils/apiWriterQueries";
 import { Link } from "react-router-dom";
 
 const PostByIdURL = import.meta.env.VITE_API_LOAD_POST_BY_ID;
 
 function AllPosts() {
+
+  let allDraftsObject;
+
   const [allThePosts, setAllThePosts] = useState([]);
   const [error, setError] = useState(null);
+
+  function allDrafts() {
+    allDraftsObject = queryApiReadDrafts();
+    console.log(allDraftsObject);
+  }
 
   function EditButton(id) {
     console.log(id);
@@ -16,6 +28,7 @@ function AllPosts() {
 
   function DeleteButton(id) {
     console.log(id);
+    queryApiDeletePost(id);
   }
 
   function UnpublishButton(id) {
@@ -73,6 +86,7 @@ function AllPosts() {
       </div>
       <div>
         <h2>Draft Posts view</h2>
+        <button onClick={() => allDrafts()}>Load Drafts</button>
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
             <li key={posts.id}>

@@ -24,7 +24,7 @@ async function queryApiLogin(formData) {
 
     const ReadLocalStorageToken = localStorage.getItem("jwtToken"); // Read from Local storage
 
-    console.log(ReadLocalStorageToken);
+    // console.log(ReadLocalStorageToken);
   } catch (error) {
     console.error(error);
   }
@@ -60,7 +60,7 @@ async function queryApiCreateUser(formData) {
 function decodeJWTPayload(runOnRequest) {
   try {
     const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
-    console.log(runOnRequest);
+    // console.log(runOnRequest);
 
     if (jwtToken !== null) {
       const jwtExtractPayLoad = jwtToken.split(".")[1];
@@ -110,8 +110,8 @@ function loadJwtTokenToHttpHeader() {
 async function queryApiCreatePost(formData) {
   try {
     const loadedJwtToken = loadJwtTokenToHttpHeader();
-    console.log("Loaded JWT:", loadedJwtToken);
-    console.log("FormData is: ", formData);
+    // console.log("Loaded JWT:", loadedJwtToken);
+    // console.log("FormData is: ", formData);
     let response = await fetch(`${apiURL}/${createPostURL}`, {
       method: "POST",
       headers: { ...loadedJwtToken, "Content-Type": "application/json" },
@@ -121,7 +121,7 @@ async function queryApiCreatePost(formData) {
       }),
     });
 
-    console.log(response);
+    // console.log(response);
   } catch (error) {
     console.error(error);
   }

@@ -8,7 +8,7 @@ function UserDetailsDisplay() {
 
   let decodedJWT = decodeJWTPayload();
   let isJWTAvailable = !Object.keys(decodedJWT).length == 0;
-  console.log(isJWTAvailable);
+  // console.log(isJWTAvailable);
   if (isJWTAvailable) {
     userName = "User Name : " + decodedJWT.userName;
     author = "Author : " + String(decodedJWT.author);
