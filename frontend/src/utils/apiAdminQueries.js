@@ -30,6 +30,11 @@ async function queryApiLogin(formData) {
   }
 }
 
+async function clearJwtLogOut(){
+  localStorage.removeItem('jwtToken');
+  return "loggedOut"
+}
+
 async function queryApiCreateUser(formData) {
   try {
     let response = await fetch(`${apiURL}/${createUserURL}`, {
@@ -123,7 +128,7 @@ async function queryApiCreatePost(formData) {
 }
 
 export {
-  queryApiLogin,
+  queryApiLogin,clearJwtLogOut,
   queryApiCreateUser,
   decodeJWTPayload,
   loadJwtTokenToHttpHeader,
