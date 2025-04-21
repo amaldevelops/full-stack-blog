@@ -64,7 +64,7 @@ function authenticateJWT(req, res, next) {
 
 function checkAuthorStatus(req, res, next) {
   if (req.authData.author === true) {
-    console.log(`Are you an Author : ${req.authData.author}`);
+    // console.log(`Are you an Author : ${req.authData.author}`);
     next();
   } else {
     console.log("You are not an author!");

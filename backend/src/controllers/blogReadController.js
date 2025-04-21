@@ -51,7 +51,7 @@ async function blogReadControllerGetPostById(req, res, next) {
 async function blogReadControllerComment(req, res, next) {
   try {
     const PostId = parseInt(req.params.id);
-    console.log(`Comment ID: ${PostId}`);
+    // console.log(`Comment ID: ${PostId}`);
     const ReturnedComments = await readCommentDb(PostId);
     res.json({ data: ReturnedComments });
   } catch (error) {
@@ -65,7 +65,7 @@ async function blogReadControllerUpdateComment(req, res, next) {
   try {
     const commentIdToEdit = parseInt(req.body.id);
     const commentDataToEdit = req.body.comment_text;
-    console.log(commentIdToEdit, commentDataToEdit);
+    // console.log(commentIdToEdit, commentDataToEdit);
     updateCommentDb(commentIdToEdit, commentDataToEdit);
     res.json({ status: "Reader Comment update Route" });
   } catch (error) {
@@ -95,7 +95,7 @@ async function blogReadControllerCreateComment(req, res, next) {
       comment_author_id: parseInt(req.body.comment_author_id),
     };
 
-    console.log(commentObject);
+    // console.log(commentObject);
     createCommentDb(commentObject);
     res.json({ status: "Comment Created Successfully" });
   } catch (error) {

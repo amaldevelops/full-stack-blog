@@ -9,7 +9,6 @@ import {
 } from "../prisma/prismaQueries.js";
 
 async function blogMainControllerMain(req, res, next) {
-  // console.log(await readAllPostsDb());
   res.json([
     { Welcome: `Welcome To Blog API by Amal K, Date is ${new Date()}` },
     { AvailableRoutes: "Please select Route: /reader or /writer To continue!" },
@@ -53,7 +52,7 @@ async function blogMainControllerRegister(req, res, next) {
 
     const registerUserStatus = await registerNewUserDb(userDetailsObject);
 
-    console.log(registerUserStatus);
+    // console.log(registerUserStatus);
 
     res.json({ status: `status: ${registerUserStatus}` });
   } catch (error) {
@@ -76,7 +75,7 @@ async function blogMainControllerLogin(req, res, next) {
 
     let loginStatus = await loginUserDb(userDetailsObject);
 
-    console.log(`User details Object:${userDetailsObject.id}`);
+    // console.log(`User details Object:${userDetailsObject.id}`);
 
     if (loginStatus.status === "successLogin") {
       let JWT = await createJWT(loginStatus);

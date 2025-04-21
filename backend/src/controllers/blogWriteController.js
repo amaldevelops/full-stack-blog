@@ -30,9 +30,9 @@ async function blogWriteControllerMain(req, res, next) {
 async function blogWriteControllerCreate(req, res, next) {
   const { title, content } = req.body;
   const { userName, UserID } = req.authData;
-  console.log(
-    `Title:${title} and the Content:${content} and the Author:${userName}`
-  );
+  // console.log(
+  //   `Title:${title} and the Content:${content} and the Author:${userName}`
+  // );
   // Make sure to send the form data with following structure from the front end
   // <input type="text" name="title" required>
   // <textarea name="content" required></textarea>
@@ -65,7 +65,7 @@ async function blogWriteControllerLoadAllDrafts(req, res, next) {
 async function blogWriteControllerDraftLoadById(req, res, next) {
   try {
     const draftIdToEdit = parseInt(req.params.id);
-    console.log(draftIdToEdit);
+    // console.log(draftIdToEdit);
     const returnedPost = await loadDraftByIdDb(draftIdToEdit);
     res.json({ data: returnedPost });
   } catch (error) {
@@ -87,7 +87,7 @@ async function blogWriteControllerDraftSaveById(req, res, next) {
       blog_post_author_id: UserID,
     };
 
-    console.log(draftIdToEdit);
+    // console.log(draftIdToEdit);
     const returnedPost = await updateDraftByIdDb(
       draftIdToEdit,
       draftDataToEdit
@@ -137,7 +137,7 @@ async function blogWriteControllerPublishToggle(req, res, next) {
       requiredPublishStatus = false;
     }
 
-    console.log(requiredPublishStatus);
+    // console.log(requiredPublishStatus);
 
     const updatePublishStatus = await updatePostStatusDb(
       requiredPostId,
