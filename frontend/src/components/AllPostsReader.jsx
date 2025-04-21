@@ -1,12 +1,12 @@
 // This component Will read all the posts from the API and display them as a list, users can click and read the full article and comments and make comments
+const PostByIdURL = import.meta.env.VITE_API_LOAD_POST_BY_ID;
 
 import { useState, useEffect } from "react";
 import { queryApiReadPosts } from "../utils/apiReaderQueries";
 import { Link } from "react-router-dom";
 
-const PostByIdURL = import.meta.env.VITE_API_LOAD_POST_BY_ID;
-
 import Post from "./Post";
+import UserDetails from "./UserDetails";
 
 // import TechStack from "../components/TechStack";
 
@@ -43,6 +43,7 @@ function AllPosts() {
 
   return (
     <div>
+      <UserDetails />
       <h2>Blog All Posts view</h2>
       <div>
         {allThePosts.map((posts) => (

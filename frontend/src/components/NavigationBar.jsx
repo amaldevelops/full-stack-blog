@@ -13,7 +13,14 @@ function NavigationBar() {
   return (
     <div>
       <Link to="/full-stack-blog" className="Links">
-        Home
+        Home / Documentation
+      </Link>
+
+      <Link to="/full-stack-blog/reader" className="Links">
+        Blog Reader
+      </Link>
+      <Link to="/full-stack-blog/writer" className="Links">
+        Blog Writer
       </Link>
       <Link to="/full-stack-blog/login" className="Links">
         Login
@@ -21,15 +28,9 @@ function NavigationBar() {
       <Link to="/full-stack-blog" onClick={handleLogOut}>
         Logout
       </Link>
-      <Link to="/full-stack-blog/reader" className="Links">
-        Blog Reader
-      </Link>
-      <Link to="/full-stack-blog/writer" className="Links">
-        Blog Writer
-      </Link>
-      <Link to="/full-stack-blog/api-docs" className="Links">
+      {/* <Link to="/full-stack-blog/api-docs" className="Links">
         Documentation
-      </Link>
+      </Link> */}
     </div>
   );
 }

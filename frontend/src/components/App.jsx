@@ -5,15 +5,19 @@ import TechStack from "../components/TechStack";
 // import "../assets/App.css";
 
 // import NavigationBar from "./NavigationBar";
-import Login from "./Login";
-import AllPosts from "./AllPostsReader";
-import TechnicalInfo from "./TechnicalInfo";
+// import Login from "./Login";
+// import AllPosts from "./AllPostsReader";
+// import TechnicalInfo from "./TechnicalInfo";
+import Documentation from "./Documentation";
+import UserDetails from "./UserDetails";
 
 function App() {
   return (
     <>
       {/* <AllPosts /> */}
+      <UserDetails />
       <TechStack />
+      <Documentation />
     </>
   );
 }

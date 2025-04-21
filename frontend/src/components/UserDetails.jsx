@@ -23,6 +23,7 @@ function UserDetailsDisplay() {
     <div>
       {isJWTAvailable ? (
         <div>
+          <h3>JSON Web Token details</h3>
           {userName} | {author} | {loginStatus} | {jwtTokenExpiry}
         </div>
       ) : (
