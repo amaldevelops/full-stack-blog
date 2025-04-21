@@ -12,13 +12,10 @@ import {
 } from "../utils/apiReaderQueries";
 import { decodeJWTPayload } from "../utils/apiAdminQueries";
 
-// import NavigationBar from "./NavigationBar";
-
 function Post() {
   const { id } = useParams();
   console.log(id);
   const APIPathPostById = id;
-  // const [APIPathPostById, setAPIPathPostById] = useState(postID);
   const [postById, setPostById] = useState(null);
   const [postComments, setPostComments] = useState(null);
   const [error, setError] = useState(null);
@@ -36,8 +33,6 @@ function Post() {
 
         setPostById(fetchPostById["data"][0]);
         setPostComments(fetchPostComments["data"]["comments"]);
-        // console.log(postById);
-        // console.log(fetchPostById);
       } catch (error) {
         setError(error.message);
         return <div>{error}</div>;

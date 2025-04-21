@@ -28,9 +28,6 @@ function NavigationBar() {
       <Link to="/full-stack-blog" onClick={handleLogOut}>
         Logout
       </Link>
-      {/* <Link to="/full-stack-blog/api-docs" className="Links">
-        Documentation
-      </Link> */}
     </div>
   );
 }

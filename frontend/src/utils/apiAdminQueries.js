@@ -30,9 +30,9 @@ async function queryApiLogin(formData) {
   }
 }
 
-async function clearJwtLogOut(){
-  localStorage.removeItem('jwtToken');
-  return "loggedOut"
+async function clearJwtLogOut() {
+  localStorage.removeItem("jwtToken");
+  return "loggedOut";
 }
 
 async function queryApiCreateUser(formData) {
@@ -128,7 +128,8 @@ async function queryApiCreatePost(formData) {
 }
 
 export {
-  queryApiLogin,clearJwtLogOut,
+  queryApiLogin,
+  clearJwtLogOut,
   queryApiCreateUser,
   decodeJWTPayload,
   loadJwtTokenToHttpHeader,

@@ -1,9 +1,5 @@
 import { useState } from "react";
-import {
-  loadJwtTokenToHttpHeader,
-  queryApiCreatePost,
-  decodeJWTPayload,
-} from "../utils/apiAdminQueries";
+import { queryApiCreatePost, decodeJWTPayload } from "../utils/apiAdminQueries";
 
 function CreatePost() {
   const authorName = decodeJWTPayload();
@@ -63,13 +59,6 @@ function CreatePost() {
           id="authorName"
           name="authorName"
           value={newPostObject.authorName}
-          // onChange={(event) => {
-          //   SetNewPostObject({
-          //     ...newPostObject,
-          //     [event.target.name]: event.target.value,
-          //   });
-
-          // }}
           readOnly
         ></input>
         <br />

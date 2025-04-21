@@ -4,7 +4,6 @@ import WriterHome from "../components/WriterHome";
 import Post from "../components/Post";
 import ErrorPage from "../components/ErrorPage";
 import Login from "../components/Login";
-import CreatePost from "../components/CreatePost";
 import Register from "../components/Register";
 import APIDocs from "../components/Documentation";
 import Layout from "../components/Layout";

@@ -1,5 +1,4 @@
 import AllPosts from "./AllPostsReader";
-import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 
 function ReaderHome() {

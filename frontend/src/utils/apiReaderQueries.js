@@ -1,9 +1,6 @@
 const apiURL = import.meta.env.VITE_API_URL;
-import { useState } from "react";
-// const createCommentURL = `reader/posts/${id}/comment`
-// import.meta.env.VITE_API_NEW_COMMENT;"
 
-import { decodeJWTPayload, loadJwtTokenToHttpHeader } from "./apiAdminQueries";
+import { loadJwtTokenToHttpHeader } from "./apiAdminQueries";
 
 async function queryApiReadPosts(apiPath) {
   try {
