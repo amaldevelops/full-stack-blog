@@ -9,7 +9,7 @@
   "scripts": {
     "seed": "node src/prisma/seedSampleData.js",
     "dev": "node --watch src/index.js",
-    "start":"node index.js",
+    "start":"node src/index.js",
     "studio": "npx prisma studio --schema src/prisma/schema.prisma"
   },
   "dependencies": {
