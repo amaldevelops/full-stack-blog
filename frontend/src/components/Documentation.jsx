@@ -31,6 +31,7 @@ function APIDocs() {
       </div>
       <div>
         <h2>Live Demo</h2>
+        <p><strong>Please note that the backend code and database are hosted on the free tiers of Neon PaaS and Render PaaS. Due to the limitations of their plans, response times may be slower than usual.</strong></p>
         <ul>
           <li>
             Front End Hosted on GitHub Pages:{" "}
@@ -165,7 +166,7 @@ function APIDocs() {
         </div>
       </div>
 
-      <h2>How to deploy to a PAAS (Platform As A Service)</h2>
+      <h2>How to deploy to a PaaS (Platform As A Service)</h2>
       <ul>
         <li>Database, set up your Prisma schema: npx prisma generate</li>
         <li>Push schema to Neon: npx prisma db push</li>
