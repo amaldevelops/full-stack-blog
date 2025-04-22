@@ -1,3 +1,5 @@
+import { Outlet } from "react-router-dom";
+
 import AllPosts from "./AllPostsWriter";
 import CreatePost from "./CreatePost";
 import UserDetailsDisplay from "./UserDetails";
@@ -11,6 +13,7 @@ function WriterHome() {
       </div>
 
       <AllPosts />
+      <Outlet />
       <CreatePost />
     </div>
   );

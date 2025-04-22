@@ -1,7 +1,6 @@
 const apiURL = import.meta.env.VITE_API_URL;
 const loginURL = import.meta.env.VITE_API_LOGIN_URL;
 const createUserURL = import.meta.env.VITE_API_CREATE_USER_URL;
-const createPostURL = import.meta.env.VITE_API_CREATE_POST_URL;
 
 async function queryApiLogin(formData) {
   try {
@@ -114,31 +113,10 @@ function loadJwtTokenToHttpHeader() {
   }
 }
 
-async function queryApiCreatePost(formData) {
-  try {
-    const loadedJwtToken = loadJwtTokenToHttpHeader();
-    // console.log("Loaded JWT:", loadedJwtToken);
-    // console.log("FormData is: ", formData);
-    let response = await fetch(`${apiURL}/${createPostURL}`, {
-      method: "POST",
-      headers: { ...loadedJwtToken, "Content-Type": "application/json" },
-      body: JSON.stringify({
-        title: formData.postTitle,
-        content: formData.postContent,
-      }),
-    });
-
-    // console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export {
   queryApiLogin,
   clearJwtLogOut,
   queryApiCreateUser,
   decodeJWTPayload,
   loadJwtTokenToHttpHeader,
-  queryApiCreatePost,
 };

@@ -7,6 +7,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import APIDocs from "../components/Documentation";
 import Layout from "../components/Layout";
+import EditPost from "../components/EditPost";
 
 const Routes = [
   {
@@ -31,8 +32,16 @@ const Routes = [
       {
         path: "/full-stack-blog/writer",
         element: <WriterHome />,
+        children: [
+          {
+            path: "edit",
+            element: <EditPost />,
+            errorElement: <ErrorPage />,
+          },
+        ],
         errorElement: <ErrorPage />,
       },
+
       {
         path: "/full-stack-blog/register",
         element: <Register />,
@@ -49,6 +58,7 @@ const Routes = [
         errorElement: <ErrorPage />,
       },
     ],
+    errorElement: <ErrorPage />,
   },
 ];
 

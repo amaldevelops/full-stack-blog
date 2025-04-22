@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { queryApiCreatePost, decodeJWTPayload } from "../utils/apiAdminQueries";
+import { decodeJWTPayload } from "../utils/apiAdminQueries";
+import { queryApiCreatePost } from "../utils/apiWriterQueries";
 
 function CreatePost() {
   const authorName = decodeJWTPayload();

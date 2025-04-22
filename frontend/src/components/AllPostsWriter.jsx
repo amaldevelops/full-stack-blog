@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import { queryApiReadPosts } from "../utils/apiReaderQueries";
 import {
+  queryApiCreatePost,
   queryApiDeletePost,
-  queryApiReadDrafts,togglePublishStatus
+  queryApiReadDrafts,
+  togglePublishStatus,
 } from "../utils/apiWriterQueries";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const PostByIdURL = import.meta.env.VITE_API_LOAD_POST_BY_ID;
 
@@ -15,8 +18,11 @@ function AllPosts() {
   const [allTheDrafts, setAllTheDrafts] = useState([]);
   const [error, setError] = useState(null);
 
-  function EditButton(id) {
-    console.log(id);
+  const navigate = useNavigate();
+
+  function EditButton(post) {
+    console.log("Editing post:", post);
+    navigate("edit", { state: { PostDetails: post } });
   }
 
   function DeleteButton(id) {
@@ -24,9 +30,9 @@ function AllPosts() {
     queryApiDeletePost(id);
   }
 
-  function PublishStatusButton(id,publishStatus) {
+  function PublishStatusButton(id, publishStatus) {
     // console.log(id,publishStatus);
-    togglePublishStatus(id,publishStatus)
+    togglePublishStatus(id, publishStatus);
   }
 
   useEffect(() => {
@@ -79,10 +85,10 @@ function AllPosts() {
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
-              <button onClick={() => PublishStatusButton(posts.id,false)}>
+              <button onClick={() => PublishStatusButton(posts.id, false)}>
                 Unpublish
               </button>
-              <button onClick={() => EditButton(posts.id)}>Edit</button>
+              <button onClick={() => EditButton(posts)}>Edit</button>
               <button onClick={() => DeleteButton(posts.id)}>Delete</button>
             </li>
           </ul>
@@ -98,14 +104,15 @@ function AllPosts() {
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
-              <button onClick={() => PublishStatusButton(posts.id,true)}>
+              <button onClick={() => PublishStatusButton(posts.id, true)}>
                 Publish Post
               </button>
-              <button onClick={() => EditButton(posts.id)}>Edit</button>
+              <button onClick={() => EditButton(posts)}>Edit</button>
               <button onClick={() => DeleteButton(posts.id)}>Delete</button>
             </li>
           </ul>
         ))}
+        <Link to="edit">Edit</Link>
       </div>
     </div>
   );
