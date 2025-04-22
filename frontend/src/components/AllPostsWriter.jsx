@@ -104,6 +104,8 @@ function AllPosts() {
               <button onClick={() => PublishButton(posts.id)}>
                 Publish Post
               </button>
+              <button onClick={() => EditButton(posts.id)}>Edit</button>
+              <button onClick={() => DeleteButton(posts.id)}>Delete</button>
             </li>
           </ul>
         ))}
