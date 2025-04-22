@@ -29,8 +29,8 @@ async function queryApiEditPost(formData) {
   try {
     const loadedJwtToken = loadJwtTokenToHttpHeader();
     // console.log("Loaded JWT:", loadedJwtToken);
-    // console.log("FormData is: ", formData);
-    let response = await fetch(`${apiURL}/${SaveEditPostURL}`, {
+    console.log("FormData is: ", formData);
+    let response = await fetch(`${apiURL}/writer/posts/${formData.id}/drafts`, {
       method: "PUT",
       headers: { ...loadedJwtToken, "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -39,7 +39,7 @@ async function queryApiEditPost(formData) {
       }),
     });
 
-    // console.log(response);
+    console.log(response);
   } catch (error) {
     console.error(error);
   }

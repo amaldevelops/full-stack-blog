@@ -24,7 +24,8 @@ function EditPost() {
     );
   }
 
-  const [newPostObject, setNewPostObject] = useState({
+  const [editedPostObject, setNewPostObject] = useState({
+    id: PostDetails.id,
     postTitle: PostDetails.blog_post_title || "",
     postContent: PostDetails.blog_post_content || "",
     authorName: authorData?.userName || "",
@@ -34,9 +35,9 @@ function EditPost() {
     event.preventDefault();
 
     // Submit updated post data (replace this with your edit API if available)
-    queryApiEditPost(newPostObject);
+    queryApiEditPost(editedPostObject);
 
-    console.log("Edited Post Submitted:", newPostObject);
+    console.log("Edited Post Submitted:", editedPostObject);
 
     // Navigate back to writer dashboard
     navigate("/full-stack-blog/writer");
@@ -61,7 +62,7 @@ function EditPost() {
           name="postTitle"
           rows="2"
           cols="50"
-          value={newPostObject.postTitle}
+          value={editedPostObject.postTitle}
           onChange={handleChange}
         />
         <br />
@@ -72,7 +73,7 @@ function EditPost() {
           name="postContent"
           rows="10"
           cols="50"
-          value={newPostObject.postContent}
+          value={editedPostObject.postContent}
           onChange={handleChange}
         />
         <br />
@@ -80,7 +81,7 @@ function EditPost() {
         <input
           id="authorName"
           name="authorName"
-          value={newPostObject.authorName}
+          value={editedPostObject.authorName}
           readOnly
         />
         <br />

@@ -77,6 +77,20 @@ function AllPosts() {
   return (
     <div>
       <h2>Published Posts view</h2>
+      <p>
+        Note: Editing and deleting posts can only be done when a post is in the
+        unpublished state. This ensures all changes are reviewed before the post
+        goes live and helps avoid publishing errors. To edit or delete a post:
+      </p>
+
+      <ul>
+        <li>First, click "Unpublish" on the post.</li>
+        <li>Navigate to the Draft posts view.</li>
+        <li>
+          From there, you can either click "Edit" to update the post or "Delete"
+          to remove it entirely.
+        </li>
+      </ul>
       <div>
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
@@ -88,8 +102,8 @@ function AllPosts() {
               <button onClick={() => PublishStatusButton(posts.id, false)}>
                 Unpublish
               </button>
-              <button onClick={() => EditButton(posts)}>Edit</button>
-              <button onClick={() => DeleteButton(posts.id)}>Delete</button>
+              {/* <button onClick={() => EditButton(posts)}>Edit</button> */}
+              {/* <button onClick={() => DeleteButton(posts.id)}>Delete</button> */}
             </li>
           </ul>
         ))}
@@ -112,7 +126,6 @@ function AllPosts() {
             </li>
           </ul>
         ))}
-        <Link to="edit">Edit</Link>
       </div>
     </div>
   );
