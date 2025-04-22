@@ -196,6 +196,7 @@ function APIDocs() {
 
       <div className="documentationDiv">
         <h2>Blog API</h2>
+
         <p>
           Blog API is developed using Restful principles and is designed to be
           used with either one or two front ends. i.e Blog Reader and a Blog
@@ -204,6 +205,12 @@ function APIDocs() {
         <p>
           Output is given as standard JSON so it can be integrated into any
           front end without much effort.
+        </p>
+        <p>
+          <strong>
+            Make sure to insert the main server url in front of the routes i.e
+            http://localhost:3000/writer/posts/create To create a new Post{" "}
+          </strong>
         </p>
         <div>
           <h2>Admin Routes</h2>
