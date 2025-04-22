@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { queryApiReadPosts } from "../utils/apiReaderQueries";
 import {
   queryApiDeletePost,
-  queryApiReadDrafts,
+  queryApiReadDrafts,togglePublishStatus
 } from "../utils/apiWriterQueries";
 import { Link } from "react-router-dom";
 
@@ -24,12 +24,9 @@ function AllPosts() {
     queryApiDeletePost(id);
   }
 
-  function UnpublishButton(id) {
-    console.log(id);
-  }
-
-  function PublishButton(id) {
-    console.log(id);
+  function PublishStatusButton(id,publishStatus) {
+    // console.log(id,publishStatus);
+    togglePublishStatus(id,publishStatus)
   }
 
   useEffect(() => {
@@ -82,7 +79,7 @@ function AllPosts() {
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
-              <button onClick={() => UnpublishButton(posts.id)}>
+              <button onClick={() => PublishStatusButton(posts.id,false)}>
                 Unpublish
               </button>
               <button onClick={() => EditButton(posts.id)}>Edit</button>
@@ -101,7 +98,7 @@ function AllPosts() {
                 {posts.blog_post_title},
               </Link>
               Published Date: {posts.blog_post_publish_timestamp}
-              <button onClick={() => PublishButton(posts.id)}>
+              <button onClick={() => PublishStatusButton(posts.id,true)}>
                 Publish Post
               </button>
               <button onClick={() => EditButton(posts.id)}>Edit</button>

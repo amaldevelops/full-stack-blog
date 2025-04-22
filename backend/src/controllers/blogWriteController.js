@@ -127,11 +127,12 @@ async function blogWriteControllerPublishToggle(req, res, next) {
     //Publish:true/false
     //Post ID: Integer
     let requiredPublishStatus = req.body.Publish;
+    console.log("requiredPublishStatus is:",requiredPublishStatus)
     const requiredPostId = parseInt(req.params.id, 10);
 
-    if (requiredPublishStatus === "true") {
+    if (requiredPublishStatus === true) {
       requiredPublishStatus = true;
-    } else if (requiredPublishStatus === "false") {
+    } else if (requiredPublishStatus === false) {
       requiredPublishStatus = false;
     } else {
       requiredPublishStatus = false;

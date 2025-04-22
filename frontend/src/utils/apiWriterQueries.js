@@ -42,16 +42,16 @@ async function queryApiReadDrafts() {
   }
 }
 
-async function togglePublishStatus(postID)
+async function togglePublishStatus(postID,publishStatus)
 {
     try{
         const loadedJwtToken = loadJwtTokenToHttpHeader();
         console.log("Loaded JWT:", loadedJwtToken);
-    
-        let response = await fetch(`${apiURL}/${`writer/posts/${postID}/delete`}`, {
-          method: "DELETE",
+      console.log(postID,publishStatus)
+        let response = await fetch(`${apiURL}/${`writer/posts/${postID}/publish`}`, {
+          method: "PUT",
           headers: { ...loadedJwtToken, "Content-Type": "application/json" },
-          body: JSON.stringify({}),
+          body: JSON.stringify({Publish:publishStatus}),
         });
     
         console.log(response);
@@ -59,8 +59,8 @@ async function togglePublishStatus(postID)
 
     catch(error)
     {
-        console.error("Error Toggling posts")
+        console.error("Error Toggling posts",error)
     }
 }
 
-export { queryApiDeletePost, queryApiReadDrafts };
+export { queryApiDeletePost, queryApiReadDrafts,togglePublishStatus };
