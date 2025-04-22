@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { decodeJWTPayload } from "../utils/apiAdminQueries";
-import { queryApiCreatePost } from "../utils/apiWriterQueries";
+import { queryApiEditPost } from "../utils/apiWriterQueries";
 
 function EditPost() {
   const location = useLocation();
@@ -34,7 +34,7 @@ function EditPost() {
     event.preventDefault();
 
     // Submit updated post data (replace this with your edit API if available)
-    queryApiCreatePost(newPostObject);
+    queryApiEditPost(newPostObject);
 
     console.log("Edited Post Submitted:", newPostObject);
 

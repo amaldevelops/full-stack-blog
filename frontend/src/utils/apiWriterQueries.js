@@ -1,6 +1,7 @@
 const apiURL = import.meta.env.VITE_API_URL;
 const apiDraftURL = import.meta.env.VITE_API_DRAFTS_URL;
 const createPostURL = import.meta.env.VITE_API_CREATE_POST_URL;
+const SaveEditPostURL = import.meta.env.VITE_API_DRAFTS_URL;
 
 import { loadJwtTokenToHttpHeader } from "./apiAdminQueries";
 
@@ -11,6 +12,26 @@ async function queryApiCreatePost(formData) {
     // console.log("FormData is: ", formData);
     let response = await fetch(`${apiURL}/${createPostURL}`, {
       method: "POST",
+      headers: { ...loadedJwtToken, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: formData.postTitle,
+        content: formData.postContent,
+      }),
+    });
+
+    // console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function queryApiEditPost(formData) {
+  try {
+    const loadedJwtToken = loadJwtTokenToHttpHeader();
+    // console.log("Loaded JWT:", loadedJwtToken);
+    // console.log("FormData is: ", formData);
+    let response = await fetch(`${apiURL}/${SaveEditPostURL}`, {
+      method: "PUT",
       headers: { ...loadedJwtToken, "Content-Type": "application/json" },
       body: JSON.stringify({
         title: formData.postTitle,
@@ -85,6 +106,7 @@ async function togglePublishStatus(postID, publishStatus) {
 
 export {
   queryApiCreatePost,
+  queryApiEditPost,
   queryApiDeletePost,
   queryApiReadDrafts,
   togglePublishStatus,
