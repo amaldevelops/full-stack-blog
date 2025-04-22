@@ -7,20 +7,25 @@ function UserDetailsDisplay() {
   let jwtTokenExpiry = "n/A";
 
   let decodedJWT = decodeJWTPayload();
-  let isJWTAvailable = !Object.keys(decodedJWT).length == 0;
-  // console.log(isJWTAvailable);
+
+  // Ensure decodedJWT is a valid object
+  let isJWTAvailable =
+    decodedJWT &&
+    typeof decodedJWT === "object" &&
+    Object.keys(decodedJWT).length > 0;
+
   if (isJWTAvailable) {
     userName = "User Name : " + decodedJWT.userName;
     author = "Author : " + String(decodedJWT.author);
-    loginStatus = "Login Status :" + decodedJWT.status;
+    loginStatus = "Login Status : " + decodedJWT.status;
     jwtTokenExpiry =
       "JWT Token Expiry : " + new Date(decodedJWT.exp * 1000).toString();
   } else {
-    console.log(decodedJWT);
+    console.log("Invalid or empty JWT:", decodedJWT);
   }
 
   return (
-    <div>
+    <div className="jwtDisplay">
       {isJWTAvailable ? (
         <div>
           <h3>JSON Web Token details</h3>

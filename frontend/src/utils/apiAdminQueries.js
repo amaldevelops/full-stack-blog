@@ -14,7 +14,7 @@ async function queryApiLogin(formData) {
         password: formData.password,
       }),
     });
-    console.log("API Login query", formData);
+    // console.log("API Login query", formData);
     if (!response.ok) {
       throw new Error(`HTTP Error! Status: ${response.status}`);
     }
@@ -59,34 +59,41 @@ async function queryApiCreateUser(formData) {
 
 function decodeJWTPayload(runOnRequest) {
   try {
-    const jwtToken = localStorage.getItem("jwtToken"); // Read from Local storage
-    // console.log(runOnRequest);
+    const jwtToken = localStorage.getItem("jwtToken");
 
-    if (jwtToken !== null) {
-      const jwtExtractPayLoad = jwtToken.split(".")[1];
+    if (!jwtToken || typeof jwtToken !== "string" || !jwtToken.includes(".")) {
+      console.warn("No valid JWT found in localStorage");
+      return {};
+    }
 
-      function base64UrlToJsonString(string) {
-        string = string.replace(/-/g, "+").replace(/_/g, "/");
-        const pad = string.length % 4;
+    const jwtExtractPayLoad = jwtToken.split(".")[1];
 
-        if (pad) string += "=".repeat(4 - pad);
+    function base64UrlToJsonString(string) {
+      string = string.replace(/-/g, "+").replace(/_/g, "/");
+      const pad = string.length % 4;
+      if (pad) string += "=".repeat(4 - pad);
+
+      try {
         return decodeURIComponent(
           atob(string)
             .split("")
             .map((c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"))
             .join("")
         );
+      } catch (err) {
+        console.error("Invalid base64 encoding in JWT:", err);
+        return null;
       }
-
-      const payLoad = JSON.parse(base64UrlToJsonString(jwtExtractPayLoad));
-      // console.log(payLoad);
-      return payLoad;
-    } else {
-      return "Error";
     }
+
+    const jsonString = base64UrlToJsonString(jwtExtractPayLoad);
+    if (!jsonString) return {};
+
+    const payLoad = JSON.parse(jsonString);
+    return payLoad;
   } catch (error) {
-    console.error("Failed to Decode JWT payload", error);
-    return null;
+    console.error("Failed to Decode JWT payload:", error);
+    return {};
   }
 }
 
