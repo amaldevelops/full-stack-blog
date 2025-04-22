@@ -11,16 +11,9 @@ import { Link } from "react-router-dom";
 const PostByIdURL = import.meta.env.VITE_API_LOAD_POST_BY_ID;
 
 function AllPosts() {
-
-  let allDraftsObject;
-
   const [allThePosts, setAllThePosts] = useState([]);
+  const [allTheDrafts, setAllTheDrafts] = useState([]);
   const [error, setError] = useState(null);
-
-  function allDrafts() {
-    allDraftsObject = queryApiReadDrafts();
-    console.log(allDraftsObject);
-  }
 
   function EditButton(id) {
     console.log(id);
@@ -40,11 +33,25 @@ function AllPosts() {
   }
 
   useEffect(() => {
+    async function allDrafts() {
+      try {
+        let allDraftsObject = await queryApiReadDrafts();
+        setAllTheDrafts(allDraftsObject.data);
+        console.log("Returned object allDraftsObject is:", allDraftsObject);
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+    allDrafts();
+  }, []);
+
+  useEffect(() => {
     async function fetchPosts() {
       try {
         const apiPathAllPosts = import.meta.env.VITE_API_LOAD_ALL_POSTS; //"reader/posts";
         const fetchAllPosts = await queryApiReadPosts(apiPathAllPosts);
         setAllThePosts(fetchAllPosts.data);
+        console.log("All the posts fetchAllPosts is:", fetchAllPosts);
       } catch (error) {
         setError(error.message);
       }
@@ -86,8 +93,8 @@ function AllPosts() {
       </div>
       <div>
         <h2>Draft Posts view</h2>
-        <button onClick={() => allDrafts()}>Load Drafts</button>
-        {allThePosts.map((posts) => (
+        {/* <button onClick={() => allDrafts()}>Load Drafts</button> */}
+        {allTheDrafts.map((posts) => (
           <ul key={posts.id}>
             <li key={posts.id}>
               <Link to={`/full-stack-blog/reader/posts/${posts.id}`}>

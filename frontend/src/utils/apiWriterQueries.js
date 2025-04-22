@@ -34,8 +34,8 @@ async function queryApiReadDrafts() {
     }
 
     const queryResult = await response.json();
-    console.log(queryResult.data);
-    return queryResult.data;
+    // console.log("This is from queryAPIDrafts Function:",queryResult);
+    return queryResult;
   } catch (error) {
     console.error("Error catching posts:", error);
     throw error;
