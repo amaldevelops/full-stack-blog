@@ -31,7 +31,13 @@ function APIDocs() {
       </div>
       <div>
         <h2>Live Demo</h2>
-        <p><strong>Please note that the backend code and database are hosted on the free tiers of Neon PaaS and Render PaaS. Due to the limitations of their plans, response times may be slower than usual.</strong></p>
+        <p>
+          <strong>
+            Please note that the backend code and database are hosted on the
+            free tiers of Neon PaaS and Render PaaS. Due to the limitations of
+            their plans, response times may be slower than usual.
+          </strong>
+        </p>
         <ul>
           <li>
             Front End Hosted on GitHub Pages:{" "}
@@ -197,26 +203,30 @@ function APIDocs() {
         Output is given as standard JSON so it can be integrated into any front
         end without much effort.
       </p>
-      <h2>Reader routes</h2>
-      <h3>List all the reader routes</h3>
-      <p>
-        <strong>HTTP Method : </strong>GET
-      </p>
-      <p>
-        <strong>Route :</strong> /reader
-      </p>
 
-      <h3>Get all published posts</h3>
-      <p>
-        <strong>HTTP Method : </strong>GET
-      </p>
-      <p>
-        <strong>Route : </strong>/reader/posts
-      </p>
-      <p>
-        <strong>Output Format : </strong>
-        <code>
-          {`
+      <h2>Admin Routes</h2>
+
+      <div>
+        <h2>Reader routes</h2>
+        <h3>List all the reader routes</h3>
+        <p>
+          <strong>HTTP Method : </strong>GET
+        </p>
+        <p>
+          <strong>Route :</strong> /reader
+        </p>
+
+        <h3>Get all published posts</h3>
+        <p>
+          <strong>HTTP Method : </strong>GET
+        </p>
+        <p>
+          <strong>Route : </strong>/reader/posts
+        </p>
+        <p>
+          <strong>Output Format : </strong>
+          <code>
+            {`
     "data": [
         {
             "id": 13,
@@ -235,122 +245,125 @@ function APIDocs() {
             "blog_post_author_id": 10
         }
     ]`}
-        </code>
-      </p>
+          </code>
+        </p>
 
-      <h3>Get posts by ID</h3>
-      <p>
-        <strong>HTTP Method : </strong>GET
-      </p>
-      <p>
-        <strong>Route : </strong>/reader/posts/:id
-      </p>
+        <h3>Get posts by ID</h3>
+        <p>
+          <strong>HTTP Method : </strong>GET
+        </p>
+        <p>
+          <strong>Route : </strong>/reader/posts/:id
+        </p>
 
-      <h3>Get Post all Comments</h3>
-      <p>
-        <strong>HTTP Method : </strong>GET
-      </p>
-      <p>
-        <strong>Route : </strong>/reader/posts/:id/comment
-      </p>
+        <h3>Get Post all Comments</h3>
+        <p>
+          <strong>HTTP Method : </strong>GET
+        </p>
+        <p>
+          <strong>Route : </strong>/reader/posts/:id/comment
+        </p>
 
-      <h3>Create a new comment</h3>
-      <p>
-        <strong>HTTP Method : </strong>POST
-      </p>
-      <p>
-        <strong>Route : </strong>/reader/posts/comment/:id/create
-      </p>
+        <h3>Create a new comment</h3>
+        <p>
+          <strong>HTTP Method : </strong>POST
+        </p>
+        <p>
+          <strong>Route : </strong>/reader/posts/comment/:id/create
+        </p>
 
-      <h3>Update post comment</h3>
-      <p>
-        <strong>HTTP Method : </strong>PUT
-      </p>
-      <p>
-        <strong>Route : </strong>/reader/posts/comment/:id/update
-      </p>
+        <h3>Update post comment</h3>
+        <p>
+          <strong>HTTP Method : </strong>PUT
+        </p>
+        <p>
+          <strong>Route : </strong>/reader/posts/comment/:id/update
+        </p>
 
-      <h3>Delete Comment</h3>
-      <p>
-        <strong>HTTP Method : </strong>DELETE
-      </p>
-      <p>
-        <strong>Route : </strong>/reader/posts/comment/:id/delete
-      </p>
+        <h3>Delete Comment</h3>
+        <p>
+          <strong>HTTP Method : </strong>DELETE
+        </p>
+        <p>
+          <strong>Route : </strong>/reader/posts/comment/:id/delete
+        </p>
+      </div>
 
-      <h2>Writer Routes</h2>
+      <div>
+        <h2>Writer Routes</h2>
 
-      <h3>List all the writer routes</h3>
-      <p>
-        <strong>HTTP Method : </strong>GET
-      </p>
-      <p>
-        <strong>Route : </strong>/writer
-      </p>
+        <h3>List all the writer routes</h3>
+        <p>
+          <strong>HTTP Method : </strong>GET
+        </p>
+        <p>
+          <strong>Route : </strong>/writer
+        </p>
 
-      <h3>Create New Post</h3>
-      <p>
-        <strong>HTTP Method : </strong>GET
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/create
-      </p>
+        <h3>Create New Post</h3>
+        <p>
+          <strong>HTTP Method : </strong>GET
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/create
+        </p>
 
-      <h3>Save Post as Draft</h3>
-      <p>
-        <strong>HTTP Method : </strong>GET
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/drafts
-      </p>
+        <h3>Save Post as Draft</h3>
+        <p>
+          <strong>HTTP Method : </strong>GET
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/drafts
+        </p>
 
-      <h3>Save post as Draft</h3>
-      <p>
-        <strong>HTTP Method : </strong>POST
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/:id/draft
-      </p>
+        <h3>Save post as Draft</h3>
+        <p>
+          <strong>HTTP Method : </strong>POST
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/:id/draft
+        </p>
 
-      <h3>Save post by ID </h3>
-      <p>
-        <strong>HTTP Method : </strong>POST
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/:id/save
-      </p>
+        <h3>Save post by ID </h3>
+        <p>
+          <strong>HTTP Method : </strong>POST
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/:id/save
+        </p>
 
-      <h3>Edit post by ID</h3>
-      <p>
-        <strong>HTTP Method : </strong>POST
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/:id/edit
-      </p>
+        <h3>Edit post by ID</h3>
+        <p>
+          <strong>HTTP Method : </strong>POST
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/:id/edit
+        </p>
 
-      <h3>Delete Post by ID </h3>
-      <p>
-        <strong>HTTP Method : </strong>DELETE
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/:id/delete
-      </p>
+        <h3>Delete Post by ID </h3>
+        <p>
+          <strong>HTTP Method : </strong>DELETE
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/:id/delete
+        </p>
 
-      <h3>Publish post by ID</h3>
-      <p>
-        <strong>HTTP Method : </strong>POST
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/:id/publish
-      </p>
+        <h3>Publish post by ID</h3>
+        <p>
+          <strong>HTTP Method : </strong>POST
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/:id/publish
+        </p>
 
-      <h3>Unpublish post by ID </h3>
-      <p>
-        <strong>HTTP Method : </strong>POST
-      </p>
-      <p>
-        <strong>Route : </strong>/writer/posts/:id/unpublish
-      </p>
+        <h3>Unpublish post by ID </h3>
+        <p>
+          <strong>HTTP Method : </strong>POST
+        </p>
+        <p>
+          <strong>Route : </strong>/writer/posts/:id/unpublish
+        </p>
+      </div>
     </div>
   );
 }

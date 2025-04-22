@@ -42,4 +42,25 @@ async function queryApiReadDrafts() {
   }
 }
 
+async function togglePublishStatus(postID)
+{
+    try{
+        const loadedJwtToken = loadJwtTokenToHttpHeader();
+        console.log("Loaded JWT:", loadedJwtToken);
+    
+        let response = await fetch(`${apiURL}/${`writer/posts/${postID}/delete`}`, {
+          method: "DELETE",
+          headers: { ...loadedJwtToken, "Content-Type": "application/json" },
+          body: JSON.stringify({}),
+        });
+    
+        console.log(response);
+    }
+
+    catch(error)
+    {
+        console.error("Error Toggling posts")
+    }
+}
+
 export { queryApiDeletePost, queryApiReadDrafts };
