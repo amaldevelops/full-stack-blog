@@ -28,9 +28,14 @@ function APIDocs() {
           connected (one for Blog Reader and one for Blog Writer).
         </p>
         <div>
-          <h4>This site is hosted on GitHub Pages using client-side routing with React Router.
-If you refresh a page or access a nested route directly (e.g., /writer/edit), you may see a "404 Not Found" error due to how GitHub Pages handles URLs.
-To avoid this, please navigate using the links within the site instead of refreshing manually on subpages.</h4>
+          <h4>
+            As Front End is hosted on GitHub Pages using client-side routing
+            with React Router. If you refresh a page or access a nested route
+            directly (e.g., /writer/edit), you may see a "404 Not Found" error
+            due to how GitHub Pages handles URLs. To avoid this, please navigate
+            using the links within the site instead of refreshing manually on
+            subpages.
+          </h4>
         </div>
       </div>
       <div>
@@ -104,7 +109,7 @@ To avoid this, please navigate using the links within the site instead of refres
       <div className="card">
         <div>
           <div>
-            <h2>Frontend </h2>
+            <h2>Frontend Stack </h2>
             <img src={logoJs} className="Logos" alt="JavaScript Logo" />
             <img src={logoReact} className="Logos" alt="React logo" />
             <img src={logoCSS} className="Logos" alt="CSS logo" />
@@ -151,13 +156,13 @@ To avoid this, please navigate using the links within the site instead of refres
         </div>
 
         <div>
-          <h2>Back End </h2>
+          <h2>Back End Stack</h2>
           <img src={logoNodejs} className="Logos" alt="NodeJs logo" />
           <img src={logoPostgresql} className="Logos" alt="PostgreSQL logo" />
           <img src={logoPrisma} className="Logos" alt="Prisma logo" />
           <img src={logoPostman} className="Logos" alt="Postman logo" />
 
-          <h3>API Information</h3>
+          <h3>API</h3>
           <ul>
             <li>
               REST architecture based API built with Node.js, Express and
@@ -177,15 +182,83 @@ To avoid this, please navigate using the links within the site instead of refres
       </div>
 
       <h2>How to deploy to a PaaS (Platform As A Service)</h2>
+      <p>
+        For this project we will be using Neon.tech for Database Hosting,
+        Render.com for backend code hosting and GitHub Pages for React Front end
+        hosting{" "}
+      </p>
+
+      <h3>Local Setup</h3>
       <ul>
-        <li>Database, set up your Prisma schema: npx prisma generate</li>
-        <li>Push schema to Neon: npx prisma db push</li>
         <li>
-          Seed sample data (This script is saved in the package.json) : npm run
-          seed
+          Clone Repository:{" "}
+          <code>git clone git@github.com:amaldevelops/full-stack-blog.git</code>
         </li>
         <li>
-          Environment Variable setup
+          Front End: Navigate to /frontend folder: <code>npm install</code>
+        </li>
+        <li>
+          Back End:Navigate to /backend folder: <code>npm install</code>{" "}
+        </li>
+      </ul>
+      <h3>Neon.tech: Database setup </h3>
+      <a
+        href="https://neon.tech/docs/get-started-with-neon/connect-neon"
+        target="_blank"
+      >
+        Please refer Neon docs for setting up a PostgreSQL database and use
+        below steps to connect
+      </a>
+      <ul>
+        <li>
+          Make sure Prisma client is upto date: <code>npx prisma generate</code>
+        </li>
+        <li>
+          Then push schema to Neon: <code>npx prisma db push</code>
+        </li>
+        <li>
+          If you wish you can seed sample data (This script is saved in the
+          package.json) : <code>npm run seed</code>
+        </li>
+        <li>
+          Connect Render.com to Neon: i.e.
+          <code>
+            DATABASE_URL="postgresql://alex:AbC123dEf@ep-cool-darkness-a1b2c3d4.us-east-2.aws.neon.tech/dbname"
+          </code>
+        </li>
+      </ul>
+
+      <h3>Render.com : Node.js Backend setup </h3>
+      <a href="https://render.com/docs" target="_blank">
+        Please follow Render Documents for deploying basics and use below
+        settings
+      </a>
+      <ul>
+        <li>
+          Settings
+          <ul>
+            <li>
+              Build & Deploy:{" "}
+              <code>https://github.com/amaldevelops/full-stack-blog</code>
+            </li>
+            <li>
+              Branch: <code>main</code>
+            </li>
+            <li>
+              Root Directory: <code>backend/src</code>
+            </li>
+            <li>
+              Build Command: <code>npm install</code>
+            </li>
+            <li>
+              Start Command: <code>npm start</code>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <li>
+          Environment Variable setup for Backend
           <ul>
             <li>CORS_URL: i.e. https://www.amalk.au </li>
             <li>DATABASE_URL: Input the database URL</li>
@@ -198,8 +271,19 @@ To avoid this, please navigate using the links within the site instead of refres
         </li>
       </ul>
 
+      <h3>GitHub Pages: React Front End Setup</h3>
+      <a href="https://docs.github.com/en/pages/quickstart" target="_blank">
+        Quickstart for GitHub Pages
+      </a>
+      <ul>
+        <li>
+          After setting up GitHub pages on your Github Repo all you have to do
+          is: <code>npm run deploy</code>
+        </li>
+      </ul>
+
       <div className="documentationDiv">
-        <h2>Blog API</h2>
+        <h2>Blog API information</h2>
 
         <p>
           Blog API is developed using Restful principles and is designed to be
