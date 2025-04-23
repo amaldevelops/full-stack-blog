@@ -44,4 +44,41 @@ async function queryApiCreateComment(comment, postID, authorId) {
   }
 }
 
-export { queryApiReadPosts, queryApiCreateComment };
+async function deleteComment() {
+  try {
+    const loadedJwtToken = loadJwtTokenToHttpHeader();
+    console.log("Loaded JWT:", loadedJwtToken);
+
+    let response = await fetch(`${apiURL}/${`writer/posts/${postID}/delete`}`, {
+      method: "DELETE",
+      headers: { ...loadedJwtToken, "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function editComment(formData) {
+  try {
+    const loadedJwtToken = loadJwtTokenToHttpHeader();
+    // console.log("Loaded JWT:", loadedJwtToken);
+    console.log("FormData is: ", formData);
+    let response = await fetch(`${apiURL}/writer/posts/${formData.id}/drafts`, {
+      method: "PUT",
+      headers: { ...loadedJwtToken, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: formData.postTitle,
+        content: formData.postContent,
+      }),
+    });
+
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export { queryApiReadPosts, queryApiCreateComment, editComment, deleteComment };

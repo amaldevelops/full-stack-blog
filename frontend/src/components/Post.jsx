@@ -10,6 +10,8 @@ import PropTypes from "prop-types";
 import {
   queryApiReadPosts,
   queryApiCreateComment,
+  editComment,
+  deleteComment,
 } from "../utils/apiReaderQueries";
 import { decodeJWTPayload } from "../utils/apiAdminQueries";
 
@@ -23,6 +25,22 @@ function Post() {
   const [postById, setPostById] = useState(null);
   const [postComments, setPostComments] = useState(null);
   const [error, setError] = useState(null);
+
+  function EditButton(post) {
+    console.log("Editing post:", post);
+    // navigate("edit", { state: { PostDetails: post } });
+    editComment();
+  }
+
+  function DeleteButton(id) {
+    console.log(id);
+    deleteComment(id)
+      .then(() => {
+        fetchPosts();
+        fetchDrafts(); // Optionally, re-fetch drafts as well
+      })
+      .catch((error) => setError(error.message));
+  }
 
   useEffect(() => {
     async function getPostById() {
@@ -70,7 +88,9 @@ function Post() {
         {postComments.map((comment, index) => (
           <li key={index}>
             <strong>{comment.comment_timestamp}</strong>: {comment.comment_text}{" "}
-            ,Author ID:{comment.comment_author_id}
+            ,Author ID:{comment.comment_author_id}{" "}
+            <button onClick={() => EditButton(comment)}>Edit</button>
+            <button onClick={() => DeleteButton(comment.id)}>Delete</button>
           </li>
         ))}
       </ul>
@@ -97,7 +117,7 @@ function PostComment({ postID }) {
       return;
     }
     // commentObject?.(comment);
-    console.log("Comment ID is matey", parseInt(postID, 10));
+    console.log("Comment ID is ", parseInt(postID, 10));
     const commentID = parseInt(postID, 10);
     queryApiCreateComment(comment, commentID, authorID.UserID);
     console.log("Submitted Comment:", comment);
