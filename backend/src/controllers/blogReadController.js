@@ -76,8 +76,9 @@ async function blogReadControllerUpdateComment(req, res, next) {
 // id (comment ID)
 async function blogReadControllerDeleteComment(req, res, next) {
   try {
-    const commentId = parseInt(req.body.id);
+    const commentId = parseInt(req.params.id);
     deleteCommentDb(commentId);
+    console.log(commentId)
     res.json({ status: "Comment Deleted" });
   } catch (error) {
     console.error(error);

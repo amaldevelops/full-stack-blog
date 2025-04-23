@@ -44,7 +44,7 @@ async function queryApiCreateComment(comment, postID, authorId) {
   }
 }
 
-async function deleteComment() {
+async function deleteComment(postID, commentID) {
   try {
     const loadedJwtToken = loadJwtTokenToHttpHeader();
     console.log("Loaded JWT:", loadedJwtToken);
