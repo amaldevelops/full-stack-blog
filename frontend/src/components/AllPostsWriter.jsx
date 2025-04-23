@@ -1,5 +1,3 @@
-// This component Will read all the posts from the API and display them as a list, users can click and read the full article and comments and make comments
-
 import { useState, useEffect } from "react";
 import { queryApiReadPosts } from "../utils/apiReaderQueries";
 import {
@@ -20,28 +18,24 @@ function AllPosts() {
 
   const navigate = useNavigate();
 
-  function EditButton(post) {
-    console.log("Editing post:", post);
-    navigate("edit", { state: { PostDetails: post } });
+  // Fetch all posts
+  function fetchPosts() {
+    async function getPosts() {
+      try {
+        const apiPathAllPosts = import.meta.env.VITE_API_LOAD_ALL_POSTS;
+        const fetchAllPosts = await queryApiReadPosts(apiPathAllPosts);
+        setAllThePosts(fetchAllPosts.data);
+        console.log("All the posts fetchAllPosts is:", fetchAllPosts);
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+    getPosts();
   }
 
-  function newPostButton() {
-    navigate("newpost");
-    console.log("newpost");
-  }
-
-  function DeleteButton(id) {
-    console.log(id);
-    queryApiDeletePost(id);
-  }
-
-  function PublishStatusButton(id, publishStatus) {
-    // console.log(id,publishStatus);
-    togglePublishStatus(id, publishStatus);
-  }
-
-  useEffect(() => {
-    async function allDrafts() {
+  // Fetch all draft posts
+  function fetchDrafts() {
+    async function getDrafts() {
       try {
         let allDraftsObject = await queryApiReadDrafts();
         setAllTheDrafts(allDraftsObject.data);
@@ -50,20 +44,53 @@ function AllPosts() {
         setError(error.message);
       }
     }
-    allDrafts();
+    getDrafts();
+  }
+
+  // Function to handle editing posts
+  function EditButton(post) {
+    console.log("Editing post:", post);
+    navigate("edit", { state: { PostDetails: post } });
+  }
+
+  // Navigate to create a new post
+  function newPostButton() {
+    navigate("newpost")
+    
+
+    console.log("newpost");
+  }
+
+  // Function to handle deleting posts
+  function DeleteButton(id) {
+    console.log(id);
+    queryApiDeletePost(id)
+      .then(() => {
+        // Re-fetch posts after deletion
+        fetchPosts();
+        fetchDrafts();  // Optionally, re-fetch drafts as well
+      })
+      .catch(error => setError(error.message));
+  }
+
+  // Function to handle publishing/unpublishing posts
+  function PublishStatusButton(id, publishStatus) {
+    togglePublishStatus(id, publishStatus)
+      .then(() => {
+        // Re-fetch posts after publish status change
+        fetchPosts();
+        fetchDrafts();  // Optionally, re-fetch drafts as well
+      })
+      .catch(error => setError(error.message));
+  }
+
+  // Fetch drafts on initial load
+  useEffect(() => {
+    fetchDrafts();
   }, []);
 
+  // Fetch posts on initial load
   useEffect(() => {
-    async function fetchPosts() {
-      try {
-        const apiPathAllPosts = import.meta.env.VITE_API_LOAD_ALL_POSTS; //"reader/posts";
-        const fetchAllPosts = await queryApiReadPosts(apiPathAllPosts);
-        setAllThePosts(fetchAllPosts.data);
-        console.log("All the posts fetchAllPosts is:", fetchAllPosts);
-      } catch (error) {
-        setError(error.message);
-      }
-    }
     fetchPosts();
   }, []);
 
@@ -96,6 +123,7 @@ function AllPosts() {
           to remove it entirely.
         </li>
       </ul>
+
       <div>
         {allThePosts.map((posts) => (
           <ul key={posts.id}>
@@ -107,15 +135,13 @@ function AllPosts() {
               <button onClick={() => PublishStatusButton(posts.id, false)}>
                 Unpublish
               </button>
-              {/* <button onClick={() => EditButton(posts)}>Edit</button> */}
-              {/* <button onClick={() => DeleteButton(posts.id)}>Delete</button> */}
             </li>
           </ul>
         ))}
       </div>
+
       <div>
         <h2>Draft Posts view</h2>
-        {/* <button onClick={() => allDrafts()}>Load Drafts</button> */}
         {allTheDrafts.map((posts) => (
           <ul key={posts.id}>
             <li key={posts.id}>
@@ -132,6 +158,7 @@ function AllPosts() {
           </ul>
         ))}
       </div>
+
       <div className="border">
         <button onClick={() => newPostButton()}>Create a new Post</button>
       </div>

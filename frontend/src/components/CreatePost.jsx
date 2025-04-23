@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { decodeJWTPayload } from "../utils/apiAdminQueries";
 import { queryApiCreatePost } from "../utils/apiWriterQueries";
 
 function CreatePost() {
+  const navigate = useNavigate();
   const authorName = decodeJWTPayload();
 
   const [newPostObject, SetNewPostObject] = useState({
@@ -11,10 +13,15 @@ function CreatePost() {
     authorName: authorName.userName,
   });
   // console.log(authorName.userName)
-  const formSubmissionHandler = (event) => {
+  const formSubmissionHandler = async (event) => {
     event.preventDefault();
-    queryApiCreatePost(newPostObject);
-    console.log(newPostObject);
+    try {
+      await queryApiCreatePost(newPostObject);
+      console.log(newPostObject);
+      navigate("/full-stack-blog/writer", { replace: true });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
