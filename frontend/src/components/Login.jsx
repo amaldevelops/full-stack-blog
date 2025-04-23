@@ -7,6 +7,7 @@ function Login() {
   const [formData, setFormData] = useState({ user_email: "", password: "" });
   const [loginStatus, setLoginStatus] = useState("");
   const [reloadKey, setReloadKey] = useState(0);
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,6 +16,7 @@ function Login() {
     queryApiLogin(formData);
     setLoginStatus("User Details Submitted");
     setReloadKey((prevKey) => prevKey + 1); // Trigger re-mount
+    navigate("/full-stack-blog/reader");
   };
   return (
     <div className="card">
