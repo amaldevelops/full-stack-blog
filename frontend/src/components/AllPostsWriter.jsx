@@ -25,6 +25,11 @@ function AllPosts() {
     navigate("edit", { state: { PostDetails: post } });
   }
 
+  function newPostButton() {
+    navigate("newpost");
+    console.log("newpost");
+  }
+
   function DeleteButton(id) {
     console.log(id);
     queryApiDeletePost(id);
@@ -126,6 +131,9 @@ function AllPosts() {
             </li>
           </ul>
         ))}
+      </div>
+      <div className="border">
+        <button onClick={() => newPostButton()}>Create a new Post</button>
       </div>
     </div>
   );

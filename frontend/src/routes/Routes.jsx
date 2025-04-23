@@ -8,6 +8,7 @@ import Register from "../components/Register";
 import APIDocs from "../components/Documentation";
 import Layout from "../components/Layout";
 import EditPost from "../components/EditPost";
+import CreatePost from "../components/CreatePost";
 
 const Routes = [
   {
@@ -36,6 +37,11 @@ const Routes = [
           {
             path: "edit",
             element: <EditPost />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: "newpost",
+            element: <CreatePost />,
             errorElement: <ErrorPage />,
           },
         ],
