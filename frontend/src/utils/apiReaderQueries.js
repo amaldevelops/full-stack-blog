@@ -47,12 +47,12 @@ async function queryApiCreateComment(comment, postID, authorId) {
 async function deleteComment(postID, commentID) {
   try {
     const loadedJwtToken = loadJwtTokenToHttpHeader();
-    console.log("Loaded JWT:", loadedJwtToken);
+    console.log("Loaded JWT:", loadedJwtToken,postID, commentID);
 
-    let response = await fetch(`${apiURL}/${`writer/posts/${postID}/delete`}`, {
+    let response = await fetch(`${apiURL}/${`reader/posts/${postID}/comment/${commentID}/delete`}`, {
       method: "DELETE",
       headers: { ...loadedJwtToken, "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      
     });
 
     console.log(response);

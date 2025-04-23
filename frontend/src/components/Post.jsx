@@ -1,10 +1,5 @@
-// This component will display a single post
-
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-
 import PropTypes from "prop-types";
 
 import {
@@ -15,29 +10,28 @@ import {
 } from "../utils/apiReaderQueries";
 import { decodeJWTPayload } from "../utils/apiAdminQueries";
 
-let navigate;
-
 function Post() {
-  navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
-  console.log(id);
   const APIPathPostById = id;
+
   const [postById, setPostById] = useState(null);
   const [postComments, setPostComments] = useState(null);
   const [error, setError] = useState(null);
+  const [refreshTrigger, setRefreshTrigger] = useState(false);
 
-  function EditButton(post) {
-    console.log("Editing post:", post);
-    // navigate("edit", { state: { PostDetails: post } });
-    editComment();
+  function EditButton(comment) {
+    editComment(comment)
+      .then(() => {
+        setRefreshTrigger((prev) => !prev);
+      })
+      .catch((error) => setError(error.message));
   }
 
-  function DeleteButton(id) {
-    console.log(id);
-    deleteComment(id)
+  function DeleteButton(postID, commentID) {
+    deleteComment(postID, commentID)
       .then(() => {
-        fetchPosts();
-        fetchDrafts(); // Optionally, re-fetch drafts as well
+        setRefreshTrigger((prev) => !prev);
       })
       .catch((error) => setError(error.message));
   }
@@ -51,18 +45,15 @@ function Post() {
         const fetchPostById = await queryApiReadPosts(apiPathPostById);
         const fetchPostComments = await queryApiReadPosts(apiPathPostComments);
 
-        console.log(fetchPostComments);
-
         setPostById(fetchPostById["data"][0]);
         setPostComments(fetchPostComments["data"]["comments"]);
       } catch (error) {
         setError(error.message);
-        return <div>{error}</div>;
       }
     }
 
     getPostById();
-  }, [APIPathPostById]);
+  }, [APIPathPostById, refreshTrigger]);
 
   if (error) {
     return <div>{error}</div>;
@@ -83,46 +74,56 @@ function Post() {
       <p>Posted on: {postById.blog_post_publish_timestamp}</p>
 
       <h3>Comments</h3>
-
       <ul>
-        {postComments.map((comment, index) => (
-          <li key={index}>
-            <strong>{comment.comment_timestamp}</strong>: {comment.comment_text}{" "}
-            ,Author ID:{comment.comment_author_id}{" "}
-            <button onClick={() => EditButton(comment)}>Edit</button>
-            <button onClick={() => DeleteButton(comment.id)}>Delete</button>
-          </li>
-        ))}
+        {postComments &&
+          postComments.map((comment, index) => (
+            <li key={index}>
+              <strong>{comment.comment_timestamp}</strong>:{" "}
+              {comment.comment_text}, Author ID: {comment.comment_author_id}{" "}
+              <button onClick={() => EditButton(comment)}>Edit</button>
+              <button onClick={() => DeleteButton(postById.id, comment.id)}>
+                Delete
+              </button>
+            </li>
+          ))}
       </ul>
 
-      <PostComment postID={id} />
+      <PostComment
+        postID={id}
+        onCommentSubmit={() => setRefreshTrigger((prev) => !prev)}
+      />
     </div>
   );
 }
 
-function PostComment({ postID }) {
+function PostComment({ postID, onCommentSubmit }) {
   const [comment, setComment] = useState("");
   const [formValidationStatus, SetFormValidationStatus] = useState("");
   const [commentSubmissionStatus, SetcommentSubmissionStatus] = useState("");
 
   const authorID = decodeJWTPayload();
-  console.log("Author ID IS", authorID.UserID);
 
   const onSubmit = (event) => {
     event.preventDefault();
 
     if (!comment.trim()) {
-      console.log("Empty comment, please try again !");
       SetFormValidationStatus("Empty comment, please try again !");
       return;
     }
-    // commentObject?.(comment);
-    console.log("Comment ID is ", parseInt(postID, 10));
+
     const commentID = parseInt(postID, 10);
-    queryApiCreateComment(comment, commentID, authorID.UserID);
-    console.log("Submitted Comment:", comment);
-    setComment("");
-    SetcommentSubmissionStatus("Comment Submitted");
+
+    queryApiCreateComment(comment, commentID, authorID.UserID)
+      .then(() => {
+        setComment("");
+        SetFormValidationStatus("");
+        SetcommentSubmissionStatus("Comment Submitted");
+        onCommentSubmit(); // 👈 re-fetch comments
+      })
+      .catch((error) => {
+        SetcommentSubmissionStatus("Error submitting comment");
+        console.error(error.message);
+      });
   };
 
   return (
@@ -133,7 +134,6 @@ function PostComment({ postID }) {
         <br />
         <textarea
           id="newComment"
-          type="text"
           maxLength={500}
           rows="5"
           cols="50"
@@ -147,13 +147,14 @@ function PostComment({ postID }) {
       </form>
       <p>{formValidationStatus}</p>
       <p>{commentSubmissionStatus}</p>
-      <button onClick={() => navigate(-1)}>Go Back</button>
+      <button onClick={() => window.history.back()}>Go Back</button>
     </div>
   );
 }
 
-// Post.propTypes = {
-//   postID: PropTypes.number.isRequired,
-// };
+PostComment.propTypes = {
+  postID: PropTypes.string.isRequired,
+  onCommentSubmit: PropTypes.func.isRequired,
+};
 
 export default Post;

@@ -50,7 +50,7 @@ async function queryApiDeletePost(postID) {
     const loadedJwtToken = loadJwtTokenToHttpHeader();
     console.log("Loaded JWT:", loadedJwtToken);
 
-    let response = await fetch(`${apiURL}/${`writer/posts/${postID}/delete`}`, {
+    let response = await fetch(`${apiURL}/${`/reader/posts/${postID}/delete`}`, {
       method: "DELETE",
       headers: { ...loadedJwtToken, "Content-Type": "application/json" },
       body: JSON.stringify({}),
