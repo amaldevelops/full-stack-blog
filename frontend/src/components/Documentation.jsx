@@ -27,7 +27,11 @@ function APIDocs() {
           through clear and predictable endpoint behavior. Two front ends can be
           connected (one for Blog Reader and one for Blog Writer).
         </p>
-        <div></div>
+        <div>
+          <h4>This site is hosted on GitHub Pages using client-side routing with React Router.
+If you refresh a page or access a nested route directly (e.g., /writer/edit), you may see a "404 Not Found" error due to how GitHub Pages handles URLs.
+To avoid this, please navigate using the links within the site instead of refreshing manually on subpages.</h4>
+        </div>
       </div>
       <div>
         <h2>Live Demo</h2>

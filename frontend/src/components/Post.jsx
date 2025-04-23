@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import PropTypes from "prop-types";
 
@@ -12,7 +13,10 @@ import {
 } from "../utils/apiReaderQueries";
 import { decodeJWTPayload } from "../utils/apiAdminQueries";
 
+let navigate;
+
 function Post() {
+  navigate = useNavigate();
   const { id } = useParams();
   console.log(id);
   const APIPathPostById = id;
@@ -123,6 +127,7 @@ function PostComment({ postID }) {
       </form>
       <p>{formValidationStatus}</p>
       <p>{commentSubmissionStatus}</p>
+      <button onClick={() => navigate(-1)}>Go Back</button>
     </div>
   );
 }
