@@ -1,63 +1,149 @@
-# FullStack Blog API and Clients
+````markdown
+# Full Stack Blog Project
 
-This demo project is designed to strengthen technical proficiency in building an API that adheres to REST architectural principles, with a strong emphasis on authentication, route protection, and role-based access control using JSON Web Tokens (JWTs). The API follows REST constraints such as a stateless client-server architecture, resource-based routing, uniform interfaces via standard HTTP methods (GET, POST, PUT, DELETE), and cacheable responses where applicable. The core objective is to implement a secure and RESTful backend that can effectively differentiate between various types of users—such as readers and writers—while enforcing access restrictions accordingly through clear and predictable endpoint behavior. Two front ends can be connected (one for Blog Reader and one for Blog Writer).
+## 📘 Project Introduction
 
-## Live Demo
+This demo project is designed to strengthen technical proficiency in building a secure RESTful API with:
 
-- Please note that the backend code and database are hosted on the free tiers of Neon PaaS and Render PaaS. Due to the limitations of their plans, response times may be slower than usual.
+- **Authentication & Authorization** via **JWT**
+- **Role-Based Access Control**
+- REST principles (statelessness, resource-based routing, uniform interface)
 
-- Front End Hosted on GitHub Pages: https://www.amalk.au/full-stack-blog
-- Database hosted on Neon:https://neon.tech/
-- Backend hosted on Render (Please note: As this hosted on a free instance, it will spin down with inactivity, which can delay requests by 50 seconds or more. ): https://full-stack-blog-t1n4.onrender.com
+It supports two front-ends:
 
-## Source Code
+- **Blog Reader**
+- **Blog Writer**
 
-Both Back End and Front End code are hosted as an monolithic repository (Back End code and Front End Code)
+> ⚠️ **Note**: As the front end is hosted on GitHub Pages using React Router, directly accessing nested routes (e.g., `/writer/edit`) may lead to a 404 error. Please use the navigation within the site.
 
-GitHub Main Repository: [Main GitHub Repository](https://github.com/amaldevelops/full-stack-blog)
-GitHub Front End Source Code: [Front End Source Code](https://github.com/amaldevelops/full-stack-blog/tree/main/frontend)
-GitHub Backend Source Code:[Back End Source Code](https://github.com/amaldevelops/full-stack-blog/tree/main/backend)
+---
 
-### Blog API
+## 🚀 Live Demo
 
-- RESTful API built with Node.js and Express.
-- Prisma ORM for database interaction.
-- JWT authentication for secure access to protected routes.
-- Endpoints for managing blog posts, comments, and user accounts.
-- The API serves as the central data and logic hub, handling requests from both front-end clients.
+- **Front End (GitHub Pages):** [https://www.amalk.au/full-stack-blog](https://www.amalk.au/full-stack-blog)
+- **Database (Neon):** [https://neon.tech/](https://neon.tech/)
+- **Backend (Render):** [https://full-stack-blog-t1n4.onrender.com](https://full-stack-blog-t1n4.onrender.com)
+  > Note: Free hosting tiers may cause delays of up to 50 seconds on first load.
 
-#### Reader Client
+---
 
-- React-based front-end for reading blog posts and leaving comments.
-- User-friendly interface for browsing and interacting with content.
-- Reader Client: Provides a user-friendly interface for consuming blog content.
+## 💻 Source Code
 
-### Writer Client
+- **Main GitHub Repository:** [Main GitHub Repository](https://github.com/amaldevelops/full-stack-blog)
+- **Front End Code:** [Front End Source Code](https://github.com/amaldevelops/full-stack-blog/tree/main/frontend)
+- **Back End Code:** [Back End Source Code](https://github.com/amaldevelops/full-stack-blog/tree/main/backend)
 
-- Separate React-based front-end for authors to write, edit, and publish posts.
-- Features for managing posts (publishing/unpublishing, editing), comments (deleting, editing), and user accounts.
-- Writer Client: Offers a dedicated interface for authors to manage blog content and administrative tasks.
+---
 
-## Architecture
+## 🧱 Tech Stack
 
-The project follows a clear separation of concerns with a distinct API layer and two separate front-end clients. This architecture provides flexibility, security, and maintainability.
+### Front End
 
-### Technologies Used
+- JavaScript, React, Vite, HTML, CSS
 
-- Backend: Node.js, Express.js, Prisma ORM, PostgreSQL, Passport and JWT (JSON Web Tokens) for authentication
-- Frontend: JavaScript,React, HTML, CSS
+#### Blog Reader
 
-## Getting Started
+- React-based client for browsing blog posts and leaving comments.
 
-- Clone the repository: ``` git clone https://github.com/1Amal/FullStackBlog ```
-- Install dependencies: npm install
-- Set up the database: Follow the instructions in the prisma directory.
-- Start the development server: npm run dev
+#### Blog Writer
 
-## Contributing
+- Manage blog posts (create, edit, delete)
+- Moderate comments
 
-Contributions are welcome! Please feel free to submit issues and pull requests
+### Back End
 
-## License
+- Node.js, Express, PostgreSQL, Prisma, Postman
+- REST API with JWT auth
+- Database interaction via Prisma
+- Endpoints for managing posts, comments, and users
 
-This project is licensed under the GPL v3.0 License.
+---
+
+## ⚙️ Deployment Guide
+
+### Local Setup
+
+```bash
+git clone git@github.com:amaldevelops/full-stack-blog.git
+
+# Front End
+cd frontend
+npm install
+
+# Back End
+cd ../backend
+npm install
+npx prisma generate
+npx prisma db push
+npm run seed  # (Optional)
+```
+````
+
+### Neon (Database Hosting)
+
+Follow [Neon docs](https://neon.tech/docs) to set up a PostgreSQL instance. Set your `.env` as:
+
+```
+DATABASE_URL="postgresql://alex:AbC123dEf@ep-cool-darkness-a1b2c3d4.us-east-2.aws.neon.tech/dbname"
+```
+
+### Render.com (Backend Hosting)
+
+Settings:
+
+- **Repo:** `https://github.com/amaldevelops/full-stack-blog`
+- **Branch:** `main`
+- **Root Directory:** `backend/src`
+- **Build Command:** `npm install`
+- **Start Command:** `npm start`
+
+Env Variables:
+
+```
+CORS_URL=https://www.amalk.au
+DATABASE_URL=your_neon_db_url
+PORT=3000
+JWT_SECRET_KEY=your_secret_key
+```
+
+### GitHub Pages (Frontend Hosting)
+
+```bash
+npm run deploy
+```
+
+---
+
+## 📑 Blog API Info
+
+RESTful API with JSON responses. Usable with either or both front ends.
+
+Prefix all routes with your backend URL (e.g., `http://localhost:3000/reader/posts`)
+
+### Admin Routes
+
+- **Register:** `POST /register`
+- **Login:** `POST /login`
+- **Logout:** Remove JWT from client storage
+
+### Reader Routes
+
+- **All Reader Routes:** `GET /reader`
+- **All Published Posts:** `GET /reader/posts`
+- **Post by ID:** `GET /reader/posts/:id`
+- **All Comments for Post:** `GET /reader/posts/:id/comment`
+- **Create Comment:** `POST /reader/posts/:id/comment/create`
+- **Update Comment:** `PUT /reader/posts/:id/comment/:id/update`
+- **Delete Comment:** `DELETE /reader/posts/:id/comment/:id/delete`
+
+### Writer Routes
+
+- **All Writer Routes:** `GET /writer`
+- **Create Post:** `GET /writer/posts/create`
+- **Save Draft:** `GET /writer/posts/drafts`
+- **Get Draft by ID:** `POST /writer/posts/:id/drafts`
+- **Update Draft by ID:** `PUT /writer/posts/:id/drafts`
+- **Delete Post:** `DELETE /writer/posts/:id/delete`
+- **Publish/Unpublish Post:** `PUT /writer/posts/:id/publish`
+
+---
