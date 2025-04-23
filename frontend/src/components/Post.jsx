@@ -21,6 +21,7 @@ function Post() {
   const [refreshTrigger, setRefreshTrigger] = useState(false);
 
   function EditButton(comment) {
+    console.log(comment)
     editComment(comment)
       .then(() => {
         setRefreshTrigger((prev) => !prev);
@@ -80,7 +81,7 @@ function Post() {
             <li key={index}>
               <strong>{comment.comment_timestamp}</strong>:{" "}
               {comment.comment_text}, Author ID: {comment.comment_author_id}{" "}
-              <button onClick={() => EditButton(comment)}>Edit</button>
+              {/* <button onClick={() => EditButton(comment)}>Edit</button> */}
               <button onClick={() => DeleteButton(postById.id, comment.id)}>
                 Delete
               </button>
