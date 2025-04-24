@@ -9,7 +9,7 @@
   "scripts": {
     "seed": "node src/prisma/seedSampleData.js",
     "dev": "node --watch src/index.js",
-    "start":"node src/index.js",
+    "start": "node src/index.js",
     "studio": "npx prisma studio --schema src/prisma/schema.prisma"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "passport-jwt": "^4.0.1"
   },
   "devDependencies": {
-    "prisma": "^6.6.0"
+    "prisma": "^6.6.0",
+    "supertest": "^7.1.0"
   }
 }
