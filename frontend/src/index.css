@@ -11,11 +11,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: 16px; /* Base font size for larger screens */
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
 }
 
 .layoutContainer {
   position: relative;
-  width: 100vw;
+  max-width: 100%;
   overflow-x: hidden;
 }
 
@@ -165,16 +171,15 @@ ul {
 .jwtDisplay {
   border-style: solid;
   border: solid #1a1a1a 1px;
+  max-width: 1080px;
 }
 
-.documentationDiv
-{
+.documentationDiv {
   border-style: solid;
   border: solid #1a1a1a 1px;
 }
 
-.border
-{
+.border {
   border-style: solid;
   border: solid #1a1a1a 2px;
 }
